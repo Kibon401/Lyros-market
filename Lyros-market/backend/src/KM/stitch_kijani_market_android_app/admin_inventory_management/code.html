@@ -1,0 +1,377 @@
+f<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lyros Market | Inventory Management</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad5",
+                    "tertiary-fixed": "#ffdad4",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-tint": "#3b6934",
+                    "on-primary-fixed-variant": "#23501e",
+                    "secondary-fixed-dim": "#b0ceb4",
+                    "on-tertiary-container": "#ffaea0",
+                    "primary-container": "#2d5a27",
+                    "on-secondary-fixed": "#062010",
+                    "on-tertiary-fixed-variant": "#80281b",
+                    "on-secondary-fixed-variant": "#334d38",
+                    "primary-fixed-dim": "#a1d494",
+                    "tertiary-fixed-dim": "#ffb4a7",
+                    "on-surface": "#1b1c19",
+                    "primary-fixed": "#bcf0ae",
+                    "outline": "#72796e",
+                    "background": "#fbf9f4",
+                    "primary": "#154212",
+                    "surface-bright": "#fbf9f4",
+                    "secondary-fixed": "#cceacf",
+                    "on-primary-container": "#9dd090",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f5f3ee",
+                    "on-primary-fixed": "#002201",
+                    "on-tertiary-fixed": "#400200",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#4e6953",
+                    "on-surface-variant": "#42493e",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e4e2dd",
+                    "outline-variant": "#c2c9bb",
+                    "secondary": "#4a654f",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#c9e7cc",
+                    "surface": "#fbf9f4",
+                    "on-background": "#1b1c19",
+                    "surface-container": "#f0eee9",
+                    "inverse-surface": "#30312e",
+                    "surface-variant": "#e4e2dd",
+                    "tertiary-container": "#8d3123",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#a1d494",
+                    "tertiary": "#6e1a0f",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#eae8e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "3xl": "2rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "margin-mobile": "16px",
+                    "stack-md": "16px",
+                    "gutter": "12px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "price-display": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "price-display": ["18px", {"lineHeight": "22px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .deep-soft-shadow {
+            box-shadow: 0 4px 20px 0 rgba(21, 66, 18, 0.06);
+        }
+        body {
+            background-color: #fbf9f4; /* Warm Cream */
+            color: #1b1c19;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-background dark:bg-surface">
+<div class="flex items-center justify-between px-margin-mobile py-stack-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity p-2 rounded-full active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Lyros Market</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity p-2 rounded-full active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">shopping_basket</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile pt-stack-lg">
+<!-- Header Section -->
+<section class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Inventory Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your organic produce stock levels and pricing.</p>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<div class="relative flex-grow sm:w-64">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 font-body-sm text-body-sm transition-all outline-none" placeholder="Search products..." type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/20 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    FILTER
+                </button>
+</div>
+</section>
+<!-- Category Chips -->
+<div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar mb-stack-md">
+<button class="px-5 py-2 bg-primary text-white rounded-full font-label-caps text-label-caps whitespace-nowrap">ALL PRODUCTS</button>
+<button class="px-5 py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-secondary-fixed-dim/20 transition-colors">VEGETABLES</button>
+<button class="px-5 py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-secondary-fixed-dim/20 transition-colors">FRUITS</button>
+<button class="px-5 py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-secondary-fixed-dim/20 transition-colors">DAIRY</button>
+<button class="px-5 py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps whitespace-nowrap hover:bg-secondary-fixed-dim/20 transition-colors">GRAINS</button>
+</div>
+<!-- Inventory Staggered Grid -->
+<div class="masonry-grid">
+<!-- Product Card 1 -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden deep-soft-shadow group transition-all duration-300 hover:-translate-y-1">
+<div class="h-56 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A lush, vibrant bunch of organic kale with water droplets, photographed in high-key morning light on a rustic wooden surface. The visual style is premium lifestyle photography, emphasizing the deep forest green of the leaves and the warm cream tones of the background. Minimalist aesthetic, clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyIDx4loCnyHzwXTCIsVxxAGtcNXs9NW6CN8SoWFugpSiqxxK_WpQEwo-Bpi5BOQ-xSnabjmIwWhH2P8BiinkuI_vWWIKK_GBxkVzlLlIxAmkPh8aKb7Fjnv8q7OOhNjkzwU7gBIIlFTp7lUshDGZQIAskI5X9CfM1Y1Zo2sm-dV-gtjIW6YY0yhR5wFECX01L0BgMprgymqM9kpWnc2bHblJjrBNt7WkZlvyeLfSX6VfPuvzIds85"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-white rounded-full font-label-caps text-[10px]">IN STOCK</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Curly Kale</h3>
+<span class="font-price-display text-price-display text-primary">$4.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Stock: 42 Bunches</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-4 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/30 transition-colors active:scale-95">EDIT</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 (Different Aspect Ratio logic via content) -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden deep-soft-shadow group transition-all duration-300 hover:-translate-y-1">
+<div class="h-72 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close-up of freshly harvested heirloom tomatoes in shades of deep red and terracotta, resting in a woven grass basket. The scene is illuminated by warm, dappled sunlight, creating a rustic and organic feel. High-quality editorial style with soft depth of field, highlighting the tactile texture of the market produce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4jPcgNr5gIVx1BseRfCkC2UnEHBULSkVlOk-B86nai0DBqAYGsvmn9iU8ZpePN0swfRhGYx90AViRDK9rqGRiiaK8KImnsYyCW5OFzchcrL9R6cwHK4GuAvmYgXMyYZhMmkDdFh6KEwU7dSe1cQXmL-mV5nijypesbgPEWT6GwTL5iBjZGcrvPx57W10OPQxcypV65c4bHlkrxR75vcfoibNOVXU3g_bA3Feku-yd42yhsUCTN_ob"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary rounded-full font-label-caps text-[10px]">LOW STOCK</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Heirloom Tomatoes</h3>
+<span class="font-price-display text-price-display text-primary">$6.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Stock: 8 Kg</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-4 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/30 transition-colors active:scale-95">EDIT</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden deep-soft-shadow group transition-all duration-300 hover:-translate-y-1">
+<div class="h-60 relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist overhead shot of farm-fresh organic eggs in a sage green carton, placed on a warm cream linen tablecloth. The lighting is soft and ambient, emphasizing the smooth texture of the shells. The color palette is composed of natural earthy tones, reflecting a clean and modern marketplace aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiI3_1vNNkzHf0J5Ttvs9nWzr5thMT6IDqx6Afe4ffZ07xb_gcdyyg1hWo0Cnfo_mx0-XsNYjLxtNlN_uWsy0slHxvsGlRxXC8uC_xUvqG90-PFllzDNcM1pWjYAVdkySiTPrc0rve73IebVMTMBgp-0MAvvNQ3DtesHpHAN_yTmknQ9k8eJcAIkQ7jL-j5c8LmjnGRZpfJwUzjWna1Oo4Q6WVcbp1bYjh5oAcoT4fCbVURhTrqE-8"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-surface-dim text-on-surface-variant rounded-full font-label-caps text-[10px]">OUT OF STOCK</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pasture Eggs (12pk)</h3>
+<span class="font-price-display text-price-display text-primary">$7.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Stock: 0 Packs</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-4 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/30 transition-colors active:scale-95">EDIT</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden deep-soft-shadow group transition-all duration-300 hover:-translate-y-1">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A bottle of fresh organic goat milk sitting next to a sprig of lavender on a bright, minimalist kitchen counter. The morning sun streams through a window, creating long, soft shadows and a fresh, clean mood. The palette is dominated by off-whites, soft greens, and light wood textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUA5Qry5zAO70mxhl-Bci78P65nbplaZXpKGIgogmbvsBhpVfqYu0NuemxZkxslccSpnBB_LcwHUHOMDehE1LLNVLKTAE7Adr2oBd6YNlm6ArYc97nJVp3JLguyEyNRX7truRg5JRnyjPXDFrr7mzx9KLbPnukQMxvtHJv0fG7Leu-ILi2ii1YCr25QR5m7TB7yGQR93vTNCnBl_i1srNx99cObQa-4-gp8HBttDpF2omidOfJS0jG"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-white rounded-full font-label-caps text-[10px]">IN STOCK</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Fresh Goat Milk</h3>
+<span class="font-price-display text-price-display text-primary">$5.25</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Stock: 15 Bottles</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-4 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/30 transition-colors active:scale-95">EDIT</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 5 -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden deep-soft-shadow group transition-all duration-300 hover:-translate-y-1">
+<div class="h-80 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A rustic display of golden honey jars with wooden dippers, set against a background of wildflowers. The lighting is warm and golden, evoking the feeling of a late summer afternoon. High-end product photography style with a focus on transparency, richness, and natural textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdtAdZW_jtf5V6jgySpGK8URxURuluSH-MyvwqVlb5Z3eljLRD1ecV1jlceJQUp2g5iZgKAbB0U53R-f55Le1I3zk7WZecXmue_p6l6ukH2TOqPQNSeBJHYN_AIv-_YXx9-RTRfGYw7AMxSumWCOVhBa_nzODyUHe6KbzUUN3HJf7Vgnjk-BV9pH8FFKAwYC496Z6bFgPiZZwE0LiCvvJIYbFLqa2Y7jfI93zSkgreo88osIIqbibD"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-white rounded-full font-label-caps text-[10px]">IN STOCK</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Raw Forest Honey</h3>
+<span class="font-price-display text-price-display text-primary">$12.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Stock: 24 Jars</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-4 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps hover:bg-secondary-fixed-dim/30 transition-colors active:scale-95">EDIT</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- FAB: Add New Product -->
+<button class="fixed bottom-24 right-6 md:bottom-12 md:right-12 z-50 w-16 h-16 flex items-center justify-center bg-primary text-white rounded-full shadow-2xl hover:scale-110 active:scale-90 transition-all duration-200 group">
+<span class="material-symbols-outlined text-[32px]">add</span>
+<span class="absolute right-full mr-4 px-4 py-2 bg-inverse-surface text-inverse-on-surface rounded-xl font-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">ADD PRODUCT</span>
+</button>
+<!-- Navigation Drawer (Side) - Tablet/Desktop -->
+<nav class="hidden lg:flex fixed inset-y-0 left-0 z-50 w-80 flex-col bg-background p-6 border-r border-outline-variant/30">
+<div class="mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-primary mb-1">Lyros Market</h1>
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">ADMIN DASHBOARD</p>
+</div>
+<div class="flex-grow flex flex-col gap-1">
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-lg text-body-lg">Overview</span>
+</a>
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container px-6 py-3 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-lg text-body-lg font-semibold">Inventory</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-lg text-body-lg">Orders</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-lg text-body-lg">Customers</span>
+</a>
+<div class="my-4 border-t border-outline-variant/30"></div>
+<a class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-lg text-body-lg">Settings</span>
+</a>
+</div>
+<div class="mt-auto p-4 bg-surface-container-low rounded-3xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JA</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold">Jane Admin</p>
+<p class="text-[10px] text-on-surface-variant">Store Manager</p>
+</div>
+<button class="ml-auto text-on-surface-variant">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</nav>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-low dark:bg-surface-container-highest shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-caps text-label-caps mt-1">Stock</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction: Click on a card to simulate selection
+        document.querySelectorAll('article').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('ring-2');
+                card.classList.toggle('ring-primary');
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('shadow-md');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('shadow-md');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lyros Market - Home</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#002201",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-background": "#1b1c19",
+                      "on-tertiary-fixed": "#400200",
+                      "on-tertiary-container": "#ffaea0",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#9dd090",
+                      "surface-container": "#f0eee9",
+                      "background": "#fbf9f4",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-secondary-container": "#4e6953",
+                      "primary": "#154212",
+                      "secondary-container": "#c9e7cc",
+                      "on-primary-fixed-variant": "#23501e",
+                      "on-surface": "#1b1c19",
+                      "inverse-surface": "#30312e",
+                      "outline": "#72796e",
+                      "surface-container-high": "#eae8e3",
+                      "surface-tint": "#3b6934",
+                      "secondary-fixed-dim": "#b0ceb4",
+                      "surface-container-low": "#f5f3ee",
+                      "outline-variant": "#c2c9bb",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdad4",
+                      "tertiary": "#6e1a0f",
+                      "on-secondary-fixed-variant": "#334d38",
+                      "surface": "#fbf9f4",
+                      "surface-container-highest": "#e4e2dd",
+                      "secondary": "#4a654f",
+                      "surface-dim": "#dbdad5",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#42493e",
+                      "primary-fixed": "#bcf0ae",
+                      "on-secondary-fixed": "#062010",
+                      "on-tertiary-fixed-variant": "#80281b",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb4a7",
+                      "surface-variant": "#e4e2dd",
+                      "secondary-fixed": "#cceacf",
+                      "tertiary-container": "#8d3123",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#a1d494",
+                      "surface-bright": "#fbf9f4",
+                      "primary-container": "#2d5a27"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "stack-sm": "8px",
+                      "base": "4px",
+                      "margin-desktop": "32px",
+                      "stack-md": "16px",
+                      "stack-lg": "24px",
+                      "gutter": "12px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "price-display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "price-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .deep-soft-shadow {
+            box-shadow: 0 4px 20px 0 rgba(21, 66, 18, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen pb-24 font-body-lg">
+<!-- Sticky Header Area -->
+<div class="sticky top-0 z-[40] bg-background">
+<!-- TopAppBar Shared Component -->
+<header class="w-full bg-background dark:bg-surface text-primary dark:text-primary-fixed-dim px-margin-mobile py-stack-md flex items-center justify-between max-w-7xl mx-auto">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200 flex items-center justify-center p-2 -ml-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">
+                Lyros Market
+            </h1>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200 flex items-center justify-center p-2 -mr-2 rounded-full hover:bg-surface-container-high relative">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-tertiary rounded-full border border-background"></span>
+</button>
+</header>
+<!-- Prominent Search Bar -->
+<div class="px-margin-mobile pb-stack-md max-w-7xl mx-auto">
+<div class="bg-surface-container flex items-center gap-3 px-4 py-3 rounded-full border border-outline-variant shadow-sm focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:ring-0 p-0" placeholder="Search fresh produce..." type="text"/>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">tune</button>
+</div>
+</div>
+</div>
+<!-- Category Chips -->
+<div class="px-margin-mobile mb-stack-lg max-w-7xl mx-auto">
+<div class="flex overflow-x-auto gap-3 hide-scrollbar snap-x py-2">
+<button class="snap-start shrink-0 bg-primary text-on-primary font-label-caps text-label-caps px-5 py-2.5 rounded-full flex items-center gap-2 shadow-sm active:scale-95 transition-transform">
+                All
+            </button>
+<button class="snap-start shrink-0 bg-secondary-container text-on-secondary-container hover:bg-primary-fixed transition-colors font-label-caps text-label-caps px-5 py-2.5 rounded-full flex items-center gap-2 active:scale-95">
+                Vegetables
+            </button>
+<button class="snap-start shrink-0 bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-caps text-label-caps px-5 py-2.5 rounded-full flex items-center gap-2 border border-outline-variant active:scale-95">
+                Fruits
+            </button>
+<button class="snap-start shrink-0 bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-caps text-label-caps px-5 py-2.5 rounded-full flex items-center gap-2 border border-outline-variant active:scale-95">
+                Grains
+            </button>
+<button class="snap-start shrink-0 bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-caps text-label-caps px-5 py-2.5 rounded-full flex items-center gap-2 border border-outline-variant active:scale-95">
+                Dairy
+            </button>
+</div>
+</div>
+<!-- Main Content: Staggered Masonry Grid -->
+<main class="px-margin-mobile max-w-7xl mx-auto">
+<div class="columns-2 gap-gutter sm:columns-3 lg:columns-4">
+<!-- Product Card 1: Kales (Tall) -->
+<div class="break-inside-avoid mb-gutter bg-surface-container-lowest rounded-[24px] overflow-hidden deep-soft-shadow group cursor-pointer hover:shadow-lg transition-shadow relative">
+<div class="absolute top-3 left-3 z-10 bg-tertiary text-on-tertiary font-label-caps text-label-caps px-2 py-1 rounded-full text-[10px]">Farm Direct</div>
+<div class="w-full aspect-[3/4] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant, close-up photograph of a bundle of freshly harvested, dew-covered green kales resting on a rustic wooden table. The lighting is soft, natural morning sunlight typical of a high-end lifestyle magazine, creating subtle highlights on the textured leaves. The background is slightly blurred in a warm cream tone, emphasizing the fresh, organic, and premium quality of the produce in a Modern Organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByHIP7YpWal-dfQN2LmTff892i1nVBeGtoYYpLPnwzgjL62WflOLnOuncug1pfLkS9TYCY8LrejpnRG9h1LUTmh_p7W39d8URGT6Yyc8Mj5F-z1BgtSU0D5466iZxHBOxXAOyTVEsrPsv-5SlPedmDiQsmjiTBTNee6cbZqnqqKYuXqOksHLZ2PmbknSpBn82RxUpiIopwAiuPf3g1nBVB-sNG54XYBuckJYdhr26AteoBXfgifB6t"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Fresh Sukuma Wiki</h3>
+<p class="font-body-sm text-body-sm text-outline">Lyros Farms · 1 Bunch</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-display text-price-display text-primary">$1.50</span>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2: Honey (Square) -->
+<div class="break-inside-avoid mb-gutter bg-surface-container-lowest rounded-[24px] overflow-hidden deep-soft-shadow group cursor-pointer hover:shadow-lg transition-shadow relative">
+<div class="w-full aspect-square relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully styled photograph of a glass jar filled with rich, golden organic honey, sitting on a light linen cloth over a cream-colored surface. A wooden honey dipper rests beside it with a drop of honey suspended. The lighting is warm and inviting, casting deep, soft shadows typical of Staggered Minimalism design. The overall mood is earthy, sweet, and perfectly aligned with a premium, trustworthy organic marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxytLkwb7pm1XygTJkwQCyg67pMgc6V1OY5mKrb2H9s8wO69MDJO-kdFwteZmzbD1kOrPyH4ZRRBhVLJOwpD5aV-XCAn2r5erGZhcFrnU0VfoZH2MvbfzZftr4LiRCyC3cbP6mepnVFNhkZkWojwkj2Vk_c0INo5wCNldjRz8wr9diH45i5eU7OO2Jz-1W9L-wH-J79x83sXHymwbOqTEJPloz35MLvvlrlRN0edrm_4b9nFDvt7_s"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Wildflower Honey</h3>
+<p class="font-body-sm text-body-sm text-outline">Rift Valley Apiaries · 500g</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-display text-price-display text-primary">$8.00</span>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3: Milk (Tall) -->
+<div class="break-inside-avoid mb-gutter bg-surface-container-lowest rounded-[24px] overflow-hidden deep-soft-shadow group cursor-pointer hover:shadow-lg transition-shadow relative">
+<div class="w-full aspect-[4/5] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, modern photograph of a chilled, condensation-covered glass bottle of fresh milk placed on a smooth, warm cream countertop. Behind it, a hint of lush green foliage is softly blurred out of focus. The scene uses soft-touch lighting to eliminate harsh lines, creating an approachable, pristine, and high-quality Modern Organic aesthetic that conveys freshness and community trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRhfL_n4nzY0kyDuKCyHhnQI7NWWtFhUpr2EZJybakRDQeQNS0KMORz2ReVlBtv03SLd_LQtB2gmzC3wXqmEREQAltMvGp1VJ5C94xsX61Pe6oVwAm2vBwR9vrb96iYXI8Rd1cBgmxX2nFr88m0-fdST-Oxe_9IlXD242lsAhTwgRoG181xgtnAQamZ78zCw2SWREdm52PprRInGvB0RWuQ_ECCkm_r31CoVeIMB02JfpiVGAye276"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Raw Cow's Milk</h3>
+<p class="font-body-sm text-body-sm text-outline">Highland Dairy · 1L</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-display text-price-display text-primary">$2.20</span>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4: Tomatoes (Square) -->
+<div class="break-inside-avoid mb-gutter bg-surface-container-lowest rounded-[24px] overflow-hidden deep-soft-shadow group cursor-pointer hover:shadow-lg transition-shadow relative">
+<div class="absolute top-3 left-3 z-10 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-2 py-1 rounded-full text-[10px]">Organic</div>
+<div class="w-full aspect-square relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An overhead editorial shot of vibrant, perfectly ripe red tomatoes on the vine, casually arranged on a muted sage green background. The lighting is diffused, mimicking a sun-drenched farmers market, with deep soft shadows anchoring the tomatoes to the surface. The visual style is rooted in staggered minimalism, providing a tactile, fresh, and appetizing presentation suitable for a premium grocery app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTirAYsetMP7oIYdgjKjbdDynHG_-27P0vY547TOX3NnmWPKkAI10zgLIVEm1eCcX03Eu8xIVYuvTrAsxG7aVN8ho6YNHbVZprVvsU0sf079vN1s5D81BzfkCD-BfLF8TnyqQyx9KU2hxKzPq2N3LL9gvLfc9SxKgj1opywz42qIuK12dce9otuUmhTF_6yRR4DNPAiBaYNSzkyGDcaSUDZsLfrwi_BVCRt98h5mnnIG-PhmDLpDfK"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Vine Tomatoes</h3>
+<p class="font-body-sm text-body-sm text-outline">Sun-kissed · 1kg</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-display text-price-display text-primary">$3.50</span>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shared Component -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-low dark:bg-surface-container-highest shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] rounded-t-xl md:hidden">
+<!-- Active Tab: Home -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<!-- Inactive Tab: Search -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 duration-150 rounded-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<!-- Inactive Tab: Cart -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 duration-150 rounded-full relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-2 bg-tertiary text-on-tertiary text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+</div>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<!-- Inactive Tab: Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 duration-150 rounded-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

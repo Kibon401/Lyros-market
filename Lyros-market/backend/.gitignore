@@ -1,0 +1,20 @@
+# Ktor and Gradle
+.gradle
+build/
+/out/
+*.iws
+*.iml
+*.ipr
+
+# IDE files
+.idea/
+
+# Local environment variables
+.env
+
+# Log files
+*.log
+
+# Other
+PROGRESS.md
+uploads/

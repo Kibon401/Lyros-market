@@ -1,0 +1,7 @@
+ktor:
+  deployment:
+    port: 8080
+    host: 0.0.0.0 # Explicitly set host to 0.0.0.0 for emulator connectivity
+  application:
+    modules:
+      - com.example.ApplicationKt.module

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Lyros Market - Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#cceacf",
+                        "on-primary-container": "#9dd090",
+                        "surface-bright": "#fbf9f4",
+                        "primary": "#154212",
+                        "background": "#fbf9f4",
+                        "primary-fixed": "#bcf0ae",
+                        "outline": "#72796e",
+                        "on-surface": "#1b1c19",
+                        "tertiary-fixed-dim": "#ffb4a7",
+                        "primary-fixed-dim": "#a1d494",
+                        "on-secondary-fixed-variant": "#334d38",
+                        "on-tertiary-fixed-variant": "#80281b",
+                        "primary-container": "#2d5a27",
+                        "on-secondary-fixed": "#062010",
+                        "secondary-fixed-dim": "#b0ceb4",
+                        "on-tertiary-container": "#ffaea0",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface-tint": "#3b6934",
+                        "tertiary-fixed": "#ffdad4",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-dim": "#dbdad5",
+                        "surface-container-high": "#eae8e3",
+                        "tertiary": "#6e1a0f",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#8d3123",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#a1d494",
+                        "surface-variant": "#e4e2dd",
+                        "inverse-surface": "#30312e",
+                        "surface-container": "#f0eee9",
+                        "surface": "#fbf9f4",
+                        "on-background": "#1b1c19",
+                        "secondary-container": "#c9e7cc",
+                        "on-primary": "#ffffff",
+                        "secondary": "#4a654f",
+                        "outline-variant": "#c2c9bb",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-surface-variant": "#42493e",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#4e6953",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#400200",
+                        "surface-container-low": "#f5f3ee",
+                        "on-primary-fixed": "#002201"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "stack-md": "16px",
+                        "gutter": "12px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "price-display": ["18px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }
+        
+        /* Ambient depth for cards */
+        .card-shadow { box-shadow: 0 4px 20px 0 rgba(21, 66, 18, 0.05); }
+        .interactive-card:active { transform: scale(0.98); box-shadow: 0 2px 10px 0 rgba(21, 66, 18, 0.08); }
+        
+        /* Hide scrollbar for clean horizontal scrolls */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col md:flex-row bg-background">
+<!-- Desktop Navigation Drawer (Web) -->
+<aside class="hidden md:flex flex-col w-80 max-w-[85vw] h-full fixed inset-y-0 left-0 z-[60] bg-background shadow-xl rounded-r-xl p-4">
+<div class="flex items-center gap-4 mb-stack-lg p-2">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a modern farmer or market manager. The person is smiling warmly, set against a bright, softly blurred background of a sunny farmers' market. The lighting is natural and high-key, complementing the warm cream and forest green color palette. A sense of approachability and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPRxLuzn1Jeuagt4RXBly54Kz9QdGZGyXVE2UZKrpp_VvLOj073csLRJlHb_cwbgd6CVOWQH4EplOEDluFOi_hMhQ5RIK_XzXgaiCrRRRuZ9vX1rzwb9QXj1WLdBvrpL3R8_wj48QiMioEm2awVpagb_DXy93-5Idl9YrHBJ2JVPMy1XLnrKM_RluxQrXB_GnyWE77rv9kTUvRlT4tVlQLX3-XaveItv258Cz6Vpzt6lMaE_3GDBhJ"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Welcome back, Admin</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manager</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full px-6 py-3 my-1 hover:bg-surface-container-high transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Orders
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Products
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">people</span>
+                Customers
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors font-body-lg text-body-lg mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-80 flex flex-col w-full min-h-screen">
+<!-- TopAppBar (Mobile & Desktop) -->
+<header class="w-full sticky top-0 z-40 bg-background flex items-center justify-between px-margin-mobile py-stack-md mx-auto max-w-7xl">
+<button class="md:hidden text-primary hover:opacity-80 transition-opacity p-2 active:scale-95 duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary md:font-headline-lg md:text-headline-lg">Overview</h1>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity p-2 bg-surface-container rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full"></span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high md:hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a modern farmer or market manager. The person is smiling warmly, set against a bright, softly blurred background of a sunny farmers' market. The lighting is natural and high-key, complementing the warm cream and forest green color palette. A sense of approachability and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuP7GPyVXdrXn6J8j-AgCuiUj53IXBRUD4i0dB0RAw1Ctc6j_B1DdQBNSuwOg5KVEidiXg8LCtAs99xWzGyBeTjyI9B3C8r-0K9JewaMjT_KzZWJvTyYJyfxhS63vmN9k2XhyMcp363sM7Zd7LwdMYqLgoLF0TlrSugSrlGFVxuhpYGu7Mh9ASKep9y9Yl0fSa9cKlAfb3icENUnc29yqDTynKEDV4YH25wGM8l5B9i1ix6DM5Pg4f"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<div class="px-margin-mobile md:px-margin-desktop pb-24 pt-4 max-w-7xl mx-auto w-full flex-1">
+<!-- Quick Actions -->
+<div class="flex gap-4 mb-stack-lg overflow-x-auto no-scrollbar pb-2">
+<button class="flex items-center gap-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-full px-6 py-3 flex-shrink-0 hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add Product
+                </button>
+<button class="flex items-center gap-2 bg-surface-container text-primary font-label-caps text-label-caps rounded-full px-6 py-3 border border-outline-variant flex-shrink-0 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">category</span>
+                    Add Category
+                </button>
+<button class="flex items-center gap-2 bg-surface-container text-primary font-label-caps text-label-caps rounded-full px-6 py-3 border border-outline-variant flex-shrink-0 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+                    New Promotion
+                </button>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Total Sales -->
+<div class="bg-surface-container-low rounded-[24px] p-6 card-shadow flex flex-col justify-between interactive-card transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 12%
+                        </span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Total Sales (Today)</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">$4,250.00</h3>
+</div>
+</div>
+<!-- Active Orders -->
+<div class="bg-surface-container-low rounded-[24px] p-6 card-shadow flex flex-col justify-between interactive-card transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Active Orders</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">142</h3>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2">24 pending dispatch</p>
+</div>
+</div>
+<!-- Low Stock Alert -->
+<div class="bg-error-container text-on-error-container rounded-[24px] p-6 card-shadow flex flex-col justify-between interactive-card transition-transform duration-200">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div>
+<p class="font-body-sm text-body-sm mb-1 opacity-90">Low Stock Items</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">8</h3>
+<p class="font-body-sm text-[12px] mt-2 underline cursor-pointer">Review Inventory</p>
+</div>
+</div>
+</div>
+<!-- Recent Orders List -->
+<div class="mb-stack-lg">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Recent Orders</h2>
+<button class="text-primary font-label-caps text-label-caps hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Order Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 card-shadow flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-variant rounded-lg flex items-center justify-center text-primary font-bold">
+                                #A12
+                            </div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Sarah Jenkins</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 items • 10 mins ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary">$45.50</p>
+<span class="inline-block px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase rounded-full mt-1">Preparing</span>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 card-shadow flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-variant rounded-lg flex items-center justify-center text-primary font-bold">
+                                #A11
+                            </div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Michael Chen</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">12 items • 45 mins ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary">$120.00</p>
+<span class="inline-block px-2 py-1 bg-surface-variant text-on-surface-variant text-[10px] font-bold uppercase rounded-full mt-1">Ready</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) - Hidden as Dashboard is not in the JSON labels, but providing a shell if needed. 
+         Wait, rule: "The 'Destination' Rule: You are only permitted to render the BottomNavBar or SideNav if the current screen represents a top-level destination within the app's primary ecosystem."
+         Admin Dashboard is a top-level destination, but labels are ["Home", "Search", "Cart", "Profile"]. I'll suppress it as it conflicts with an Admin view, relying on Top Nav / Drawer.
+    -->
+</body></html>

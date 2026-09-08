@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Inventory - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "on-tertiary": "#ffffff",
+                            "secondary-fixed": "#cceacf",
+                            "on-primary-container": "#9dd090",
+                            "surface-bright": "#fbf9f4",
+                            "primary": "#154212",
+                            "background": "#fbf9f4",
+                            "primary-fixed": "#bcf0ae",
+                            "outline": "#72796e",
+                            "on-surface": "#1b1c19",
+                            "tertiary-fixed-dim": "#ffb4a7",
+                            "primary-fixed-dim": "#a1d494",
+                            "on-secondary-fixed-variant": "#334d38",
+                            "on-tertiary-fixed-variant": "#80281b",
+                            "primary-container": "#2d5a27",
+                            "on-secondary-fixed": "#062010",
+                            "secondary-fixed-dim": "#b0ceb4",
+                            "on-tertiary-container": "#ffaea0",
+                            "on-primary-fixed-variant": "#23501e",
+                            "surface-tint": "#3b6934",
+                            "tertiary-fixed": "#ffdad4",
+                            "inverse-on-surface": "#f2f1ec",
+                            "surface-dim": "#dbdad5",
+                            "surface-container-high": "#eae8e3",
+                            "tertiary": "#6e1a0f",
+                            "on-error": "#ffffff",
+                            "tertiary-container": "#8d3123",
+                            "on-secondary": "#ffffff",
+                            "inverse-primary": "#a1d494",
+                            "surface-variant": "#e4e2dd",
+                            "inverse-surface": "#30312e",
+                            "surface-container": "#f0eee9",
+                            "surface": "#fbf9f4",
+                            "on-background": "#1b1c19",
+                            "secondary-container": "#c9e7cc",
+                            "on-primary": "#ffffff",
+                            "secondary": "#4a654f",
+                            "outline-variant": "#c2c9bb",
+                            "surface-container-highest": "#e4e2dd",
+                            "on-surface-variant": "#42493e",
+                            "error-container": "#ffdad6",
+                            "surface-container-lowest": "#ffffff",
+                            "on-secondary-container": "#4e6953",
+                            "on-error-container": "#93000a",
+                            "error": "#ba1a1a",
+                            "on-tertiary-fixed": "#400200",
+                            "surface-container-low": "#f5f3ee",
+                            "on-primary-fixed": "#002201"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "stack-sm": "8px",
+                            "stack-lg": "24px",
+                            "margin-mobile": "16px",
+                            "margin-desktop": "32px",
+                            "stack-md": "16px",
+                            "gutter": "12px",
+                            "base": "4px"
+                    },
+                    "fontFamily": {
+                            "label-caps": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-lg": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "price-display": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "headline-lg-mobile": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "headline-md": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "headline-lg": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-sm": [
+                                    "Plus Jakarta Sans"
+                            ]
+                    },
+                    "fontSize": {
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.05em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "price-display": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "22px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-lg-mobile": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "20px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "30px",
+                                    {
+                                            "lineHeight": "38px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        /* Soft Deep Shadow for modern organic feel */
+        .organic-shadow {
+            box-shadow: 0 4px 20px 0 rgba(21,66,18,0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased flex h-screen overflow-hidden">
+<!-- Navigation Drawer (Desktop/Tablet) -->
+<nav aria-label="Main Navigation" class="hidden md:flex flex-col fixed inset-y-0 left-0 z-[60] w-80 max-w-[85vw] p-4 bg-background dark:bg-surface-dim shadow-xl rounded-r-xl transition-transform">
+<!-- Profile Header -->
+<div class="flex items-center gap-4 mb-stack-lg p-4">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="A close up, highly detailed portrait of a mature woman with a warm smile, wearing a simple linen shirt. Natural, soft sunlight illuminates her face. The background is a slightly blurred, light cream colored wall, fitting the modern organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ7axXycZ0dka2Drn9xNbdtOEHde0l7Dk6MZjTk1ULNjSisROnVH5xS1O5qOceNfNscYnw0GE_xTvny0GZwzjBgC2K_Kom7bT7cKUAg05wcWrpIQeXyaud2D5c9oj7rOu6duAIFPBoznNNieQY38X3qXXRAslPlqQL9sA-W1hd1zHb7UEyGGInnM1coeCld_maIxtNSdpf16_GUyzkO4x-_znRvnKt0-GBg-ixkm62VIqpvHUcbkf_"/>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Welcome back, Jane</h2>
+<p class="font-body-sm text-body-sm text-secondary">Green Member</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">12 Orders this month</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors rounded-full font-body-lg text-body-lg" data-icon="receipt_long" href="#">
+<span class="material-symbols-outlined">receipt_long</span> My Orders
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors rounded-full font-body-lg text-body-lg" data-icon="potted_plant" href="#">
+<span class="material-symbols-outlined">potted_plant</span> Favorite Farms
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors rounded-full font-body-lg text-body-lg" data-icon="eco" href="#">
+<span class="material-symbols-outlined">eco</span> Sustainability Impact
+            </a>
+<!-- Active Tab for Inventory (Semantic Intent) -->
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full px-6 py-3 my-1 font-body-lg text-body-lg active:scale-[0.98] transition-transform" data-icon="inventory" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory</span> Inventory
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors rounded-full font-body-lg text-body-lg mt-auto" data-icon="help_outline" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors rounded-full font-body-lg text-body-lg" data-icon="settings" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-full md:ml-80 overflow-y-auto">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-background dark:bg-surface z-40 flex items-center justify-between px-margin-mobile py-stack-md max-w-7xl mx-auto">
+<button aria-label="Menu" class="md:hidden text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity p-2 rounded-full" data-icon="menu">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim mx-auto md:mx-0 tracking-tight">Lyros Market</h1>
+<button aria-label="Shopping Basket" class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity p-2 rounded-full" data-icon="shopping_basket">
+<span class="material-symbols-outlined text-2xl">shopping_basket</span>
+</button>
+</header>
+<!-- Page Content -->
+<div class="px-margin-mobile md:px-margin-desktop pb-32 max-w-7xl mx-auto w-full flex-1">
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-stack-md mb-stack-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Inventory Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Manage stock, pricing, and product details.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative w-full sm:w-72 organic-shadow rounded-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2.5 pl-12 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-sm text-body-sm text-on-surface placeholder:text-outline transition-all" placeholder="Search products..." type="text"/>
+</div>
+</div>
+<!-- Filter Chips (Horizontal Scroll) -->
+<div class="flex overflow-x-auto gap-2 pb-4 scrollbar-hide -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<button class="flex-shrink-0 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-4 py-2 rounded-full transition-colors active:scale-95">All Products</button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">Vegetables</button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">Fruits</button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">Dairy &amp; Eggs</button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface font-label-caps text-label-caps px-4 py-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">Pantry</button>
+<button class="flex-shrink-0 bg-error-container text-on-error-container font-label-caps text-label-caps px-4 py-2 rounded-full hover:opacity-80 transition-colors active:scale-95 border border-error/20">Low Stock</button>
+</div>
+<!-- Inventory Grid (Masonry/Bento Style) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter mt-stack-md">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-[24px] overflow-hidden organic-shadow flex flex-col group hover:scale-[1.01] transition-transform duration-300">
+<div class="relative h-48 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A high-quality, perfectly lit photograph of fresh, vibrant green organic kale leaves piled gracefully on a rustic wooden table. The lighting is bright and natural, highlighting the texture of the leaves. Warm cream background elements suggest a clean, modern farmers market setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNtpTlqawhoHJjNJALJUwqRWnSXtelKvNDm7UHmoAjWMyTPrLinAdEujenF1mZ3l-uFIF_CTAA3zu5eXg6I0pOeVTuia2WL-DRbLH8gjPSdO5YAgHxB5sZYTB_Xtb7-YWH_IQVn2vx5qohRkOnIxp0JGNt6NlFOpEJR3CAp0sTqCARA2PLYxRa-J2ulr-zbePtVJObJ9NFo85lrMm04x2VrMidMmfw-iOwTsOLp8-XUcBHWF4lU99j"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm rounded-full px-3 py-1 font-label-caps text-label-caps text-primary shadow-sm">Vegetables</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Organic Kale Bunch</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Green Valley Farm</p>
+<div class="flex items-end justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div>
+<span class="block font-label-caps text-label-caps text-outline mb-1">Stock: <span class="text-on-surface font-bold">142</span> units</span>
+<span class="font-price-display text-price-display text-primary">$3.50</span>
+</div>
+<button aria-label="Edit Organic Kale Bunch" class="bg-surface-container-high hover:bg-secondary-container text-primary p-2 rounded-full transition-colors" data-icon="edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 (Low Stock Warning) -->
+<div class="bg-surface-container-lowest rounded-[24px] overflow-hidden organic-shadow flex flex-col group hover:scale-[1.01] transition-transform duration-300">
+<div class="relative h-64 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A beautifully styled shot of a dozen free-range brown eggs in a recycled cardboard carton, resting on a clean, light-colored stone surface. Soft, directional morning light creates gentle shadows. The mood is wholesome and premium, aligning with a modern organic lifestyle brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ-JvbrLf1mWf87JGcOunO522X70CYxSc8lZsphu5AgZmhDTOIeTt3BkaAe0pBsh6Qtmwisc-ub3F_-8edZ8M-3wnoOE4dvKuSpYRJE72-92cA9Ec4z0UPbf7a4ISnHIl8OvzWGNkKgUhOENrQNxbAl2Qly3iep8K8dazWx4s0AMhimrmkKYDq7cr106zCdU1LaVcw79a9iu0d-8RhkfWeJM2pqBFGjkDmem1korT4PTVWS392DKFL"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm rounded-full px-3 py-1 font-label-caps text-label-caps text-primary shadow-sm">Dairy &amp; Eggs</div>
+<div class="absolute top-3 right-3 bg-error-container text-on-error-container rounded-full px-3 py-1 font-label-caps text-label-caps shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Low
+                         </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Free-Range Brown Eggs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Sunny Side Pastures</p>
+<div class="flex items-end justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div>
+<span class="block font-label-caps text-label-caps text-error mb-1">Stock: <span class="font-bold">12</span> units</span>
+<span class="font-price-display text-price-display text-primary">$6.99</span>
+</div>
+<button aria-label="Edit Free-Range Brown Eggs" class="bg-surface-container-high hover:bg-secondary-container text-primary p-2 rounded-full transition-colors" data-icon="edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-[24px] overflow-hidden organic-shadow flex flex-col group hover:scale-[1.01] transition-transform duration-300">
+<div class="relative h-56 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A macro photography shot of ripe, deep red heirloom tomatoes on a vine. The tomatoes are glistening slightly, showcasing their freshness. The background is softly out of focus, featuring warm cream and sage green tones. The aesthetic is clean, natural, and appetizing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4n2jg8VptswbYmyVMPu7yqf-vVMeNrl4hrrcbmBIwAB4eU9lgnEUlVEolaHUiut4CSqKU96au6qn9Qlw1b7lVVz0cPpi8rH7rITjr84LnwPcNlxsbrWrUud-Tb1lUlEafs_tN2TTDyeQ6hG0asCLnMl66zYZ_9quhHZYVURpfld156236OVlAH6_Ht89Ncax5ag7B98f2lbyBpVGPkNdeZXAk2plAQ7QZ7UofcofyWbDs4dSHvg-d"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm rounded-full px-3 py-1 font-label-caps text-label-caps text-primary shadow-sm">Vegetables</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Heirloom Tomatoes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Riverbend Organics</p>
+<div class="flex items-end justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div>
+<span class="block font-label-caps text-label-caps text-outline mb-1">Stock: <span class="text-on-surface font-bold">85</span> lbs</span>
+<span class="font-price-display text-price-display text-primary">$4.20 /lb</span>
+</div>
+<button aria-label="Edit Heirloom Tomatoes" class="bg-surface-container-high hover:bg-secondary-container text-primary p-2 rounded-full transition-colors" data-icon="edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest rounded-[24px] overflow-hidden organic-shadow flex flex-col group hover:scale-[1.01] transition-transform duration-300">
+<div class="relative h-48 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A stylized overhead view of several small, artisanal jars of raw honey, arranged neatly on a light wood surface. The amber color of the honey glows warmly against the cream and wood tones. Subtle natural lighting gives a premium, handcrafted feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDljzNvIFGGnLs2H2y2RDIgTGiI1nhYfD_Zuqo1I8YXWWKawTpG-scVwyNhpT-5tb3lbnOcdTQ-oP-kHL2jXQrz2YE69wsaOmfGeutRrG_Y9bP12IC7qm8YeKT-uuPihgcK3eZcdHw4gJ1cqLWGhNF_wlZKFEiCZDcudwMfdB2A6jLyYLNSZW6XoAynl1ormnC2V1_L3QXepTknYsFApSSrldTi6aXmgoVLZeTieJK-kADWOrqg0BVP"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm rounded-full px-3 py-1 font-label-caps text-label-caps text-primary shadow-sm">Pantry</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Raw Wildflower Honey</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Apiary Collectives</p>
+<div class="flex items-end justify-between mt-auto pt-4 border-t border-outline-variant/30">
+<div>
+<span class="block font-label-caps text-label-caps text-outline mb-1">Stock: <span class="text-on-surface font-bold">45</span> jars</span>
+<span class="font-price-display text-price-display text-primary">$12.00</span>
+</div>
+<button aria-label="Edit Raw Wildflower Honey" class="bg-surface-container-high hover:bg-secondary-container text-primary p-2 rounded-full transition-colors" data-icon="edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Floating Action Button) - Add Product -->
+<button aria-label="Add Product" class="fixed bottom-24 md:bottom-8 right-margin-mobile md:right-margin-desktop bg-primary text-on-primary w-14 h-14 rounded-2xl organic-shadow flex items-center justify-center hover:bg-primary-container hover:scale-105 active:scale-95 transition-all duration-200 z-50 group" data-icon="add">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<nav aria-label="Bottom Navigation" class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-low dark:bg-surface-container-highest shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform duration-150" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform duration-150" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform duration-150" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<!-- Profile is closest semantic match for Admin/Inventory on a generic 4-tab consumer shell -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

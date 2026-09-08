@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Reset Password - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#cceacf",
+                      "on-primary-container": "#9dd090",
+                      "surface-bright": "#fbf9f4",
+                      "primary": "#154212",
+                      "background": "#fbf9f4",
+                      "primary-fixed": "#bcf0ae",
+                      "outline": "#72796e",
+                      "on-surface": "#1b1c19",
+                      "tertiary-fixed-dim": "#ffb4a7",
+                      "primary-fixed-dim": "#a1d494",
+                      "on-secondary-fixed-variant": "#334d38",
+                      "on-tertiary-fixed-variant": "#80281b",
+                      "primary-container": "#2d5a27",
+                      "on-secondary-fixed": "#062010",
+                      "secondary-fixed-dim": "#b0ceb4",
+                      "on-tertiary-container": "#ffaea0",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface-tint": "#3b6934",
+                      "tertiary-fixed": "#ffdad4",
+                      "inverse-on-surface": "#f2f1ec",
+                      "surface-dim": "#dbdad5",
+                      "surface-container-high": "#eae8e3",
+                      "tertiary": "#6e1a0f",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#8d3123",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#a1d494",
+                      "surface-variant": "#e4e2dd",
+                      "inverse-surface": "#30312e",
+                      "surface-container": "#f0eee9",
+                      "surface": "#fbf9f4",
+                      "on-background": "#1b1c19",
+                      "secondary-container": "#c9e7cc",
+                      "on-primary": "#ffffff",
+                      "secondary": "#4a654f",
+                      "outline-variant": "#c2c9bb",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-surface-variant": "#42493e",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#4e6953",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#400200",
+                      "surface-container-low": "#f5f3ee",
+                      "on-primary-fixed": "#002201"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px",
+                      "2xl": "1.5rem"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-lg": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "stack-md": "16px",
+                      "gutter": "12px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "price-display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "price-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        
+        .code-input-group input:focus {
+            outline: none;
+            border-color: theme('colors.primary');
+            box-shadow: 0 0 0 2px theme('colors.primary-fixed');
+        }
+
+        /* Ambient depth for inputs */
+        .ambient-shadow {
+            box-shadow: 0 4px 20px rgba(21, 66, 18, 0.05);
+        }
+        
+        /* Disable arrows on number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-lg flex flex-col items-center justify-center p-margin-mobile relative overflow-hidden">
+<!-- Decorative Organic Shape Background -->
+<div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-secondary-container opacity-30 blur-3xl -z-10 pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-primary-fixed opacity-20 blur-3xl -z-10 pointer-events-none"></div>
+<!-- Main Container -->
+<main class="w-full max-w-md bg-surface-bright rounded-2xl ambient-shadow p-margin-desktop relative z-10 flex flex-col gap-stack-lg border border-surface-variant/50">
+<!-- Header -->
+<header class="text-center flex flex-col gap-stack-sm items-center">
+<div class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-stack-sm ambient-shadow">
+<span class="material-symbols-outlined text-4xl" data-icon="lock_reset" style="font-variation-settings: 'FILL' 1;">lock_reset</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Reset Password</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We've sent a 6-digit code to your email. Enter it below to create a new password.</p>
+</header>
+<!-- Form -->
+<form class="flex flex-col gap-stack-lg w-full" id="reset-form">
+<!-- Verification Code Section -->
+<fieldset class="flex flex-col gap-stack-sm">
+<label class="font-label-caps text-label-caps text-primary pl-1">Verification Code</label>
+<div class="flex justify-between gap-2 code-input-group">
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+<input class="w-full aspect-square text-center font-headline-md text-headline-md bg-surface rounded-xl border border-outline-variant text-primary ambient-shadow transition-all duration-200" maxlength="1" required="" type="number"/>
+</div>
+<div class="text-right">
+<button class="font-body-sm text-body-sm text-surface-tint hover:text-primary transition-colors cursor-pointer" type="button">Resend Code?</button>
+</div>
+</fieldset>
+<!-- New Password Section -->
+<fieldset class="flex flex-col gap-stack-sm">
+<label class="font-label-caps text-label-caps text-primary pl-1" for="new-password">New Password</label>
+<div class="relative">
+<input class="w-full bg-surface rounded-xl border border-outline-variant px-4 py-3 font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant ambient-shadow focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all duration-200 outline-none" id="new-password" minlength="8" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors toggle-password" data-target="new-password" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</fieldset>
+<!-- Confirm Password Section -->
+<fieldset class="flex flex-col gap-stack-sm">
+<label class="font-label-caps text-label-caps text-primary pl-1" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<input class="w-full bg-surface rounded-xl border border-outline-variant px-4 py-3 font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant ambient-shadow focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all duration-200 outline-none" id="confirm-password" minlength="8" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors toggle-password" data-target="confirm-password" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</fieldset>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-4 rounded-full mt-stack-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 active:scale-[0.98] ambient-shadow flex items-center justify-center gap-2 group" type="submit">
+                Reset Password
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Back to Login -->
+<div class="text-center mt-stack-sm">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors inline-flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+                Back to Login
+            </a>
+</div>
+</main>
+<script>
+        // 6-digit code input logic
+        const codeInputs = document.querySelectorAll('.code-input-group input');
+        
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 1) {
+                    e.target.value = e.target.value.slice(0, 1);
+                }
+                if (e.target.value !== '' && index < codeInputs.length - 1) {
+                    codeInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+            
+            // Handle paste
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').slice(0, 6).replace(/\D/g, '');
+                pastedData.split('').forEach((char, i) => {
+                    if(codeInputs[i]) {
+                        codeInputs[i].value = char;
+                        if(i < codeInputs.length -1) codeInputs[i+1].focus();
+                        else codeInputs[i].blur();
+                    }
+                });
+            });
+        });
+
+        // Toggle Password Visibility
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const icon = btn.querySelector('.material-symbols-outlined');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.textContent = 'visibility_off';
+                    icon.setAttribute('data-icon', 'visibility_off');
+                } else {
+                    input.type = 'password';
+                    icon.textContent = 'visibility';
+                    icon.setAttribute('data-icon', 'visibility');
+                }
+            });
+        });
+
+        // Form Submit Prevent Default for Demo
+        document.getElementById('reset-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, handle validation and submission here
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="refresh">refresh</span> Updating...';
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span> Success';
+                btn.classList.replace('bg-primary', 'bg-surface-tint');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-80');
+                    btn.classList.replace('bg-surface-tint', 'bg-primary');
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body></html>

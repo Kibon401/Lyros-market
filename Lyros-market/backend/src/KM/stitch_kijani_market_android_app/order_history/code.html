@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order History - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#bcf0ae",
+                      "tertiary-fixed": "#ffdad4",
+                      "inverse-surface": "#30312e",
+                      "secondary-fixed-dim": "#b0ceb4",
+                      "surface-variant": "#e4e2dd",
+                      "on-secondary-fixed-variant": "#334d38",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#4e6953",
+                      "surface-bright": "#fbf9f4",
+                      "secondary": "#4a654f",
+                      "surface-container-high": "#eae8e3",
+                      "tertiary-container": "#8d3123",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002201",
+                      "primary-container": "#2d5a27",
+                      "tertiary": "#6e1a0f",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-surface": "#1b1c19",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#a1d494",
+                      "tertiary-fixed-dim": "#ffb4a7",
+                      "secondary-fixed": "#cceacf",
+                      "surface-container-low": "#f5f3ee",
+                      "surface-tint": "#3b6934",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface": "#fbf9f4",
+                      "on-error-container": "#93000a",
+                      "outline": "#72796e",
+                      "on-tertiary-fixed": "#400200",
+                      "secondary-container": "#c9e7cc",
+                      "on-primary-container": "#9dd090",
+                      "background": "#fbf9f4",
+                      "inverse-primary": "#a1d494",
+                      "surface-dim": "#dbdad5",
+                      "outline-variant": "#c2c9bb",
+                      "on-background": "#1b1c19",
+                      "primary": "#154212",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0eee9",
+                      "on-surface-variant": "#42493e",
+                      "on-secondary-fixed": "#062010",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-tertiary-fixed-variant": "#80281b",
+                      "on-tertiary-container": "#ffaea0"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "stack-sm": "8px",
+                      "margin-desktop": "32px",
+                      "stack-md": "16px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "price-display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "price-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+          .deep-soft-shadow {
+              box-shadow: 0 4px 20px rgba(21, 66, 18, 0.08);
+          }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen">
+<!-- NavigationDrawer (Mobile - Hidden by default, toggled via TopAppBar menu) -->
+<div class="fixed inset-y-0 left-0 z-[60] w-80 max-w-[85vw] flex flex-col p-4 bg-background dark:bg-surface-dim shadow-xl h-full rounded-r-xl transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden" id="navDrawer">
+<div class="flex items-center gap-4 mb-8 left_align">
+<img alt="User profile photo" class="w-12 h-12 rounded-full object-cover" data-alt="A portrait photo of an African woman in her late 20s smiling, warm natural lighting, earthy green and warm cream background, lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8c-uI4vTxjQaHZKUuc-6ATFq5DfYk7PCFcRb1tyhnnfgIVSM92pjc8wg6xrdiu1GL5qjhvLnh3Gqd0rxneXlAvcT4kooRrlGTPBDsH_aibPgpajk2KKKElbFOpfan2WHkDDdGBtwArZgr211KakaCtUAG4c5dJf-CEfky3UfZxguUseHUfhc3pih77ZPTgWz5GbogC6gxrWThCbD51gQ2lhtYKmIz1DKRz42oEyo_K-3A3FFlxwWB"/>
+<div>
+<p class="font-headline-md text-headline-md font-bold text-primary">Welcome back, Jane</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Green Member</p>
+<p class="font-body-sm text-body-sm text-outline">12 Orders this month</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<a class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-full px-6 py-3 my-1 hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span> My Orders
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">potted_plant</span> Favorite Farms
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">eco</span> Sustainability Impact
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+<a class="flex items-center gap-4 text-on-surface-variant px-6 py-3 my-1 hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+</div>
+<!-- Drawer Overlay -->
+<div class="fixed inset-0 bg-on-background/50 z-50 hidden md:hidden opacity-0 transition-opacity duration-300" id="drawerOverlay"></div>
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-background dark:bg-surface z-40 flat no shadows">
+<div class="flex items-center justify-between px-margin-mobile py-stack-md w-full max-w-7xl mx-auto md:hidden">
+<button class="p-2 text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" id="menuBtn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Lyros Market</h1>
+<button class="p-2 text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">shopping_basket</span>
+</button>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center justify-between px-margin-desktop py-stack-lg w-full max-w-7xl mx-auto">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary"> Lyros Market</h1>
+<nav class="flex gap-8 items-center">
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-body-lg text-body-lg" href="#">Home</a>
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-body-lg text-body-lg" href="#">Search</a>
+<a class="text-on-surface-variant hover:opacity-80 transition-opacity font-body-lg text-body-lg" href="#">Cart</a>
+<a class="text-primary hover:opacity-80 transition-opacity font-body-lg text-body-lg border-b-2 border-primary" href="#">Profile</a>
+<button class="p-2 text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200 ml-4">
+<span class="material-symbols-outlined">shopping_basket</span>
+</button>
+</nav>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32 md:pb-stack-lg">
+<div class="mb-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-primary mb-2">My Orders</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Track your farm-fresh deliveries.</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-4 overflow-x-auto pb-4 mb-6 scrollbar-hide">
+<button class="whitespace-nowrap px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps active:scale-95 transition-transform">All Orders</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps active:scale-95 transition-transform hover:bg-surface-container-high">Delivered</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps active:scale-95 transition-transform hover:bg-surface-container-high">In Transit</button>
+</div>
+<!-- Order List (Vertical flat cards with deep-soft shadow) -->
+<div class="flex flex-col gap-6">
+<!-- Order Card 1 -->
+<div class="bg-surface rounded-[24px] p-4 flex gap-4 items-center deep-soft-shadow hover:scale-[0.99] transition-transform duration-200 cursor-pointer">
+<img alt="Order thumbnail" class="w-24 h-24 rounded-xl object-cover" data-alt="A small woven basket filled with vibrant red organic tomatoes, resting on a textured wooden table. Soft, natural sunlight filtering through leaves, highlighting the freshness of the produce. Warm cream and earthy green ambient colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlsqwRm53QJU_AMurAH7A0Kz_3zLPqCLhwVMftlqCGjVWfVA6XiO1hM3GXAoi672WPbIUb5KLFe2K6VMkXNEXBch9Bo8EyZ0Csl9-VAAjBvduReB9nAZp-muT1edqSxxfvrBEEOVVsJuMoGQDEGClWB7u_uWwr3T39rAJyftasbkPkoRUSYxnTNC2L4tnIzUeShLHImYJOk_81R4oXB8vCRg_XBAtr0V-UrweMkm6Bn7fJ_yD94OrT"/>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary">Order #4892</span>
+<span class="font-price-display text-price-display text-primary">KSh 3,250</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Oct 12, 2023 • 4 items</p>
+<div class="mt-2 flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 18px;">check_circle</span>
+<span class="font-label-caps text-label-caps">Delivered</span>
+</div>
+</div>
+</div>
+<!-- Divider (Sage Green) -->
+<div class="w-full h-px bg-secondary-container/50"></div>
+<!-- Order Card 2 -->
+<div class="bg-surface rounded-[24px] p-4 flex gap-4 items-center deep-soft-shadow hover:scale-[0.99] transition-transform duration-200 cursor-pointer">
+<img alt="Order thumbnail" class="w-24 h-24 rounded-xl object-cover" data-alt="A bundle of fresh leafy green kale wrapped in rustic brown paper, lying on a pristine white marble countertop. Cool natural light, crisp and clean aesthetic. Deep forest green leaves contrasting with the bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAowR50qKrIKhKtGGy--QFqO2Pga4fKCvqnVFW2e1jmaiwLnHUvHnugfqN5D7MTbGFKwf_Nay9jpkKhnczaoRwqA7Qgp-Pos7mIAkC-BNaSMu--Ly9oSMI7YBW_QOFYxvc0e0XVXCjXeXaTdYUZMIAPry04LfnHLlFQ87DDg2-yrBpuCphbd9F9cN92q-m00cd4qAXNABITeFkfYghXbn9MUeHwqBlaDy01Y5xyW7u39e5c1HLnMHzl"/>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary">Order #4750</span>
+<span class="font-price-display text-price-display text-primary">KSh 1,800</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Sep 28, 2023 • 2 items</p>
+<div class="mt-2 flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 18px;">local_shipping</span>
+<span class="font-label-caps text-label-caps text-tertiary-container">In Transit</span>
+</div>
+</div>
+</div>
+<!-- Divider (Sage Green) -->
+<div class="w-full h-px bg-secondary-container/50"></div>
+<!-- Order Card 3 -->
+<div class="bg-surface rounded-[24px] p-4 flex gap-4 items-center deep-soft-shadow hover:scale-[0.99] transition-transform duration-200 cursor-pointer opacity-75">
+<img alt="Order thumbnail" class="w-24 h-24 rounded-xl object-cover" data-alt="A glass jar of rich, golden honey with a wooden dipper resting beside it on a linen cloth. Warm, golden-hour lighting creating soft highlights on the glass. Cosy, organic, farm-to-table aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKV50CPpKrfBx6D05Mjh6zpvlntDVk7KT5NOmXiETv1O6omR7wBeuW61aSHwpI1L0eO-fol_QmKWgxRWBpAAgGdK-13Q05ytrEovkapEqcnP72BRweQmd-yz665Plcemeu0g1fv9HKlC2hLCmvzAmiKenVq19JakCwYWEeFER-cstNloqC7kSStK79Ro2oNm3Fnq_bSlqBfnmOa45Z7clwONq8JWhpN_q81ZXOqNCnNSmVORXA3orZ"/>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary">Order #4610</span>
+<span class="font-price-display text-price-display text-primary">KSh 4,500</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Aug 05, 2023 • 6 items</p>
+<div class="mt-2 flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 18px;">check_circle</span>
+<span class="font-label-caps text-label-caps">Delivered</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-low dark:bg-surface-container-highest shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps mt-1">Cart</span>
+</a>
+<!-- Active Tab: Profile (matches "Order History" user intent) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Drawer toggle logic
+        const menuBtn = document.getElementById('menuBtn');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        function toggleDrawer() {
+            const isClosed = navDrawer.classList.contains('-translate-x-full');
+            if (isClosed) {
+                navDrawer.classList.remove('-translate-x-full');
+                drawerOverlay.classList.remove('hidden');
+                // Small delay to allow display:block to apply before animating opacity
+                setTimeout(() => {
+                    drawerOverlay.classList.remove('opacity-0');
+                    drawerOverlay.classList.add('opacity-100');
+                }, 10);
+            } else {
+                navDrawer.classList.add('-translate-x-full');
+                drawerOverlay.classList.remove('opacity-100');
+                drawerOverlay.classList.add('opacity-0');
+                setTimeout(() => {
+                    drawerOverlay.classList.add('hidden');
+                }, 300); // match transition duration
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleDrawer);
+        drawerOverlay.addEventListener('click', toggleDrawer);
+    </script>
+</body></html>

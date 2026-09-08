@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Organic Heritage Tomatoes - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#bcf0ae",
+                      "tertiary-fixed": "#ffdad4",
+                      "inverse-surface": "#30312e",
+                      "secondary-fixed-dim": "#b0ceb4",
+                      "surface-variant": "#e4e2dd",
+                      "on-secondary-fixed-variant": "#334d38",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#4e6953",
+                      "surface-bright": "#fbf9f4",
+                      "secondary": "#4a654f",
+                      "surface-container-high": "#eae8e3",
+                      "tertiary-container": "#8d3123",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002201",
+                      "primary-container": "#2d5a27",
+                      "tertiary": "#6e1a0f",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-surface": "#1b1c19",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#a1d494",
+                      "tertiary-fixed-dim": "#ffb4a7",
+                      "secondary-fixed": "#cceacf",
+                      "surface-container-low": "#f5f3ee",
+                      "surface-tint": "#3b6934",
+                      "on-primary-fixed-variant": "#23501e",
+                      "surface": "#fbf9f4",
+                      "on-error-container": "#93000a",
+                      "outline": "#72796e",
+                      "on-tertiary-fixed": "#400200",
+                      "secondary-container": "#c9e7cc",
+                      "on-primary-container": "#9dd090",
+                      "background": "#fbf9f4",
+                      "inverse-primary": "#a1d494",
+                      "surface-dim": "#dbdad5",
+                      "outline-variant": "#c2c9bb",
+                      "on-background": "#1b1c19",
+                      "primary": "#154212",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0eee9",
+                      "on-surface-variant": "#42493e",
+                      "on-secondary-fixed": "#062010",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-tertiary-fixed-variant": "#80281b",
+                      "on-tertiary-container": "#ffaea0"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px",
+                      "2xl": "1.5rem",
+                      "3xl": "2rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "stack-sm": "8px",
+                      "margin-desktop": "32px",
+                      "stack-md": "16px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "price-display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "price-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 4px 20px rgba(21, 66, 18, 0.05);
+        }
+        
+        .deep-soft-shadow {
+            box-shadow: 0 8px 30px rgba(21, 66, 18, 0.08);
+        }
+        
+        .hero-clip {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg antialiased pb-24 md:pb-0">
+<!-- Top App Bar (Hidden on Mobile, Visible on Desktop) -->
+<header class="hidden md:flex w-full sticky top-0 z-50 bg-background shadow-sm items-center justify-between px-margin-desktop py-stack-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<span class="font-headline-lg text-headline-lg font-bold text-primary">Lyros Market</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex gap-6">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Search</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Cart</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<button class="text-primary hover:opacity-80 transition-opacity relative">
+<span class="material-symbols-outlined text-2xl">shopping_basket</span>
+<span class="absolute -top-1 -right-1 bg-tertiary-container text-on-tertiary text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="w-full max-w-7xl mx-auto md:px-margin-desktop">
+<!-- Mobile Header (Back button overlay) -->
+<div class="md:hidden fixed top-0 left-0 w-full z-40 px-margin-mobile py-stack-sm flex justify-between items-center bg-gradient-to-b from-black/30 to-transparent">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface soft-shadow active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button aria-label="Shopping Cart" class="w-10 h-10 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface soft-shadow active:scale-95 transition-transform relative">
+<span class="material-symbols-outlined">shopping_basket</span>
+<span class="absolute top-0 right-0 bg-tertiary-container text-on-tertiary text-[10px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center border border-surface">2</span>
+</button>
+</div>
+<div class="md:grid md:grid-cols-12 md:gap-8 md:mt-8">
+<!-- Left Column: Imagery & Core Info -->
+<div class="md:col-span-6 lg:col-span-7">
+<!-- Hero Image Container -->
+<div class="relative w-full h-[530px] md:h-[600px] md:rounded-3xl overflow-hidden bg-surface-variant hero-clip md:hero-clip-none">
+<img alt="Organic Heritage Tomatoes" class="w-full h-full object-cover" data-alt="Close up, high quality, well lit lifestyle photography of a bunch of vibrant, deep red organic heritage tomatoes still attached to their green vine. The tomatoes are resting on a rustic, weathered wooden table in a sun-drenched outdoor market setting. The background is a soft, out-of-focus mix of warm cream tones, earthy greens, and subtle dappled sunlight, creating a fresh, organic, modern lifestyle magazine aesthetic. Focus is crisp on the dew drops and textured skin of the tomatoes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChfQmcAkcVQ6I7lOxwC5mAPWCC37yLHEQ5Rboa6N5vKeYsRec1E9XhlOzEKqrLxsim38tvMmThLOlqhTYDbzQP8eda6LIIF0XBRCnnwLEDcNaWQGmm9cSzA_d3PaX6V71_HtWvg3yPu7ENEUlAlD_1jjjz0lnpNpXleM_vZWW7dKgjvHWlcCHZH_Z7JIp903Wl8sVfyw7NXjPuXE00_-JJ8JwBWSKx5XNu83hOZjlvhFaedEmaNOA_"/>
+<!-- Badges -->
+<div class="absolute bottom-12 left-4 md:bottom-4 md:left-4 flex flex-col gap-2">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full font-label-caps text-label-caps backdrop-blur-md bg-opacity-90 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">eco</span>
+                            Organic Certified
+                        </span>
+<span class="inline-flex items-center gap-1 bg-tertiary text-on-tertiary px-3 py-1.5 rounded-full font-label-caps text-label-caps shadow-sm w-fit">
+                            Direct from Farm
+                        </span>
+</div>
+</div>
+<!-- Desktop only: Thumbnail Gallery -->
+<div class="hidden md:flex gap-4 mt-6">
+<div class="w-24 h-24 rounded-xl overflow-hidden cursor-pointer border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Close up lifestyle photography of vibrant red heritage tomatoes on a vine, resting on a wooden surface. Soft, natural lighting. Modern organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjdSqnS67MsINVhaqRax1dlCJpLSjfRbKlkPlQAYbGCwo2MReJEfm8Wtilua457M4LbVZEAUF5dcaTDECOMelhCjMkK0_MdwQSMj5a_SkIigv6oW6dPIsQw8-mDiypxm6MLJ-3N47hJXxMuOXQLNREfrwlIawLkwrmrT7NopYCet2JiAcyGprwaTBoXuQT9dFCINPHX7qwxNX4zgW_Sj0MY18qjXe2NBnMhzTVfaYr_4FRqZwJg59N"/>
+</div>
+<div class="w-24 h-24 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-outline-variant transition-colors opacity-70 hover:opacity-100">
+<img class="w-full h-full object-cover" data-alt="A farmer's hands gently holding a freshly picked organic heritage tomato in a sunlit field. Earthy greens and warm cream tones. High quality lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBthrU3twb641orNBYXzw7ottlvmqZLwcp4A-QZgHDwFB-mpYaGm7yPJhkt52ugAA-wVchLNT-RMlpsnHpK6QYjjmAC_Be9ED35Buhf4m8IKMj2QuLx-jLpgqdauFc_eQE9rxUG0sR3pCgCZX-z8OhJ0CXCkPNC8zWnYmLcHeXWI14V-SDlkEsjx7V_9tbm-y0BJqlNdV_yg3q1O8Yb94gbzBv-p-fYa_dgGG6Gg-JH-CL6uyjEbMo"/>
+</div>
+<div class="w-24 h-24 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-outline-variant transition-colors opacity-70 hover:opacity-100">
+<img class="w-full h-full object-cover" data-alt="A rustic woven basket overflowing with mixed heritage tomatoes, some red, some green, some yellow, set against a warm cream background with subtle shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT8ywE30Y5nVm7RchNmCzQ99B1pBl6V3NUPEmub9dtviz2hO846vLrPj2yb6aTa3QvH8OE2b9kQbHzhLq6LDZgwv2gRNA2IfhSRhNG-eeSVgxz-H9CZhbx-UUCDiYHPaAgFMYKA5uVlyKe_EgL-sLkCFoRZSNKUFd7NS7tBAa268AZzIaa5RAO6jchOFUexmhrn6whs2va8G81Q5fNaU3M0gIT77GN1DKdWMi1ET6zHWci2H32iMPO"/>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & Actions -->
+<div class="md:col-span-6 lg:col-span-5 px-margin-mobile md:px-0 -mt-6 md:mt-0 relative z-10">
+<!-- Product Header Card (Mobile pulled up over image) -->
+<div class="bg-surface rounded-3xl p-6 soft-shadow md:shadow-none md:p-0 md:bg-transparent">
+<div class="flex justify-between items-start mb-2">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Organic Heritage Tomatoes</h1>
+<button aria-label="Add to favorites" class="text-outline hover:text-tertiary-container transition-colors active:scale-90">
+<span class="material-symbols-outlined text-2xl">favorite_border</span>
+</button>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<div class="flex items-center text-[#e6b800]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4.8 (124 reviews)</span>
+</div>
+<div class="flex items-baseline gap-2 mb-6 border-b border-surface-variant pb-6">
+<span class="font-price-display text-price-display text-primary text-3xl">KSh 350</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">per kg</span>
+</div>
+<!-- Farm Info -->
+<div class="flex items-center gap-4 mb-6 bg-surface-container-low p-4 rounded-2xl cursor-pointer hover:bg-surface-container transition-colors">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a smiling female Kenyan farmer wearing a sun hat, standing in a lush, green tomato field. Sun-drenched, warm, trustworthy aesthetic. High-quality lifestyle photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrDawe8fTb9B9WLeSlFTxTwkq3DgaG4FnHqbIxZyPAetuwbOdN4IFFll2gS3aFGMchi5RA2bSm7JofuU4cGlIB-TioSsvNAQdNlbeNgZqwHBSIW7gAkuKNqMHuM7l2XRPBFVW_6XJ7zVG7NvHlTmNmNPIq-gejAReWrkWPRdGMuOL7iVGMLzVYmhc49sSxuavHhNvqhzEZ5NEb97hARTmE_aGMN9sx98Vms_N49eeReCBbi7TxwRxC"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Sunny Acres Farm</h3>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Kiambu County</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Description -->
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-3">About this item</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant line-clamp-3 md:line-clamp-none text-pretty">
+                            Grown in the rich, volcanic soils of Kiambu, these heritage tomatoes are prized for their intense, complex flavor and meaty texture. Perfect for fresh salads, slow-roasted sauces, or simply sliced with a pinch of sea salt. Harvested at peak ripeness and delivered directly from Sunny Acres Farm to ensure maximum freshness.
+                        </p>
+<button class="md:hidden text-primary font-label-caps text-label-caps mt-2 hover:underline">Read more</button>
+</div>
+<!-- Quantity & Add to Cart (Desktop inline, Mobile sticky bottom) -->
+<div class="hidden md:flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Quantity (kg):</span>
+<div class="flex items-center bg-surface-container rounded-full border border-surface-variant">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="w-12 text-center font-body-lg text-body-lg font-semibold">1</span>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-label-caps text-label-caps text-lg shadow-md hover:bg-on-primary-fixed-variant transition-colors active:scale-[0.98] flex justify-center items-center gap-2">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            Add to Cart - KSh 350
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Details & Reviews Section -->
+<div class="mt-4 md:mt-16 px-margin-mobile md:px-0 mb-12">
+<div class="md:grid md:grid-cols-12 md:gap-8">
+<!-- Specifications -->
+<div class="md:col-span-5 mb-8 md:mb-0">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Product Details</h2>
+<ul class="space-y-4">
+<li class="flex justify-between border-b border-surface-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Category</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Fresh Produce - Vegetables</span>
+</li>
+<li class="flex justify-between border-b border-surface-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Farming Method</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">100% Organic, No Pesticides</span>
+</li>
+<li class="flex justify-between border-b border-surface-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Storage</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Room temperature, away from direct sun</span>
+</li>
+<li class="flex justify-between border-b border-surface-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Shelf Life</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">5-7 days after delivery</span>
+</li>
+</ul>
+</div>
+<!-- Reviews -->
+<div class="md:col-span-7">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Verified Purchase Reviews</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">4.8</span>
+<div class="flex items-center text-[#e6b800]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(124)</span>
+</div>
+</div>
+<button class="text-primary font-label-caps text-label-caps hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Review Card 1 -->
+<div class="bg-surface-container-low rounded-2xl p-5 soft-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">W</div>
+<div>
+<h4 class="font-body-sm text-body-sm font-semibold text-on-surface">Wanjiku K.</h4>
+<div class="flex items-center gap-1 text-[#e6b800] text-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs font-body-sm text-on-surface-variant">2 days ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Absolutely delicious! You can really taste the difference compared to supermarket tomatoes. They were ripe, juicy, and perfect for the kachumbari I made. Will definitely reorder from Sunny Acres.</p>
+<div class="mt-3 flex items-center gap-1 text-xs text-primary font-semibold bg-primary-container/20 w-fit px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Verified Purchase
+                            </div>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-surface-container-low rounded-2xl p-5 soft-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold">J</div>
+<div>
+<h4 class="font-body-sm text-body-sm font-semibold text-on-surface">James M.</h4>
+<div class="flex items-center gap-1 text-[#e6b800] text-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs font-body-sm text-on-surface-variant">1 week ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Great quality and well packaged. Only giving 4 stars because one or two were slightly overripe, but otherwise very good flavor. Fast delivery.</p>
+<div class="mt-3 flex items-center gap-1 text-xs text-primary font-semibold bg-primary-container/20 w-fit px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Verified Purchase
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Similar Items (Bento Grid Style) -->
+<div class="px-margin-mobile md:px-0 mb-32 md:mb-16">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">You might also like</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+<!-- Similar Item 1 -->
+<div class="bg-surface rounded-2xl overflow-hidden soft-shadow group cursor-pointer">
+<div class="w-full aspect-[4/5] relative overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up lifestyle photography of fresh, crisp organic romaine lettuce heads sitting in a rustic wooden crate. Bright natural lighting, earthy greens, modern organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgbtNJEtzrXWPyt29NxJ-YYkL1AoQyZobuVMt_PCCw90-fmZ39eraUHrw4k_NjzYUn8I7FEFmq-wRkmpjiFveIXLWbtc7uhaq0bgr7dlwOQscnB0UkgCLJRv01omDJppXNcN48bHZ_3Ne3cohmYyj-sQPdFtrzfVQNL8Rv9lb1eNTJjwcmXrQuXZqpxq7wjZ_c8Vfck-pewQKvpvaZZgMsP4k527ldH4ZPJTik7-eJgKCeePfnAnf3"/>
+<div class="absolute top-2 left-2 bg-surface/90 backdrop-blur-sm rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">local_fire_department</span>
+</div>
+</div>
+<div class="p-3">
+<h3 class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Organic Romaine Lettuce</h3>
+<p class="font-price-display text-price-display text-primary text-sm mt-1">KSh 120 <span class="text-xs text-on-surface-variant font-normal">/ head</span></p>
+</div>
+</div>
+<!-- Similar Item 2 -->
+<div class="bg-surface rounded-2xl overflow-hidden soft-shadow group cursor-pointer">
+<div class="w-full aspect-square relative overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up lifestyle photography of bright red organic red onions with papery skin, resting on a textured cream linen cloth. Warm lighting, earthy tones, modern organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSTQEJxn7ZNatYyAEa-wtP0GAvTZBJXvaV5efH7okGouqeeglACpggQI0KGPHKfhWvoBiG_9b8u_wZwUUR5l5daR3888RxMy7Uh_MQ_M9BGQbnIfQAeJdlNxrcSt8wiHWtGTVTJyQFYso-iz9vpdc8ymSabKvItIzK_aF4Rtf3HJPXvTF8k5R5UNfx87fApV1xQmTJ4yQh6Qbd1HXruZL2eabArUh0-pEGXmif_wTIzdEhnvl_B_il"/>
+</div>
+<div class="p-3">
+<h3 class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Red Onions</h3>
+<p class="font-price-display text-price-display text-primary text-sm mt-1">KSh 200 <span class="text-xs text-on-surface-variant font-normal">/ kg</span></p>
+</div>
+</div>
+<!-- Similar Item 3 -->
+<div class="bg-surface rounded-2xl overflow-hidden soft-shadow group cursor-pointer md:col-span-2">
+<div class="w-full aspect-[2/1] relative overflow-hidden bg-secondary-container">
+<div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10"></div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully arranged basket of assorted fresh organic vegetables including carrots, greens, and tomatoes, set against a warm sunlit farm background. Modern organic editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPc0Ic62cRpSbmXOEuv7YA1bS0k5148pr9tQxyLbjZeexU1MBHKL4iKpewf_aex9_8dHwIEumZSt_MY-sHEMSfxtqqIhaNr52ceyKU2joDx2XRjEeodZg2y_rlt74QlR_pGBXGUErFQO2ZsV1OhX5MW_hDRJ-_DvoKIAOKqubgNteKXLDJ8tzFEJMJRa-Di0KGr6hGfGNvTTQ7dm8fme7bevuQmO5eXzAghqOeoK5zo64fcOPbKTvg"/>
+<div class="absolute bottom-4 left-4 z-20">
+<h3 class="font-headline-md text-headline-md text-white">Farm Fresh Veggie Box</h3>
+<p class="font-body-sm text-body-sm text-surface-variant mt-1">Curated seasonal mix</p>
+<p class="font-price-display text-price-display text-primary-fixed mt-2">KSh 1,200</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Sticky Action Bar (Hidden on Desktop) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface/95 backdrop-blur-md border-t border-surface-variant p-4 z-40 pb-safe shadow-[0_-8px_20px_0_rgba(21,66,18,0.05)]">
+<div class="flex items-center gap-4 max-w-lg mx-auto">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-none">Total Price</span>
+<span class="font-price-display text-price-display text-primary">KSh 350</span>
+</div>
+<div class="flex items-center bg-surface-container rounded-full border border-surface-variant mx-2">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant active:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="w-8 text-center font-body-sm text-body-sm font-semibold">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant active:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<button class="flex-grow bg-primary text-on-primary py-3 px-4 rounded-full font-label-caps text-label-caps shadow-md active:scale-95 transition-transform flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                Add
+            </button>
+</div>
+</div>
+</body></html>

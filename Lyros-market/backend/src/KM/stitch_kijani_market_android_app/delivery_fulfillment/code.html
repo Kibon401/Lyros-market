@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Delivery Fulfillment - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dbdad5",
+                      "surface-tint": "#3b6934",
+                      "on-background": "#1b1c19",
+                      "secondary": "#4a654f",
+                      "on-secondary-container": "#4e6953",
+                      "tertiary-fixed-dim": "#ffb4a7",
+                      "surface-container": "#f0eee9",
+                      "outline-variant": "#c2c9bb",
+                      "background": "#fbf9f4",
+                      "primary-fixed": "#bcf0ae",
+                      "inverse-primary": "#a1d494",
+                      "surface-bright": "#fbf9f4",
+                      "secondary-container": "#c9e7cc",
+                      "on-surface-variant": "#42493e",
+                      "secondary-fixed-dim": "#b0ceb4",
+                      "on-tertiary-container": "#ffaea0",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f5f3ee",
+                      "outline": "#72796e",
+                      "on-surface": "#1b1c19",
+                      "surface-container-high": "#eae8e3",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#8d3123",
+                      "secondary-fixed": "#cceacf",
+                      "on-tertiary-fixed-variant": "#80281b",
+                      "on-primary-fixed": "#002201",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#062010",
+                      "tertiary": "#6e1a0f",
+                      "on-tertiary-fixed": "#400200",
+                      "inverse-surface": "#30312e",
+                      "surface-variant": "#e4e2dd",
+                      "on-primary-container": "#9dd090",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#a1d494",
+                      "tertiary-fixed": "#ffdad4",
+                      "primary-container": "#2d5a27",
+                      "primary": "#154212",
+                      "on-secondary-fixed-variant": "#334d38",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#23501e",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#fbf9f4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px",
+                      "2xl": "1.5rem",
+                      "3xl": "2rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "stack-lg": "24px",
+                      "margin-desktop": "32px",
+                      "gutter": "12px",
+                      "safe": "env(safe-area-inset-bottom, 16px)"
+              },
+              "fontFamily": {
+                      "price-display": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "label-caps": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "price-display": ["18px", {"lineHeight": "22px", "fontWeight": "700"}],
+                      "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .deep-soft-shadow {
+            box-shadow: 0 4px 20px 0 rgba(21, 66, 18, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col relative pb-32">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-background dark:bg-surface flex items-center justify-between px-margin-mobile py-stack-md w-full max-w-7xl mx-auto z-40">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200 p-2 -ml-2 rounded-full">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Order #4892</h1>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200 p-2 -mr-2 rounded-full">
+<span class="material-symbols-outlined text-[24px]">help_outline</span>
+</button>
+</header>
+<main class="flex-1 px-margin-mobile w-full max-w-2xl mx-auto flex flex-col gap-stack-lg pb-safe">
+<!-- Map Snippet -->
+<div class="w-full h-64 rounded-2xl overflow-hidden relative deep-soft-shadow border border-surface-container-high shrink-0">
+<img class="w-full h-full object-cover" data-alt="A detailed map interface showing a delivery route winding through a city. The map uses a light, modern color scheme with pale cream landmasses and soft green parks, aligning with an organic aesthetic. A prominent dark green path traces the route from a farm icon to a residential destination. Soft ambient lighting." data-location="Nairobi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJbqWEWT6Q1RyIXEP2kTU3s2IyxNH0eZhStcqi0a-OvJgkL2MuS4KoUgWNXSRfQHT1fgn0xp4OBKa9lqJP2AykdAwWfxg05JWnGBOhabEaVq8fvh8XAV_6jYW8LbrkoszWVIAq1owFFwKq8nV5JRGyZeEd63uviK-6eIgu3_Vv4Nau74rKBvxSh7yWTGbX7B95kfYWNcuEuKmZOqdggT8alRNrk3dF3TmhC9I1xIJXRqM-YGNi5zoM"/>
+<!-- Floating Status Pill on Map -->
+<div class="absolute top-4 left-4 bg-background/95 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 deep-soft-shadow">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary-container animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-primary uppercase">In Transit</span>
+</div>
+<!-- ETA -->
+<div class="absolute bottom-4 right-4 bg-primary text-on-primary rounded-xl px-4 py-3 flex flex-col items-end deep-soft-shadow">
+<span class="font-body-sm text-body-sm opacity-90">Est. Arrival</span>
+<span class="font-headline-md text-headline-md">14 mins</span>
+</div>
+</div>
+<!-- Customer Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-stack-lg deep-soft-shadow border border-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-14 h-14 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Customer</span>
+<span class="font-headline-md text-headline-md text-on-surface">Sarah Jenkins</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 truncate max-w-[200px]">128 Greenery Lane, Apt 4B</span>
+</div>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:bg-secondary-fixed-dim/20 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[24px]">call</span>
+</button>
+</section>
+<!-- Order Items Summary -->
+<section class="bg-surface-container-lowest rounded-2xl p-stack-lg deep-soft-shadow border border-surface-container-high">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md">Order Details</h2>
+<div class="flex flex-col gap-stack-sm">
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high last:border-0">
+<span class="font-body-lg text-body-lg text-on-surface">Organic Heritage Tomatoes (1kg)</span>
+<span class="font-price-display text-price-display text-primary">x1</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high last:border-0">
+<span class="font-body-lg text-body-lg text-on-surface">Fresh Basil Bunch</span>
+<span class="font-price-display text-price-display text-primary">x2</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high last:border-0">
+<span class="font-body-lg text-body-lg text-on-surface">Artisan Sourdough Loaf</span>
+<span class="font-price-display text-price-display text-primary">x1</span>
+</div>
+</div>
+</section>
+<!-- Status Stepper -->
+<section class="bg-surface-container-lowest rounded-2xl p-stack-lg deep-soft-shadow border border-surface-container-high">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg">Delivery Status</h2>
+<div class="relative pl-6">
+<!-- Vertical Line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-surface-container-high"></div>
+<!-- Stage 1: Picked Up (Completed) -->
+<div class="relative mb-stack-lg">
+<div class="absolute -left-6 top-0 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface text-[18px]">Picked Up</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sunny Acres Farm • 10:42 AM</span>
+</div>
+</div>
+<!-- Stage 2: In Transit (Active) -->
+<div class="relative mb-stack-lg">
+<div class="absolute -left-[22px] top-0.5 w-[20px] h-[20px] rounded-full bg-background border-4 border-primary z-10 shadow-sm flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary text-[18px]">In Transit</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Driver is on the way</span>
+</div>
+</div>
+<!-- Stage 3: Delivered (Pending) -->
+<div class="relative">
+<div class="absolute -left-[22px] top-0.5 w-[20px] h-[20px] rounded-full bg-surface-container-high border-2 border-outline-variant z-10"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-outline text-[18px]">Delivered</span>
+<span class="font-body-sm text-body-sm text-outline-variant">Pending</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-background/90 backdrop-blur-md px-margin-mobile py-stack-md pb-safe border-t border-surface-container-high shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] flex justify-center">
+<button class="w-full max-w-md bg-primary text-on-primary rounded-full py-4 px-6 font-headline-md text-headline-md flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg">
+<span>Confirm Delivery</span>
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</button>
+</div>
+</body></html>

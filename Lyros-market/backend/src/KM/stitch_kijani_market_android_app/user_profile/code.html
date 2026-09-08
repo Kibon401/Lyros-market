@@ -1,0 +1,197 @@
+<!DOCTYPE html><html class="light" lang="en" data-pb-content-script-state="ready"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>User Profile - Lyros Market</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#bcf0ae",
+                        "tertiary-fixed": "#ffdad4",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#b0ceb4",
+                        "surface-variant": "#e4e2dd",
+                        "on-secondary-fixed-variant": "#334d38",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#4e6953",
+                        "surface-bright": "#fbf9f4",
+                        "secondary": "#4a654f",
+                        "surface-container-high": "#eae8e3",
+                        "tertiary-container": "#8d3123",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002201",
+                        "primary-container": "#2d5a27",
+                        "tertiary": "#6e1a0f",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-surface": "#1b1c19",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#a1d494",
+                        "tertiary-fixed-dim": "#ffb4a7",
+                        "secondary-fixed": "#cceacf",
+                        "surface-container-low": "#f5f3ee",
+                        "surface-tint": "#3b6934",
+                        "on-primary-fixed-variant": "#23501e",
+                        "surface": "#fbf9f4",
+                        "on-error-container": "#93000a",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed": "#400200",
+                        "secondary-container": "#c9e7cc",
+                        "on-primary-container": "#9dd090",
+                        "background": "#fbf9f4",
+                        "inverse-primary": "#a1d494",
+                        "surface-dim": "#dbdad5",
+                        "outline-variant": "#c2c9bb",
+                        "on-background": "#1b1c19",
+                        "primary": "#154212",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#42493e",
+                        "on-secondary-fixed": "#062010",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-tertiary-fixed-variant": "#80281b",
+                        "on-tertiary-container": "#ffaea0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "32px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "price-display": ["18px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .ambient-shadow { box-shadow: 0 4px 20px rgba(21, 66, 18, 0.05); }
+    </style>
+<link rel="stylesheet" type="text/css" href="chrome-extension://mpjjildhmpddojocokjkgmlkkkfjnepo/css/12166.css"><style></style><style id="_goober"> @keyframes go2264125279{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go3020080000{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}@keyframes go463499852{from{transform:scale(0) rotate(90deg);opacity:0;}to{transform:scale(1) rotate(90deg);opacity:1;}}@keyframes go1268368563{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}@keyframes go1310225428{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go651618207{0%{height:0;width:0;opacity:0;}40%{height:0;width:6px;opacity:1;}100%{opacity:1;height:10px;}}@keyframes go901347462{from{transform:scale(0.6);opacity:0.4;}to{transform:scale(1);opacity:1;}}.go4109123758{z-index:9999;}.go4109123758 > *{pointer-events:auto;}</style></head>
+<body class="antialiased text-on-background min-h-screen flex flex-col pb-safe">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-background dark:bg-surface flex items-center justify-between px-margin-mobile py-stack-md w-full max-w-7xl mx-auto shadow-sm shadow-[rgba(21,66,18,0.05)]">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Lyros Market</h1>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">shopping_basket</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-3xl mx-auto px-margin-mobile pt-stack-lg pb-32">
+<!-- Profile Header Card (Glassmorphism / Ambient Depth) -->
+<div class="bg-surface-container-low rounded-[32px] p-6 mb-8 ambient-shadow relative overflow-hidden flex flex-col items-center text-center">
+<!-- Decorative background elements -->
+<div class="absolute -top-12 -right-12 w-40 h-40 bg-primary-fixed-dim/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary-fixed-dim/20 rounded-full blur-2xl"></div>
+<div class="relative w-28 h-28 mb-4">
+<img class="w-full h-full object-cover rounded-full border-4 border-surface shadow-sm" data-alt="A high-quality, professional headshot of an approachable young woman, Jane, smiling warmly in natural sunlight. The background is a soft out-of-focus organic farm or greenhouse setting with lush green tones, perfectly matching the Modern Organic, sun-drenched farmers market aesthetic of the brand. Bright, friendly, light-mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFeGAHtSL0z9xglBPrpcFzGSlqAa-R9GEgZxPzR402BM0eFJzZRF9TyJJHgZ8IyOCzamOUwRnNR3OpyFEX29u2ZyBSfyivnvy7Jdym2r-K72ZwDXRywU_lHyjghwJdP6n0iA6J2KRvMG0Ue-BKdk7Spah8DAmzBmKvB-fyVm2m3uHxiVwr5mQYKYVivTVl8rzLAXRxunm4tqzoBA0usqPPXs_Zqm8k5S6NXKDPMk2r9inzdPSPPICX">
+<!-- Badge -->
+<div class="absolute bottom-0 right-0 bg-primary-container text-on-primary-container w-8 h-8 rounded-full flex items-center justify-center border-2 border-surface shadow-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1">Welcome back, Jane</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps">Green Member</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">12 Orders this month</p>
+</div>
+<!-- Menu Section (Bento-style list) -->
+<div class="flex flex-col gap-3">
+<button class="w-full flex items-center p-4 bg-surface-container-low rounded-2xl ambient-shadow hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform text-left group">
+<div class="w-12 h-12 bg-secondary-fixed/50 rounded-full flex items-center justify-center text-primary mr-4 group-hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div class="flex-grow">
+<span class="font-headline-md text-headline-md text-on-surface block">My Orders</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Track and reorder</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<button class="w-full flex items-center p-4 bg-surface-container-low rounded-2xl ambient-shadow hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform text-left group"><div class="w-12 h-12 bg-secondary-fixed/50 rounded-full flex items-center justify-center text-primary mr-4 group-hover:bg-secondary-fixed transition-colors"><span class="material-symbols-outlined">potted_plant</span></div><div class="flex-grow"><span class="font-headline-md text-headline-md text-on-surface block">Farmer's Updates</span><span class="font-body-sm text-body-sm text-on-surface-variant block">News and seasonal picks from Lyros Farms</span></div><span class="material-symbols-outlined text-outline">chevron_right</span></button>
+<button class="w-full flex items-center p-4 bg-surface-container-low rounded-2xl ambient-shadow hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform text-left group"><div class="w-12 h-12 bg-secondary-fixed/50 rounded-full flex items-center justify-center text-primary mr-4 group-hover:bg-secondary-fixed transition-colors"><span class="material-symbols-outlined">eco</span></div><div class="flex-grow"><span class="font-headline-md text-headline-md text-on-surface block">Sustainability Impact</span><span class="font-body-sm text-body-sm text-on-surface-variant block">Your environmental contribution</span></div><span class="material-symbols-outlined text-outline">chevron_right</span></button>
+<button class="w-full flex items-center p-4 bg-surface-container-low rounded-2xl ambient-shadow hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform text-left group">
+<div class="w-12 h-12 bg-secondary-fixed/50 rounded-full flex items-center justify-center text-primary mr-4 group-hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</div>
+<div class="flex-grow">
+<span class="font-headline-md text-headline-md text-on-surface block">Support</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Get help with your order</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<button class="w-full flex items-center p-4 bg-surface-container-low rounded-2xl ambient-shadow hover:bg-surface-container-high transition-colors active:scale-[0.98] transition-transform text-left group">
+<div class="w-12 h-12 bg-surface-dim rounded-full flex items-center justify-center text-on-surface-variant mr-4">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<div class="flex-grow">
+<span class="font-headline-md text-headline-md text-on-surface block">Settings</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Account preferences</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-low dark:bg-surface-container-highest shadow-[0_-4px_20px_0_rgba(21,66,18,0.05)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-label-caps text-label-caps">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<!-- Active State: Profile -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+
+
+</body><pixiebrix-widget pb-name="notifications" style="all: initial; display: block; "><div data-rht-toaster="" style="position: fixed; z-index: 2147483647; inset: 16px; pointer-events: none; font-family: sans-serif; background: none;"></div></pixiebrix-widget></html>

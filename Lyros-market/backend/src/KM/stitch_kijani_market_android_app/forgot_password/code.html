@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lyros Market | Forgot Password</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dbdad5",
+                        "tertiary-fixed": "#ffdad4",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-tint": "#3b6934",
+                        "on-primary-fixed-variant": "#23501e",
+                        "secondary-fixed-dim": "#b0ceb4",
+                        "on-tertiary-container": "#ffaea0",
+                        "primary-container": "#2d5a27",
+                        "on-secondary-fixed": "#062010",
+                        "on-tertiary-fixed-variant": "#80281b",
+                        "on-secondary-fixed-variant": "#334d38",
+                        "primary-fixed-dim": "#a1d494",
+                        "tertiary-fixed-dim": "#ffb4a7",
+                        "on-surface": "#1b1c19",
+                        "primary-fixed": "#bcf0ae",
+                        "outline": "#72796e",
+                        "background": "#fbf9f4",
+                        "primary": "#154212",
+                        "surface-bright": "#fbf9f4",
+                        "secondary-fixed": "#cceacf",
+                        "on-primary-container": "#9dd090",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3ee",
+                        "on-primary-fixed": "#002201",
+                        "on-tertiary-fixed": "#400200",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#4e6953",
+                        "on-surface-variant": "#42493e",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e4e2dd",
+                        "outline-variant": "#c2c9bb",
+                        "secondary": "#4a654f",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#c9e7cc",
+                        "surface": "#fbf9f4",
+                        "on-background": "#1b1c19",
+                        "surface-container": "#f0eee9",
+                        "inverse-surface": "#30312e",
+                        "surface-variant": "#e4e2dd",
+                        "tertiary-container": "#8d3123",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#a1d494",
+                        "tertiary": "#6e1a0f",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae8e3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "gutter": "12px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "price-display": ["18px", {"lineHeight": "22px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .organic-shadow {
+            box-shadow: 0 4px 20px 0 rgba(21, 66, 18, 0.08);
+        }
+
+        .input-focus-ring:focus {
+            ring: 2px;
+            ring-color: #4a654f;
+            outline: none;
+        }
+
+        /* Subtle atmospheric animation for the background */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-leaf {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg overflow-x-hidden">
+<!-- Suppression of TopAppBar/BottomNavBar per "The Destination Rule" for Transactional Screens -->
+<main class="flex-grow flex items-center justify-center p-margin-mobile relative overflow-hidden">
+<!-- Atmospheric Background Elements -->
+<div class="absolute -top-20 -right-20 w-64 h-64 opacity-10 animate-leaf pointer-events-none">
+<span class="material-symbols-outlined text-[200px] text-primary">eco</span>
+</div>
+<div class="absolute -bottom-20 -left-20 w-64 h-64 opacity-5 animate-leaf pointer-events-none" style="animation-delay: -3s;">
+<span class="material-symbols-outlined text-[250px] text-primary">potted_plant</span>
+</div>
+<!-- Forgot Password Card -->
+<div class="w-full max-w-md z-10">
+<div class="bg-surface-container-lowest rounded-[32px] p-8 md:p-10 organic-shadow border border-surface-container-high relative overflow-hidden">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-8">
+<div class="w-16 h-16 bg-secondary-container rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">Lyros Market</h1>
+</div>
+<!-- Content Header -->
+<div class="space-y-2 mb-8 text-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Forgot Password?</h2>
+<p class="text-on-surface-variant font-body-sm leading-relaxed">
+                        No worries, it happens. Enter the email address associated with your account and we'll send you a link to reset your password.
+                    </p>
+</div>
+<!-- Form -->
+<form class="space-y-6" id="resetForm">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant">mail</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-4 pl-12 pr-6 text-on-surface font-body-lg focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200" id="email" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-4 rounded-full flex items-center justify-center gap-2 hover:bg-opacity-90 active:scale-95 transition-all duration-200 shadow-md group" type="submit">
+<span>Send Reset Code</span>
+<span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-10 pt-6 border-t border-surface-container-high flex flex-col items-center gap-4">
+<a class="flex items-center gap-2 text-primary font-semibold hover:opacity-80 transition-opacity active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+<span class="font-body-sm">Return to login</span>
+</a>
+<div class="flex items-center gap-1 text-on-surface-variant text-[12px]">
+<span>Need further help?</span>
+<a class="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-all" href="#">Contact Support</a>
+</div>
+</div>
+<!-- Success State (Hidden initially) -->
+<div class="hidden absolute inset-0 bg-surface-container-lowest p-8 md:p-10 flex flex-col items-center justify-center text-center" id="successState">
+<div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mb-6 scale-0" id="checkIcon">
+<span class="material-symbols-outlined text-primary text-5xl">check_circle</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Email Sent!</h2>
+<p class="text-on-surface-variant font-body-sm mb-8">
+                        We've sent password reset instructions to your inbox. Please check your spam folder if you don't see it within a few minutes.
+                    </p>
+<button class="px-8 py-3 bg-secondary-container text-on-secondary-container rounded-full font-semibold hover:bg-opacity-80 transition-all active:scale-95" onclick="location.reload()">
+                        Back to Login
+                    </button>
+</div>
+</div>
+<!-- Bottom Illustration -->
+<div class="mt-12 opacity-60">
+<div class="h-32 w-full bg-no-repeat bg-center bg-contain" data-alt="A clean, minimalist botanical illustration featuring soft sage green leaves and earthy brown stems against a warm cream background. The artistic style is modern organic, with fluid hand-drawn lines that evoke a sense of calm and freshness, perfectly aligning with a premium organic marketplace aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQuNOR5NHtWol4sKAYdiQRR0n97IlzVeON4NvYLF7LOGzCoqH6UFb7xJKaErkRJbYeZX-v_-xmO6qdlkWqtEf3X2L4anlSz7vYviGXGgBuLJgZUL5t9HS96Pyopkd0uvMq4ioLbuABCVLurZCQ5On9GeXONVIsyVk2_XGCD9sN4y5Oi5Py2KcZdY9TZDPfrH-eyfsgjP-Vt0Sj7VMNuS3wvwP5ut35ip2VFc8jYrxZDxD08QQ4JJkW')"></div>
+</div>
+</div>
+</main>
+<!-- Success Interaction Script -->
+<script>
+        document.getElementById('resetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            if(email) {
+                const successState = document.getElementById('successState');
+                const checkIcon = document.getElementById('checkIcon');
+                
+                successState.classList.remove('hidden');
+                
+                // Animate checkmark
+                setTimeout(() => {
+                    checkIcon.classList.add('scale-100');
+                    checkIcon.classList.add('transition-transform');
+                    checkIcon.classList.add('duration-500');
+                    checkIcon.classList.add('ease-out');
+                }, 100);
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Lyros Market - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002201",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-background": "#1b1c19",
+                        "on-tertiary-fixed": "#400200",
+                        "on-tertiary-container": "#ffaea0",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#9dd090",
+                        "surface-container": "#f0eee9",
+                        "background": "#fbf9f4",
+                        "primary-fixed-dim": "#a1d494",
+                        "on-secondary-container": "#4e6953",
+                        "primary": "#154212",
+                        "secondary-container": "#c9e7cc",
+                        "on-primary-fixed-variant": "#23501e",
+                        "on-surface": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "outline": "#72796e",
+                        "surface-container-high": "#eae8e3",
+                        "surface-tint": "#3b6934",
+                        "secondary-fixed-dim": "#b0ceb4",
+                        "surface-container-low": "#f5f3ee",
+                        "outline-variant": "#c2c9bb",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdad4",
+                        "tertiary": "#6e1a0f",
+                        "on-secondary-fixed-variant": "#334d38",
+                        "surface": "#fbf9f4",
+                        "surface-container-highest": "#e4e2dd",
+                        "secondary": "#4a654f",
+                        "surface-dim": "#dbdad5",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#42493e",
+                        "primary-fixed": "#bcf0ae",
+                        "on-secondary-fixed": "#062010",
+                        "on-tertiary-fixed-variant": "#80281b",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4a7",
+                        "surface-variant": "#e4e2dd",
+                        "secondary-fixed": "#cceacf",
+                        "tertiary-container": "#8d3123",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#a1d494",
+                        "surface-bright": "#fbf9f4",
+                        "primary-container": "#2d5a27"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "gutter": "12px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "price-display": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "price-display": ["18px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle continuous slow zoom for the background image to add life */
+        @keyframes slowZoom {
+            0% { transform: scale(1.0); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1.0); }
+        }
+        .bg-zoom-effect {
+            animation: slowZoom 20s ease-in-out infinite;
+        }
+
+        /* Slide up entrance for content */
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-entrance {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-100 { animation-delay: 100ms; opacity: 0; }
+        .delay-200 { animation-delay: 200ms; opacity: 0; }
+        .delay-300 { animation-delay: 300ms; opacity: 0; }
+        
+        /* Glassmorphism panel for the bottom content area */
+        .glass-panel {
+            background: linear-gradient(180deg, rgba(251, 249, 244, 0.95) 0%, rgba(251, 249, 244, 1) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background h-screen w-full overflow-hidden flex flex-col relative selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Layer with Image -->
+<div class="absolute inset-0 z-0 overflow-hidden bg-primary">
+<div class="w-full h-[574px] md:h-[618px] absolute top-0 left-0 bg-zoom-effect origin-top" data-alt="A breathtaking, cinematic photograph of a lush, sun-drenched organic farm at early morning sunrise. Rows of vibrant green leafy vegetables stretch towards the horizon. The lighting is soft, warm, and golden, creating a serene and inviting atmosphere. Shot with a high-end camera, shallow depth of field focusing on dew drops on the closest leaves. The style is modern organic, fresh, and highly premium, perfectly suited for a high-quality food marketplace application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyUG6OKY9tu6KrD1yfuj_Fh4IMCRxQB9GiJ1LO0gZSBj8zQJXUxzvb044z2Oowox7cmEDBd7PnxNIJ0DoDWxugdjPpv3qo5Qu0-WYrfyG90-wtQTM4A6JR5GPlCO0QMy-MnIgKf4hZXhRgmt7YEw3RdFWpvuA4N5mv-BpS_8UyNhz7V2TporhliIu1ttsk8OG05BxZEzWE5ukl1lKNTNYp0Vcp3iE2szv960YOkrWsPAg3ndPdDtd9')">
+</div>
+<!-- Gradient Overlay to blend image into background color smoothly -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background h-[618px]"></div>
+</div>
+<!-- Content Layer -->
+<div class="relative z-10 flex flex-col h-full justify-between">
+<!-- Top Section: Logo -->
+<header class="w-full px-margin-mobile md:px-margin-desktop py-stack-lg flex justify-between items-center animate-entrance">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary fill-icon text-3xl drop-shadow-md">local_florist</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary drop-shadow-md">
+                    Kijani Market
+                </h1>
+</div>
+<!-- Optional: Skip button for onboarding flow -->
+<button class="font-body-sm text-body-sm text-on-primary/90 hover:text-on-primary transition-colors py-2 px-4 rounded-full bg-black/10 backdrop-blur-sm border border-white/20">
+                Skip
+            </button>
+</header>
+<!-- Bottom Section: Content Panel (Glassmorphism) -->
+<main class="w-full rounded-t-[32px] glass-panel shadow-[0_-8px_30px_rgba(21,66,18,0.1)] px-margin-mobile md:px-margin-desktop pt-8 pb-10 flex flex-col items-center text-center mt-auto">
+<!-- Staggered minimalist indicator pills (mock carousel indicators) -->
+<div class="flex gap-2 mb-8 animate-entrance delay-100">
+<div class="w-8 h-1.5 rounded-full bg-primary transition-all duration-300"></div>
+<div class="w-2 h-1.5 rounded-full bg-outline-variant transition-all duration-300"></div>
+<div class="w-2 h-1.5 rounded-full bg-outline-variant transition-all duration-300"></div>
+</div>
+<div class="max-w-md w-full mx-auto space-y-4 mb-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface animate-entrance delay-200">
+                    Fresh from the Farm to Your Table
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant animate-entrance delay-300">
+                    Discover organic, locally sourced produce delivered directly to your doorstep. Support local farmers and eat healthier.
+                </p>
+</div>
+<!-- Action Area -->
+<div class="w-full max-w-md mx-auto space-y-stack-md animate-entrance delay-300">
+<!-- Primary Button -->
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-4 px-6 rounded-full shadow-lg hover:bg-primary-container hover:text-on-primary-container active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group">
+<span>Get Started</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<!-- Secondary Action -->
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+                    Already have an account? 
+                    <a class="text-primary font-bold hover:underline decoration-2 underline-offset-4" href="#">Log in</a>
+</p>
+</div>
+</main>
+</div>
+</body></html>
