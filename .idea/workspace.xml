@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a8cdbc5-ec95-4e6d-980c-931b86119ddb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lyros-market/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Lyros-market/backend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lyros-market/backend/Lyros_market-frontend" beforeDir="false" afterPath="$PROJECT_DIR$/Lyros-market/backend/Lyros_market-frontend" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lyros-market/backend/Lyros_market-frontend/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/Lyros-market/backend/Lyros_market-frontend/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lyros-market/backend/src/main/kotlin/com/example/data/database/DatabaseFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Lyros-market/backend/src/main/kotlin/com/example/data/database/DatabaseFactory.kt" afterDir="false" />

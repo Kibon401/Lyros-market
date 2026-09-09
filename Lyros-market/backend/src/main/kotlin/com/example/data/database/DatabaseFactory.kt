@@ -13,55 +13,116 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
+
     fun init(isTest: Boolean = false) {
+
         val database = if (isTest) {
-            Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;", driver = "org.h2.Driver")
+
+            Database.connect(
+                "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;",
+                driver = "org.h2.Driver"
+            )
+
         } else {
-            val dbHost = System.getenv("DB_HOST")
-            val dbPort = System.getenv("DB_PORT")
-            val dbName = System.getenv("DB_NAME")
+
+            val databaseUrl = System.getenv("DATABASE_URL")
+                ?: error("DATABASE_URL environment variable is not set")
+
             val dbUser = System.getenv("DB_USER")
+                ?: error("DB_USER environment variable is not set")
+
             val dbPassword = System.getenv("DB_PASSWORD")
+                ?: error("DB_PASSWORD environment variable is not set")
 
-            val driverClassName = "org.postgresql.Driver"
-            val jdbcUrl = "jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME"
+            println("Connecting to Supabase PostgreSQL database...")
+            println("Database URL: ${databaseUrl.substringBefore("?")}")
 
-            println("Connecting to Supabase (PostgreSQL) database...")
-            Database.connect(createHikariDataSource(jdbcUrl, driverClassName, dbUser, dbPassword))
+            Database.connect(
+                createHikariDataSource(
+                    databaseUrl,
+                    "org.postgresql.Driver",
+                    dbUser,
+                    dbPassword
+                )
+            )
         }
 
         transaction(database) {
             SchemaUtils.createMissingTablesAndColumns(
-                UsersTable, CategoriesTable, ProductsTable, OrdersTable, OrderLinesTable,
-                CartItemsTable, ReviewsTable, MpesaPaymentsTable, DriverLocationsTable
+                UsersTable,
+                CategoriesTable,
+                ProductsTable,
+                OrdersTable,
+                OrderLinesTable,
+                CartItemsTable,
+                ReviewsTable,
+                MpesaPaymentsTable,
+                DriverLocationsTable
             )
         }
 
         if (!isTest) {
+
             runBlocking {
-                val categoryCount = dbQuery { CategoriesTable.selectAll().count() }
+
+                val categoryCount =
+                    dbQuery {
+                        CategoriesTable.selectAll().count()
+                    }
+
                 if (categoryCount == 0L) {
+
                     println("No categories found. Seeding initial data...")
-                    SeedData.seed(ProductRepositoryImpl())
+
+                    SeedData.seed(
+                        ProductRepositoryImpl()
+                    )
+
                 } else {
+
                     println("Categories already exist. Skipping seeding.")
                 }
             }
         }
     }
 
-    private fun createHikariDataSource(url: String, driver: String, user: String, pass: String) =
-        HikariDataSource(HikariConfig().apply {
+    private fun createHikariDataSource(
+        url: String,
+        driver: String,
+        user: String,
+        pass: String
+    ): HikariDataSource {
+
+        val config = HikariConfig().apply {
+
             driverClassName = driver
+
             jdbcUrl = url
+
             username = user
             password = pass
-            maximumPoolSize = 10
-            isAutoCommit = false
-            transactionIsolation = "TRANSACTION_REPEATABLE_READ"
-            validate()
-        })
 
-    suspend fun <T> dbQuery(block: suspend () -> T): T =
-        newSuspendedTransaction(Dispatchers.IO) { block() }
+            maximumPoolSize = 10
+            minimumIdle = 2
+
+            isAutoCommit = false
+
+            transactionIsolation =
+                "TRANSACTION_REPEATABLE_READ"
+
+            connectionTimeout = 30_000
+            validationTimeout = 5_000
+
+            poolName = "LyrosHikariPool"
+        }
+
+        return HikariDataSource(config)
+    }
+
+    suspend fun <T> dbQuery(
+        block: suspend () -> T
+    ): T =
+        newSuspendedTransaction(Dispatchers.IO) {
+            block()
+        }
 }
