@@ -10,7 +10,6 @@ build/
 .idea/
 
 # Local environment variables
-.env
 
 # Log files
 *.log
