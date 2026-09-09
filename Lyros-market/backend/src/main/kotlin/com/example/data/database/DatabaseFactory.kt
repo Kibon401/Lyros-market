@@ -24,8 +24,8 @@ object DatabaseFactory {
             val dbPassword = System.getenv("DB_PASSWORD")
 
             val driverClassName = "org.postgresql.Driver"
-            val jdbcUrl = "jdbc:postgresql://$dbHost:$dbPort/$dbName"
-            
+            val jdbcUrl = "jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME"
+
             println("Connecting to Supabase (PostgreSQL) database...")
             Database.connect(createHikariDataSource(jdbcUrl, driverClassName, dbUser, dbPassword))
         }
