@@ -27,7 +27,7 @@ import io.ktor.serialization.kotlinx.json.*
 import jakarta.inject.Singleton
 import kotlinx.serialization.json.Json
 
-private const val BASE_URL = "https://kijani-market-server.onrender.com/"
+private const val BASE_URL = "https://lyros-market.onrender.com/"
     
 @Module
 @InstallIn(SingletonComponent::class)
