@@ -13,9 +13,9 @@
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/outline_all_inclusive_24"
+        android:icon="@drawable/gemini_generated_image_9qbm09qbm09qbm09"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/outline_all_inclusive_24"
+        android:roundIcon="@drawable/gemini_generated_image_9qbm09qbm09qbm09"
         android:supportsRtl="true"
         android:theme="@style/Theme.LyrosMarket">
 

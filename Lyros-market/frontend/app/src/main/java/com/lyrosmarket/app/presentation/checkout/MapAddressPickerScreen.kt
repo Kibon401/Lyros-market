@@ -49,6 +49,7 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapAddressPickerScreen(
+    initialLocation: Pair<Double, Double>? = null,
     onNavigateBack: () -> Unit,
     onLocationSelected: (Double, Double) -> Unit
 ) {
@@ -56,8 +57,13 @@ fun MapAddressPickerScreen(
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
     
-    // Default location (Eldoret CBD)
-    val defaultLocation = GeoPoint(0.5142, 35.2697)
+    // Default location (Eldoret CBD or saved location)
+    val defaultLocation = if (initialLocation != null) {
+        GeoPoint(initialLocation.first, initialLocation.second)
+    } else {
+        GeoPoint(0.5142, 35.2697)
+    }
+    
     var currentCenter by remember { mutableStateOf(defaultLocation) }
     var mapView: MapView? by remember { mutableStateOf(null) }
     var searchQuery by remember { mutableStateOf("") }

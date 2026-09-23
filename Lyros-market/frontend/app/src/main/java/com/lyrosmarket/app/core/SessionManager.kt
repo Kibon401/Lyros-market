@@ -64,6 +64,10 @@ class SessionManager @Inject constructor(
         return prefs?.getString("auth_token", null)
     }
 
+    fun isLoggedIn(): Boolean {
+        return getToken() != null
+    }
+
     fun saveRefreshToken(token: String) {
         prefs?.edit()?.putString("refresh_token", token)?.apply()
     }
@@ -86,6 +90,14 @@ class SessionManager @Inject constructor(
 
     fun getUserName(): String? {
         return prefs?.getString("user_name", null)
+    }
+
+    fun saveUserRole(role: String) {
+        prefs?.edit()?.putString("user_role", role)?.apply()
+    }
+
+    fun getUserRole(): String? {
+        return prefs?.getString("user_role", null)
     }
     
     fun saveLocation(lat: Double, lng: Double) {

@@ -30,6 +30,7 @@ class AuthRepositoryImpl(
             sessionManager.saveUserEmail(profile.email ?: email)
             sessionManager.saveUserName(profile.username ?: "User")
             sessionManager.saveLoginTimestamp()
+            sessionManager.saveUserRole(profile.role ?: "USER")
             
             val user = profile.toUser().copy(token = token)
             Resource.Success(user)
@@ -59,6 +60,7 @@ class AuthRepositoryImpl(
             sessionManager.saveUserEmail(email)
             sessionManager.saveUserName(username)
             sessionManager.saveLoginTimestamp()
+            sessionManager.saveUserRole(profile.role ?: "USER")
             
             val user = profile.toUser().copy(token = token, username = username, email = email)
             Resource.Success(user)

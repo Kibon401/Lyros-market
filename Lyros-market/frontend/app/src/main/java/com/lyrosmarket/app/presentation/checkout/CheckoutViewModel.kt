@@ -9,6 +9,7 @@ import com.lyrosmarket.app.data.remote.dto.AddressDto
 import com.lyrosmarket.app.domain.repository.PaymentRepository
 import com.lyrosmarket.app.domain.repository.OrderRepository
 import com.lyrosmarket.app.domain.repository.AuthRepository
+import com.lyrosmarket.app.domain.repository.CartRepository
 import com.lyrosmarket.app.core.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first

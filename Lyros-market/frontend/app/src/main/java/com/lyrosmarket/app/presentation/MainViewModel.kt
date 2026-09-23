@@ -24,7 +24,14 @@ class MainViewModel @Inject constructor(
     val startDestination: String
         get() {
             return if (sessionManager.isLoggedIn() && sessionManager.isSessionValid()) {
-                Screen.Home.route
+                val role = sessionManager.getUserRole() ?: "USER"
+                if (role.equals("ADMIN", ignoreCase = true)) {
+                    Screen.AdminDashboard.route
+                } else if (role.equals("DRIVER", ignoreCase = true)) {
+                    Screen.DeliveryDashboard.route
+                } else {
+                    Screen.Home.route
+                }
             } else {
                 sessionManager.clearSession()
                 Screen.Login.route

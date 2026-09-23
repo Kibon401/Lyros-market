@@ -165,8 +165,8 @@ fun HomeScreen(
                     .height(140.dp)
                     .clip(RoundedCornerShape(24.dp))
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.home_banner),
+                AsyncImage(
+                    model = "https://res.cloudinary.com/flcwb95p/image/upload/v1790144754/Home_Banner.jpg",
                     contentDescription = "Farm Landscape",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop

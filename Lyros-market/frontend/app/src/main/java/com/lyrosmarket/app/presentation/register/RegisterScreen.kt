@@ -37,6 +37,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.lyrosmarket.app.R
 import com.lyrosmarket.app.ui.theme.Primary
 import com.lyrosmarket.app.ui.theme.Secondary
@@ -90,11 +91,11 @@ fun RegisterScreen(
                 Spacer(modifier = Modifier.height(48.dp))
                 
                 // Hero Image (Clip Art)
-                Image(
-                    painter = painterResource(id = R.drawable.login_illustration),
+                AsyncImage(
+                    model = "https://res.cloudinary.com/flcwb95p/image/upload/v1790144751/Login_illustration.jpg",
                     contentDescription = "Farm Vegetables",
                     modifier = Modifier
-                        .size(160.dp)
+                        .size(220.dp)
                         .clip(CircleShape)
                         .border(4.dp, Color.White, CircleShape),
                     contentScale = ContentScale.Crop
