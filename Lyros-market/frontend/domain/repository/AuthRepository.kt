@@ -1,7 +1,7 @@
-package com.example.lyrosmarket.domain.repository
+package com.lyrosmarket.app.domain.repository
 
-import com.example.lyrosmarket.domain.model.User
-import com.example.lyrosmarket.core.Resource
+import com.lyrosmarket.app.domain.model.User
+import com.lyrosmarket.app.core.Resource
 
 interface AuthRepository {
     suspend fun login(email: String, password: String): Resource<User>

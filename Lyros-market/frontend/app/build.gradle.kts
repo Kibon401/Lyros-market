@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lyrosmarket"
+    namespace = "com.lyrosmarket.app"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.lyrosmarket"
+        applicationId = "com.lyrosmarket.app"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
@@ -69,9 +69,9 @@ dependencies {
     // Coil
     implementation(libs.coil.compose)
     
-    // Google Maps
-    implementation(libs.maps.compose)
-    implementation(libs.play.services.maps)
+    // OpenStreetMap
+    implementation(libs.osmdroid)
+    implementation(libs.play.services.location)
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
