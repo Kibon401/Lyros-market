@@ -22,6 +22,7 @@ import com.lyrosmarket.app.ui.theme.Primary
 import com.lyrosmarket.app.ui.theme.Secondary
 import androidx.compose.ui.graphics.Brush
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,25 +73,29 @@ fun DeliveryOrderDetailsScreen(
                                 Text("Accept Delivery", fontSize = 16.sp, fontWeight = FontWeight.Bold)
                             }
                         } else if (order.status != "DELIVERED") {
+                            // Allow the driver to mark it as delivered regardless of client confirmation
+                            // since the backend doesn't currently support the client confirming it.
+                            val isEnabled = true 
                             Button(
                                 onClick = {
                                     val nextStatus = when (order.status) {
                                         "ACCEPTED" -> "PICKED_UP"
-                                        "PICKED_UP" -> "DELIVERED"
+                                        "PICKED_UP", "CLIENT_CONFIRMED" -> "DELIVERED"
                                         else -> "DELIVERED"
                                     }
                                     viewModel.updateStatus(order.id, nextStatus)
                                 },
+                                enabled = isEnabled,
                                 modifier = Modifier.fillMaxWidth().height(56.dp),
                                 shape = RoundedCornerShape(28.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
                             ) {
                                 val buttonText = when (order.status) {
                                     "ACCEPTED" -> "Mark as Picked Up"
-                                    "PICKED_UP" -> "Mark as Delivered"
+                                    "PICKED_UP", "CLIENT_CONFIRMED" -> "Mark as Delivered"
                                     else -> "Update Status"
                                 }
-                                Text(buttonText, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onTertiary)
+                                Text(buttonText, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = if (isEnabled) MaterialTheme.colorScheme.onTertiary else Color.Gray)
                             }
                         }
                     }
@@ -98,12 +103,29 @@ fun DeliveryOrderDetailsScreen(
             }
         }
     ) { padding ->
-        Box(
+        var isRefreshing by remember { mutableStateOf(false) }
+
+        LaunchedEffect(state.isLoading) {
+            if (!state.isLoading) {
+                isRefreshing = false
+            }
+        }
+
+        PullToRefreshBox(
+            isRefreshing = isRefreshing,
+            onRefresh = {
+                isRefreshing = true
+                viewModel.loadOrders()
+            },
             modifier = Modifier
                 .fillMaxSize()
                 .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
         ) {
-            if (order == null) {
+            if (state.isLoading) {
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = Primary)
+                }
+            } else if (order == null) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text("Order not found.")
                 }
@@ -144,18 +166,25 @@ fun DeliveryOrderDetailsScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Column {
-                                Text(order.customerName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                                Text(order.customerPhone, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                            }
-                            IconButton(
-                                onClick = {
-                                    val intent = Intent(Intent.ACTION_DIAL).apply {
-                                        data = Uri.parse("tel:${order.customerPhone}")
-                                    }
-                                    context.startActivity(intent)
+                                if (order.status == "PENDING") {
+                                    Text("Hidden until accepted", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                                    Text("***-***-****", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                } else {
+                                    Text(order.customerName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                                    Text(order.customerPhone, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
-                            ) {
-                                Icon(Icons.Default.Phone, contentDescription = "Call Customer", tint = MaterialTheme.colorScheme.primary)
+                            }
+                            if (order.status != "PENDING") {
+                                IconButton(
+                                    onClick = {
+                                        val intent = Intent(Intent.ACTION_DIAL).apply {
+                                            data = Uri.parse("tel:${order.customerPhone}")
+                                        }
+                                        context.startActivity(intent)
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Phone, contentDescription = "Call Customer", tint = MaterialTheme.colorScheme.primary)
+                                }
                             }
                         }
                     }

@@ -14,7 +14,9 @@ data class DeliveryOrderDto(
     val status: String? = null,
     val deliveryAddress: String? = null,
     val latitude: Double? = null,
-    val longitude: Double? = null
+    val longitude: Double? = null,
+    val customerName: String? = null,
+    val customerPhone: String? = null
 )
 
 fun DeliveryOrderDto.toDeliveryOrder(): DeliveryOrder {
@@ -22,8 +24,8 @@ fun DeliveryOrderDto.toDeliveryOrder(): DeliveryOrder {
         id = id.toString(),
         date = orderDate ?: "",
         status = status ?: "PENDING",
-        customerName = "Customer #$userId", // Backend JSON doesn't provide name currently
-        customerPhone = "N/A", // Backend JSON doesn't provide phone currently
+        customerName = customerName ?: "Customer #$userId", // Fallback if missing
+        customerPhone = customerPhone ?: "N/A", // Fallback if missing
         dropOffAddress = deliveryAddress ?: "Unknown Address",
         dropOffLat = latitude,
         dropOffLng = longitude,

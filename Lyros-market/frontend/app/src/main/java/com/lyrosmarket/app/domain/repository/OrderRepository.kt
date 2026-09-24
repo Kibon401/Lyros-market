@@ -11,4 +11,5 @@ interface OrderRepository {
         latitude: Double,
         longitude: Double
     ): Resource<Order>
+    suspend fun confirmDelivery(orderId: String): Resource<Unit>
 }

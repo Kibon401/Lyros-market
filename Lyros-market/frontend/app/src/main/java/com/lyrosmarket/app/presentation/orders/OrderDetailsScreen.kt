@@ -65,6 +65,17 @@ fun OrderDetailsScreen(
                     .padding(20.dp)
                     .navigationBarsPadding()
             ) {
+                if (state.order?.status == "PICKED_UP" || state.order?.status == "IN_TRANSIT") {
+                    Button(
+                        onClick = { viewModel.confirmDelivery(orderId) },
+                        modifier = Modifier.fillMaxWidth().height(56.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Primary),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(text = "Confirm Delivery", color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
                 Button(
                     onClick = { /* Help */ },
                     modifier = Modifier.fillMaxWidth().height(56.dp),
@@ -136,6 +147,33 @@ fun OrderDetailsScreen(
                         isCurrent = true,
                         isLast = true
                     )
+                }
+
+                if (order.status == "IN_TRANSIT" || order.status == "PICKED_UP") {
+                    Spacer(modifier = Modifier.height(24.dp))
+                    InfoCard(title = "Live Tracking", icon = Icons.Default.Map) {
+                        Box(modifier = Modifier.fillMaxWidth().height(200.dp).clip(RoundedCornerShape(12.dp))) {
+                            androidx.compose.ui.viewinterop.AndroidView(
+                                modifier = Modifier.fillMaxSize(),
+                                factory = { ctx ->
+                                    org.osmdroid.views.MapView(ctx).apply {
+                                        setTileSource(org.osmdroid.tileprovider.tilesource.TileSourceFactory.MAPNIK)
+                                        setMultiTouchControls(true)
+                                        zoomController.setVisibility(org.osmdroid.views.CustomZoomButtonsController.Visibility.NEVER)
+                                        controller.setZoom(15.0)
+                                        val geoPoint = org.osmdroid.util.GeoPoint(0.5142, 35.2697) // Dummy dropoff
+                                        controller.setCenter(geoPoint)
+
+                                        val marker = org.osmdroid.views.overlay.Marker(this)
+                                        marker.position = geoPoint
+                                        marker.setAnchor(org.osmdroid.views.overlay.Marker.ANCHOR_CENTER, org.osmdroid.views.overlay.Marker.ANCHOR_BOTTOM)
+                                        marker.title = "Delivery Location"
+                                        overlays.add(marker)
+                                    }
+                                }
+                            )
+                        }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))

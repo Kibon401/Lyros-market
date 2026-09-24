@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.lyrosmarket.app.domain.model.DeliveryOrder
 import com.lyrosmarket.app.ui.theme.Primary
@@ -59,11 +60,27 @@ fun DeliveryDashboardScreen(
                 .fillMaxSize()
                 .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
         ) {
-            Column(
+            var isRefreshing by remember { mutableStateOf(false) }
+
+            LaunchedEffect(state.isLoading) {
+                if (!state.isLoading) {
+                    isRefreshing = false
+                }
+            }
+
+            PullToRefreshBox(
+                isRefreshing = isRefreshing,
+                onRefresh = {
+                    isRefreshing = true
+                    viewModel.loadOrders()
+                },
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
             ) {
+                Column(
+                    modifier = Modifier.fillMaxSize()
+                ) {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
                     containerColor = Color.Transparent,
@@ -108,6 +125,7 @@ fun DeliveryDashboardScreen(
                         }
                     }
                 }
+            }
             }
             }
         }

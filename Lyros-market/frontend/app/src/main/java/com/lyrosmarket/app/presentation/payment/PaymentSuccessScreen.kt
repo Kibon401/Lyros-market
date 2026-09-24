@@ -30,9 +30,24 @@ import androidx.compose.ui.graphics.Brush
 fun PaymentSuccessScreen(
     orderId: String = "ORD-1234",
     onTrackOrder: () -> Unit,
-    onBackToHome: () -> Unit
+    onBackToHome: () -> Unit,
+    homeViewModel: com.lyrosmarket.app.presentation.home.HomeViewModel = androidx.hilt.navigation.compose.hiltViewModel()
 ) {
+    val state = homeViewModel.state.value
+    val suggestedProducts = state.products.take(4)
+
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { },
+                navigationIcon = {
+                    IconButton(onClick = onBackToHome) {
+                        Icon(Icons.Default.Close, contentDescription = "Close", tint = Primary)
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+            )
+        },
         containerColor = Color.Transparent
     ) { padding ->
         Box(
@@ -171,26 +186,40 @@ fun PaymentSuccessScreen(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Explore Fresh Arrivals
-            Text(
-                text = "Explore Fresh Arrivals",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF1B3D17),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Grid simulation (2x2)
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                ArrivalCard(modifier = Modifier.weight(1f), name = "Organic Berries", price = "KES 450")
-                ArrivalCard(modifier = Modifier.weight(1f), name = "Leafy Greens Box", price = "KES 800")
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                ArrivalCard(modifier = Modifier.weight(1f), name = "Morning Sunflowers", price = "KES 1,200")
-                ArrivalCard(modifier = Modifier.weight(1f), name = "Baker's Basket", price = "KES 650")
+            if (suggestedProducts.isNotEmpty()) {
+                // Explore Fresh Arrivals
+                Text(
+                    text = "Explore Fresh Arrivals",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF1B3D17),
+                    modifier = Modifier.fillMaxWidth()
+                )
+    
+                Spacer(modifier = Modifier.height(16.dp))
+    
+                // Grid simulation (2x2)
+                for (i in suggestedProducts.indices step 2) {
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        ArrivalCard(
+                            modifier = Modifier.weight(1f), 
+                            name = suggestedProducts[i].name, 
+                            price = "KES ${suggestedProducts[i].price}",
+                            imageUrl = suggestedProducts[i].imageUrl
+                        )
+                        if (i + 1 < suggestedProducts.size) {
+                            ArrivalCard(
+                                modifier = Modifier.weight(1f), 
+                                name = suggestedProducts[i+1].name, 
+                                price = "KES ${suggestedProducts[i+1].price}",
+                                imageUrl = suggestedProducts[i+1].imageUrl
+                            )
+                        } else {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
             }
         }
     }
@@ -209,7 +238,7 @@ private fun DetailRow(label: String, value: String) {
 }
 
 @Composable
-private fun ArrivalCard(modifier: Modifier = Modifier, name: String, price: String) {
+private fun ArrivalCard(modifier: Modifier = Modifier, name: String, price: String, imageUrl: String) {
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(24.dp),
@@ -217,7 +246,16 @@ private fun ArrivalCard(modifier: Modifier = Modifier, name: String, price: Stri
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column {
-            Box(modifier = Modifier.fillMaxWidth().height(120.dp).background(Color.LightGray))
+            if (imageUrl.isNotBlank()) {
+                AsyncImage(
+                    model = imageUrl,
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth().height(120.dp),
+                    contentScale = ContentScale.Crop
+                )
+            } else {
+                Box(modifier = Modifier.fillMaxWidth().height(120.dp).background(Color.LightGray))
+            }
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(text = name, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                 Text(text = price, fontWeight = FontWeight.ExtraBold, color = Primary, fontSize = 16.sp)

@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.style.TextOverflow
 import coil.compose.AsyncImage
 import com.lyrosmarket.app.ui.theme.Primary
 import com.lyrosmarket.app.ui.theme.Secondary
@@ -117,7 +118,10 @@ fun MyOrdersScreen(
                     when (selectedFilter) {
                         "All Orders" -> state.orders
                         "Delivered" -> state.orders.filter { it.status.equals("DELIVERED", ignoreCase = true) }
-                        "In Transit" -> state.orders.filter { it.status.equals("ACCEPTED", ignoreCase = true) }
+                        "In Transit" -> state.orders.filter { 
+                            val s = it.status.uppercase()
+                            s == "ACCEPTED" || s == "PICKED_UP" || s == "IN_TRANSIT"
+                        }
                         else -> state.orders
                     }
                 }
@@ -169,6 +173,17 @@ fun OrderItemCard(
     imageUrl: String,
     onClick: () -> Unit
 ) {
+    val formattedDate = remember(date) {
+        if (date.contains("T")) {
+            val parts = date.split("T")
+            val datePart = parts.getOrNull(0) ?: ""
+            val timePart = parts.getOrNull(1)?.take(5) ?: ""
+            if (datePart.isNotBlank() && timePart.isNotBlank()) "$datePart $timePart" else date
+        } else {
+            date
+        }
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -196,8 +211,16 @@ fun OrderItemCard(
                     modifier = Modifier
                         .size(100.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(Color.LightGray)
-                )
+                        .background(Color(0xFFE5E2D9)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.ShoppingBasket,
+                        contentDescription = "Order",
+                        tint = Primary,
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -208,9 +231,22 @@ fun OrderItemCard(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.Top
                 ) {
-                    Column {
-                        Text(text = "Order #$orderId", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1B3D17))
-                        Text(text = "$date • $itemCount items", color = Color.Gray, fontSize = 14.sp)
+                    Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+                        Text(
+                            text = "Order #$orderId", 
+                            fontSize = 20.sp, 
+                            fontWeight = FontWeight.Bold, 
+                            color = Color(0xFF1B3D17),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            text = "$formattedDate • $itemCount items", 
+                            color = Color.Gray, 
+                            fontSize = 14.sp,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     }
                     Text(text = "KSh $amount", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1B3D17))
                 }

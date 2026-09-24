@@ -8,6 +8,7 @@ import com.lyrosmarket.app.domain.model.DeliveryOrder
 import com.lyrosmarket.app.domain.repository.DeliveryRepository
 import io.ktor.client.plugins.*
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class DeliveryRepositoryImpl(
     private val api: DeliveryApiService,
@@ -20,7 +21,7 @@ class DeliveryRepositoryImpl(
             val dtos = api.getAvailableOrders(token)
             Resource.Success(dtos.map { it.toDeliveryOrder() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -30,7 +31,7 @@ class DeliveryRepositoryImpl(
             val dtos = api.getMyOrders(token)
             Resource.Success(dtos.map { it.toDeliveryOrder() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -40,7 +41,7 @@ class DeliveryRepositoryImpl(
             api.acceptOrder(orderId, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -50,7 +51,7 @@ class DeliveryRepositoryImpl(
             api.updateStatus(orderId, status, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -60,15 +61,8 @@ class DeliveryRepositoryImpl(
             api.updateLocation(lat, lng, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error(e.response.status.description)
-            is IOException -> Resource.Error("Network error")
-            else -> Resource.Error(e.message ?: "Unknown error")
-        }
-    }
 }

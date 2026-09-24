@@ -7,6 +7,7 @@ import com.lyrosmarket.app.data.remote.dto.StkPushResponse
 import com.lyrosmarket.app.domain.repository.PaymentRepository
 import io.ktor.client.plugins.*
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class PaymentRepositoryImpl(
     private val api: PaymentApiService
@@ -27,15 +28,8 @@ class PaymentRepositoryImpl(
                 Resource.Error(response.ResponseDescription ?: response.CustomerMessage ?: response.message ?: "Payment initiation failed")
             }
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error("Server error: ${e.response.status.value}")
-            is IOException -> Resource.Error("Network error: Please check your connection")
-            else -> Resource.Error(e.message ?: "An unknown error occurred")
-        }
-    }
 }

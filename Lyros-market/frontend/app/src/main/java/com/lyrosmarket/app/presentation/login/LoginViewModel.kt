@@ -38,6 +38,12 @@ class LoginViewModel @Inject constructor(
     }
 
     fun login() {
+        if (_email.value.isBlank() || _password.value.isBlank()) {
+            viewModelScope.launch {
+                _eventFlow.emit(UiEvent.ShowSnackbar("Please provide both email and password."))
+            }
+            return
+        }
         viewModelScope.launch {
             _isLoading.value = true
             val result = repository.login(_email.value, _password.value)

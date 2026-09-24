@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-09-23T06:40:43.897977800Z">
+        <DropdownSelection timestamp="2026-09-23T09:38:35.617014300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="Wireless" identifier="serviceName=adb-R83Y910CNDK-IiQUmk" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\ZBOOK STUDIO NVIDIA\.android\avd\Pixel_9.avd" />
             </handle>
           </Target>
         </DropdownSelection>
