@@ -35,6 +35,16 @@ fun Navigation() {
     val mainViewModel = hiltViewModel<MainViewModel>()
     val cartBadgeCount by mainViewModel.cartBadgeCount.collectAsState()
 
+    LaunchedEffect(key1 = Unit) {
+        mainViewModel.sessionExpiredEvent.collect {
+            if (currentRoute.isNotBlank() && currentRoute != Screen.Login.route && currentRoute != Screen.Register.route) {
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(0) { inclusive = true }
+                }
+            }
+        }
+    }
+
     val showBottomBar = currentRoute in listOf(
         Screen.Home.route,
         Screen.Search.route,

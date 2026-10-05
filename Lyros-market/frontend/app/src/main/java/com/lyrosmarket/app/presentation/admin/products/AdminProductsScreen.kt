@@ -87,7 +87,7 @@ fun AdminProductsScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)))
         ) {
             if (state.isLoading && state.products.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -148,7 +148,7 @@ fun AdminProductCard(
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -163,19 +163,19 @@ fun AdminProductCard(
                 modifier = Modifier
                     .size(60.dp)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color.LightGray)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = product.name, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.Black)
-                Text(text = "KSh ${product.price}", fontSize = 14.sp, color = Primary, fontWeight = FontWeight.SemiBold)
-                Text(text = "Stock: ${product.stockQuantity}", fontSize = 12.sp, color = if (product.stockQuantity < 10) Color.Red else Color.Gray)
+                Text(text = product.name, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                Text(text = "KSh ${product.price}", fontSize = 14.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.SemiBold)
+                Text(text = "Stock: ${product.stockQuantity}", fontSize = 12.sp, color = if (product.stockQuantity < 10) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant)
             }
             IconButton(onClick = onEditClick) {
-                Icon(Icons.Default.Edit, contentDescription = "Edit", tint = Secondary)
+                Icon(Icons.Default.Edit, contentDescription = "Edit", tint = MaterialTheme.colorScheme.secondary)
             }
             IconButton(onClick = onDeleteClick) {
-                Icon(Icons.Default.Delete, contentDescription = "Delete", tint = Tertiary)
+                Icon(Icons.Default.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.tertiary)
             }
         }
     }

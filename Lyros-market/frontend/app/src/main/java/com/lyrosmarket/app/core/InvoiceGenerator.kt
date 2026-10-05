@@ -1,24 +1,32 @@
 package com.lyrosmarket.app.core
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
+import android.os.Build
 import android.os.Environment
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.core.content.FileProvider
+import com.lyrosmarket.app.R
 import com.lyrosmarket.app.domain.model.Order
 import java.io.File
 import java.io.FileOutputStream
 
 object InvoiceGenerator {
 
-    fun generateAndOpenInvoice(context: Context, order: Order) {
-        try {
+    private const val CHANNEL_ID = "invoice_downloads_channel"
+
+    fun generateInvoiceFile(context: Context, order: Order): File? {
+        return try {
             val pdfDocument = PdfDocument()
-            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4 dimensions in points
+            val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4 dimensions
             val page = pdfDocument.startPage(pageInfo)
             val canvas = page.canvas
 
@@ -135,35 +143,91 @@ object InvoiceGenerator {
 
             pdfDocument.finishPage(page)
 
-            // Save PDF File
-            val downloadsDir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-            val file = File(downloadsDir, "LyrosMarket_Invoice_${order.id}.pdf")
+            // Save PDF File into public external Downloads directory or app's external Downloads directory
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val file = if (downloadsDir != null && (downloadsDir.exists() || downloadsDir.mkdirs())) {
+                File(downloadsDir, "LyrosMarket_Invoice_${order.id}.pdf")
+            } else {
+                File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "LyrosMarket_Invoice_${order.id}.pdf")
+            }
+
             val outputStream = FileOutputStream(file)
             pdfDocument.writeTo(outputStream)
             pdfDocument.close()
             outputStream.close()
 
-            // Open or Share PDF File using FileProvider
+            file
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(context, "Failed to generate invoice: ${e.message}", Toast.LENGTH_LONG).show()
+            null
+        }
+    }
+
+    fun openInvoiceFile(context: Context, file: File) {
+        try {
             val authority = "${context.packageName}.fileprovider"
             val uri = FileProvider.getUriForFile(context, authority, file)
 
             val viewIntent = Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(uri, "application/pdf")
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
 
-            val chooserIntent = Intent.createChooser(viewIntent, "Open Invoice PDF")
-            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
-            if (viewIntent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(chooserIntent)
-            } else {
-                Toast.makeText(context, "Invoice saved to ${file.name}", Toast.LENGTH_LONG).show()
+            val chooserIntent = Intent.createChooser(viewIntent, "Open Invoice PDF").apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
 
+            context.startActivity(chooserIntent)
         } catch (e: Exception) {
             e.printStackTrace()
-            Toast.makeText(context, "Failed to generate invoice: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Could not open PDF viewer", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun showInvoiceNotification(context: Context, file: File, orderId: String) {
+        try {
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel(
+                    CHANNEL_ID,
+                    "Invoice Downloads",
+                    NotificationManager.IMPORTANCE_DEFAULT
+                ).apply {
+                    description = "Notifications for downloaded invoices"
+                }
+                notificationManager.createNotificationChannel(channel)
+            }
+
+            val authority = "${context.packageName}.fileprovider"
+            val uri = FileProvider.getUriForFile(context, authority, file)
+
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "application/pdf")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                orderId.hashCode(),
+                Intent.createChooser(intent, "Open Invoice"),
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+
+            val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.mipmap.lyros_logo)
+                .setContentTitle("Invoice Downloaded")
+                .setContentText("${file.name} - Tap to open")
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .build()
+
+            notificationManager.notify(orderId.hashCode(), notification)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

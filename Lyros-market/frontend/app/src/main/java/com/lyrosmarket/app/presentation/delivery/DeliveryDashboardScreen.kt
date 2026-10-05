@@ -58,7 +58,7 @@ fun DeliveryDashboardScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)))
         ) {
             var isRefreshing by remember { mutableStateOf(false) }
 
@@ -95,11 +95,12 @@ fun DeliveryDashboardScreen(
                 }
             }
 
-            if (state.isLoading) {
+            val hasOrders = state.availableOrders.isNotEmpty() || state.myOrders.isNotEmpty()
+            if (state.isLoading && !hasOrders) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
-            } else if (state.error != null) {
+            } else if (state.error != null && !hasOrders) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = state.error, color = MaterialTheme.colorScheme.error)
                 }
@@ -144,7 +145,7 @@ fun DeliveryOrderCard(
             .fillMaxWidth()
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -162,18 +163,19 @@ fun DeliveryOrderCard(
                 Text(
                     text = "KES ${order.deliveryFee}",
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.Person, contentDescription = null, tint = Color.Gray, modifier = Modifier.size(16.dp))
+                Icon(Icons.Default.Person, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = order.customerName, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Spacer(modifier = Modifier.height(4.dp))
             Row(verticalAlignment = Alignment.Top) {
-                Icon(Icons.Default.LocationOn, contentDescription = null, tint = Color.Gray, modifier = Modifier.size(16.dp))
+                Icon(Icons.Default.LocationOn, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = order.dropOffAddress,
@@ -187,9 +189,10 @@ fun DeliveryOrderCard(
                 Button(
                     onClick = onAccept,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(24.dp)
+                    shape = RoundedCornerShape(24.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                 ) {
-                    Text("Accept Delivery", fontWeight = FontWeight.Bold)
+                    Text("Accept Delivery", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
                 }
             } else {
                 Text(

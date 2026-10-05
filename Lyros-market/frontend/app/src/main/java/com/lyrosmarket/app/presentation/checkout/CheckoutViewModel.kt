@@ -11,7 +11,10 @@ import com.lyrosmarket.app.domain.repository.OrderRepository
 import com.lyrosmarket.app.domain.repository.AuthRepository
 import com.lyrosmarket.app.domain.repository.CartRepository
 import com.lyrosmarket.app.core.SessionManager
+import com.lyrosmarket.app.core.LocationUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import android.content.Context
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +25,8 @@ class CheckoutViewModel @Inject constructor(
     private val orderRepository: OrderRepository,
     private val authRepository: AuthRepository,
     private val cartRepository: CartRepository,
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val _state = mutableStateOf(CheckoutState())
@@ -37,9 +41,10 @@ class CheckoutViewModel @Inject constructor(
         viewModelScope.launch {
             cartRepository.cartItems.collect { items ->
                 val subtotal = items.sumOf { it.product.price * it.quantity }
+                val total = if (items.isEmpty()) 0.0 else subtotal + (_state.value.selectedAddress?.shippingFee ?: 0.0)
                 _state.value = _state.value.copy(
                     subtotal = subtotal,
-                    total = subtotal + (_state.value.selectedAddress?.shippingFee ?: 0.0),
+                    total = total,
                     itemCount = items.sumOf { it.quantity }
                 )
             }
@@ -60,9 +65,10 @@ class CheckoutViewModel @Inject constructor(
     }
 
     fun onAddressSelected(address: AddressDto) {
+        val total = if (_state.value.itemCount == 0) 0.0 else _state.value.subtotal + address.shippingFee
         _state.value = _state.value.copy(
             selectedAddress = address,
-            total = _state.value.subtotal + address.shippingFee
+            total = total
         )
     }
 
@@ -71,34 +77,39 @@ class CheckoutViewModel @Inject constructor(
     }
 
     fun onMapLocationSelected(lat: Double, lng: Double) {
-        val storeLat = 0.5142
-        val storeLng = 35.2697
-        
-        val results = FloatArray(1)
-        android.location.Location.distanceBetween(
-            storeLat, storeLng,
-            lat, lng,
-            results
-        )
-        val distanceInKm = results[0] / 1000.0
-        
-        // Base fee KSh 50 + KSh 20 per km
-        val calculatedFee = 50.0 + (20.0 * distanceInKm)
-        
-        val newAddress = AddressDto(
-            label = "Map Location",
-            fullAddress = "Lat: ${String.format("%.4f", lat)}, Lng: ${String.format("%.4f", lng)}",
-            shippingFee = calculatedFee,
-            latitude = lat,
-            longitude = lng
-        )
-        
-        sessionManager.saveLocation(lat, lng)
-        
-        _state.value = _state.value.copy(
-            selectedAddress = newAddress,
-            total = _state.value.subtotal + calculatedFee
-        )
+        viewModelScope.launch {
+            val storeLat = 0.5142
+            val storeLng = 35.2697
+            
+            val results = FloatArray(1)
+            android.location.Location.distanceBetween(
+                storeLat, storeLng,
+                lat, lng,
+                results
+            )
+            val distanceInKm = results[0] / 1000.0
+            
+            // Base fee KSh 50 + KSh 20 per km
+            val calculatedFee = 50.0 + (20.0 * distanceInKm)
+            
+            val addressName = LocationUtils.getAddressFromCoordinates(context, lat, lng)
+            
+            val newAddress = AddressDto(
+                label = "Delivery Location",
+                fullAddress = addressName,
+                shippingFee = calculatedFee,
+                latitude = lat,
+                longitude = lng
+            )
+            
+            sessionManager.saveLocation(lat, lng, addressName)
+            
+            val total = if (_state.value.itemCount == 0) 0.0 else _state.value.subtotal + calculatedFee
+            _state.value = _state.value.copy(
+                selectedAddress = newAddress,
+                total = total
+            )
+        }
     }
 
     fun initiatePayment(deliveryAddress: String) {
@@ -134,10 +145,6 @@ class CheckoutViewModel @Inject constructor(
                 is Resource.Success -> {
                     val order = checkoutResult.data ?: return@launch
                     val orderId = order.id.toIntOrNull() ?: return@launch
-                    
-                    // We don't update total to order.totalAmount here to prevent
-                    // the price from jumping on the screen if the server calculates
-                    // it differently. We rely on the local calculation for the UI.
                     
                     // 2. Initiate M-Pesa STK Push
                     val paymentResult = paymentRepository.initiateStkPush(formattedNumber, orderId)

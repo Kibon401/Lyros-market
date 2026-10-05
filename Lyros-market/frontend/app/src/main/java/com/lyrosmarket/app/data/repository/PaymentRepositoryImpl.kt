@@ -1,6 +1,7 @@
 package com.lyrosmarket.app.data.repository
 
 import com.lyrosmarket.app.core.Resource
+import com.lyrosmarket.app.core.SessionManager
 import com.lyrosmarket.app.data.remote.PaymentApiService
 import com.lyrosmarket.app.data.remote.dto.StkPushRequest
 import com.lyrosmarket.app.data.remote.dto.StkPushResponse
@@ -10,7 +11,8 @@ import java.io.IOException
 import com.lyrosmarket.app.core.handleNetworkException
 
 class PaymentRepositoryImpl(
-    private val api: PaymentApiService
+    private val api: PaymentApiService,
+    private val sessionManager: SessionManager
 ) : PaymentRepository {
 
     override suspend fun initiateStkPush(
@@ -28,7 +30,7 @@ class PaymentRepositoryImpl(
                 Resource.Error(response.ResponseDescription ?: response.CustomerMessage ?: response.message ?: "Payment initiation failed")
             }
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

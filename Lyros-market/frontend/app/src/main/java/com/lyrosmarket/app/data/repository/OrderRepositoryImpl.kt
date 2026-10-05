@@ -1,6 +1,7 @@
 package com.lyrosmarket.app.data.repository
 
 import com.lyrosmarket.app.core.Resource
+import com.lyrosmarket.app.core.SessionManager
 import com.lyrosmarket.app.data.remote.OrderApiService
 import com.lyrosmarket.app.data.remote.dto.OrderDto
 import com.lyrosmarket.app.data.remote.dto.OrderItemDto
@@ -12,7 +13,8 @@ import java.io.IOException
 import com.lyrosmarket.app.core.handleNetworkException
 
 class OrderRepositoryImpl(
-    private val api: OrderApiService
+    private val api: OrderApiService,
+    private val sessionManager: SessionManager
 ) : OrderRepository {
 
     override suspend fun getOrders(): Resource<List<Order>> {
@@ -20,7 +22,7 @@ class OrderRepositoryImpl(
             val dtos = api.getOrders()
             Resource.Success(dtos.map { it.toOrder() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -29,7 +31,7 @@ class OrderRepositoryImpl(
             val dto = api.getOrder(orderId)
             Resource.Success(dto.toOrder())
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -47,7 +49,7 @@ class OrderRepositoryImpl(
             val dto = api.checkout(request)
             Resource.Success(dto.toOrder())
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -56,7 +58,7 @@ class OrderRepositoryImpl(
             api.confirmDelivery(orderId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

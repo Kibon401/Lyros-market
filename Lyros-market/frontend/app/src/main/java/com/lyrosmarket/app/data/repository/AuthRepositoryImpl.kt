@@ -8,7 +8,6 @@ import com.lyrosmarket.app.data.remote.dto.RegisterRequest
 import com.lyrosmarket.app.data.remote.dto.toUser
 import com.lyrosmarket.app.domain.model.User
 import com.lyrosmarket.app.domain.repository.AuthRepository
-import io.ktor.client.plugins.*
 import java.io.IOException
 import com.lyrosmarket.app.core.handleNetworkException
 
@@ -36,7 +35,7 @@ class AuthRepositoryImpl(
             val user = profile.toUser().copy(token = token)
             Resource.Success(user)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -50,7 +49,7 @@ class AuthRepositoryImpl(
             
             val profile = try {
                 api.getProfile()
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 response // Fallback to register response if profile fails right after register
             }
             
@@ -62,7 +61,7 @@ class AuthRepositoryImpl(
             val user = profile.toUser().copy(token = token, username = username, email = email)
             Resource.Success(user)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -79,7 +78,7 @@ class AuthRepositoryImpl(
             val response = api.getProfile()
             Resource.Success(response.toUser())
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -88,7 +87,7 @@ class AuthRepositoryImpl(
             val response = api.updateProfile(username, email)
             Resource.Success(response.toUser())
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -97,7 +96,7 @@ class AuthRepositoryImpl(
             api.resetPassword(com.lyrosmarket.app.data.remote.dto.ResetPasswordRequest(email, code, newPassword))
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -106,7 +105,7 @@ class AuthRepositoryImpl(
             api.forgotPassword(mapOf("email" to email))
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

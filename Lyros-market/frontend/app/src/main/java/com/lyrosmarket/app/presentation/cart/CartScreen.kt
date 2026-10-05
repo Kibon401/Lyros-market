@@ -83,7 +83,7 @@ fun CartScreenContent(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)))
         ) {
             LazyColumn(
                 modifier = Modifier
@@ -126,7 +126,7 @@ fun CartItemView(
 ) {
     Card(
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -158,19 +158,20 @@ fun CartItemView(
                             text = item.product.name,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp,
+                            color = MaterialTheme.colorScheme.onSurface,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                         Text(
                             text = "${item.producer} • ${item.weight}",
-                            color = Color.Gray,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 14.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
                     IconButton(onClick = onRemove, modifier = Modifier.size(24.dp)) {
-                        Icon(Icons.Default.Close, contentDescription = "Remove", tint = Color.Gray)
+                        Icon(Icons.Default.Close, contentDescription = "Remove", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
 
@@ -185,12 +186,12 @@ fun CartItemView(
                         text = "KSh ${item.product.price.toInt()}",
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
-                        color = Primary
+                        color = MaterialTheme.colorScheme.primary
                     )
 
                     Surface(
                         shape = RoundedCornerShape(24.dp),
-                        color = Color(0xFFF3F3F3)
+                        color = MaterialTheme.colorScheme.surfaceVariant
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -200,18 +201,21 @@ fun CartItemView(
                                 Icon(
                                     Icons.Default.Remove,
                                     contentDescription = "Decrease",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
                             }
                             Text(
                                 text = item.quantity.toString(),
                                 fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.padding(horizontal = 8.dp)
                             )
                             IconButton(onClick = onIncrease, modifier = Modifier.size(32.dp)) {
                                 Icon(
                                     Icons.Default.Add,
                                     contentDescription = "Increase",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
                             }
@@ -231,7 +235,7 @@ fun DeliveryAddressSection(
 ) {
     Card(
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = Modifier.fillMaxWidth()
     ) {

@@ -38,15 +38,26 @@ class LoginViewModel @Inject constructor(
     }
 
     fun login() {
-        if (_email.value.isBlank() || _password.value.isBlank()) {
+        val trimmedEmail = _email.value.trim()
+        val trimmedPassword = _password.value.trim()
+
+        if (trimmedEmail.isBlank() || trimmedPassword.isBlank()) {
             viewModelScope.launch {
-                _eventFlow.emit(UiEvent.ShowSnackbar("Please provide both email and password."))
+                _eventFlow.emit(UiEvent.ShowSnackbar("Please enter both email and password."))
             }
             return
         }
+
+        if (!trimmedEmail.contains("@") || !trimmedEmail.contains(".")) {
+            viewModelScope.launch {
+                _eventFlow.emit(UiEvent.ShowSnackbar("Please enter a valid email address."))
+            }
+            return
+        }
+
         viewModelScope.launch {
             _isLoading.value = true
-            val result = repository.login(_email.value, _password.value)
+            val result = repository.login(trimmedEmail, trimmedPassword)
             _isLoading.value = false
 
             when (result) {
@@ -56,11 +67,9 @@ class LoginViewModel @Inject constructor(
                     _eventFlow.emit(UiEvent.LoginSuccess(role))
                 }
                 is Resource.Error -> {
-                    _eventFlow.emit(UiEvent.ShowSnackbar(result.message ?: "Unknown error"))
+                    _eventFlow.emit(UiEvent.ShowSnackbar(result.message ?: "Authentication failed. Please check your credentials."))
                 }
-                is Resource.Loading -> {
-                    // Handled by _isLoading
-                }
+                is Resource.Loading -> {}
             }
         }
     }

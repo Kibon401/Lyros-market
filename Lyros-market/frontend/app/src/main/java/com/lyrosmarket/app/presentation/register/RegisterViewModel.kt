@@ -45,9 +45,34 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun register() {
+        val trimmedUsername = _username.value.trim()
+        val trimmedEmail = _email.value.trim()
+        val trimmedPassword = _password.value.trim()
+
+        if (trimmedUsername.isBlank()) {
+            viewModelScope.launch {
+                _eventFlow.emit(UiEvent.ShowSnackbar("Please enter a username."))
+            }
+            return
+        }
+
+        if (trimmedEmail.isBlank() || !trimmedEmail.contains("@") || !trimmedEmail.contains(".")) {
+            viewModelScope.launch {
+                _eventFlow.emit(UiEvent.ShowSnackbar("Please enter a valid email address."))
+            }
+            return
+        }
+
+        if (trimmedPassword.length < 6) {
+            viewModelScope.launch {
+                _eventFlow.emit(UiEvent.ShowSnackbar("Password must be at least 6 characters long."))
+            }
+            return
+        }
+
         viewModelScope.launch {
             _isLoading.value = true
-            val result = repository.register(_username.value, _email.value, _password.value)
+            val result = repository.register(trimmedUsername, trimmedEmail, trimmedPassword)
             _isLoading.value = false
 
             when (result) {
@@ -55,7 +80,7 @@ class RegisterViewModel @Inject constructor(
                     _eventFlow.emit(UiEvent.RegisterSuccess)
                 }
                 is Resource.Error -> {
-                    _eventFlow.emit(UiEvent.ShowSnackbar(result.message ?: "Unknown error"))
+                    _eventFlow.emit(UiEvent.ShowSnackbar(result.message ?: "Registration failed. Please try again."))
                 }
                 is Resource.Loading -> {}
             }

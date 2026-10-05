@@ -4,16 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lyrosmarket.app.ui.theme.LyrosMarketTheme
-
+import com.lyrosmarket.app.core.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
 
 import com.lyrosmarket.app.presentation.Navigation
 
@@ -22,6 +26,10 @@ import org.osmdroid.config.Configuration
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
@@ -33,7 +41,13 @@ class MainActivity : ComponentActivity() {
         
         enableEdgeToEdge()
         setContent {
-            LyrosMarketTheme {
+            val systemDark = isSystemInDarkTheme()
+            val savedDarkMode by sessionManager.darkModeFlow.collectAsStateWithLifecycle(
+                initialValue = sessionManager.isDarkMode()
+            )
+            val isDark = savedDarkMode ?: systemDark
+
+            LyrosMarketTheme(darkTheme = isDark) {
                 Navigation()
             }
         }

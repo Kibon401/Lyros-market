@@ -12,5 +12,5 @@ data class CartState(
     val selectedAddress: AddressDto? = null
 ) {
     val total: Double
-        get() = cartItems.sumOf { it.product.price * it.quantity } + (selectedAddress?.shippingFee ?: deliveryFee)
+        get() = if (cartItems.isEmpty()) 0.0 else cartItems.sumOf { it.product.price * it.quantity } + (selectedAddress?.shippingFee ?: deliveryFee)
 }

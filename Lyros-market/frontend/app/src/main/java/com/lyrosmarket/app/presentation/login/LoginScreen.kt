@@ -48,6 +48,7 @@ fun LoginScreen(
     val email by viewModel.email
     val password by viewModel.password
     val isLoading by viewModel.isLoading
+//    val errorMessage by viewModel.errorMessage
 
     val snackbarHostState = remember { SnackbarHostState() }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -72,14 +73,16 @@ fun LoginScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.3f), Primary.copy(alpha = 0.8f))))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f), MaterialTheme.colorScheme.primary.copy(alpha = 0.8f))))
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
                     .padding(horizontal = 24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+
             ) {
                 Spacer(modifier = Modifier.height(64.dp))
                 
@@ -98,12 +101,12 @@ fun LoginScreen(
                 
                 // Glass Panel for Form
                 Card(
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.85f)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
                     elevation = CardDefaults.cardElevation(0.dp),
                     shape = RoundedCornerShape(24.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(24.dp))
+                        .border(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f), RoundedCornerShape(24.dp))
                 ) {
                     Column(
                         modifier = Modifier.padding(24.dp),
@@ -113,44 +116,46 @@ fun LoginScreen(
                             text = "Welcome back",
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Primary
+                            color = MaterialTheme.colorScheme.primary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Enter your details to access your fresh finds.",
                             fontSize = 14.sp,
-                            color = Color.DarkGray,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(32.dp))
-            
+
                         // Email Field
                         Column(modifier = Modifier.fillMaxWidth()) {
                             Text(
                                 text = "EMAIL ADDRESS",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                             TextField(
                                 value = email,
                                 onValueChange = viewModel::onEmailChange,
-                                placeholder = { Text("jane@example.com", color = Color.LightGray) },
+                                placeholder = { Text("jane@example.com", color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent,
-                                    cursorColor = Primary
+                                    cursorColor = MaterialTheme.colorScheme.primary
                                 ),
                                 shape = RoundedCornerShape(16.dp),
                                 leadingIcon = {
                                     Icon(
                                         imageVector = Icons.Default.Email,
                                         contentDescription = null,
-                                        tint = Color.LightGray
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -171,12 +176,12 @@ fun LoginScreen(
                                     text = "PASSWORD",
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.Gray
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 Text(
                                     text = "Forgot password?",
                                     fontSize = 14.sp,
-                                    color = Primary,
+                                    color = MaterialTheme.colorScheme.primary,
                                     fontWeight = FontWeight.SemiBold,
                                     modifier = Modifier.clickable { /* Handle forgot password */ }
                                 )
@@ -185,14 +190,16 @@ fun LoginScreen(
                             TextField(
                                 value = password,
                                 onValueChange = viewModel::onPasswordChange,
-                                placeholder = { Text("********", color = Color.LightGray) },
+                                placeholder = { Text("********", color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent,
-                                    cursorColor = Primary
+                                    cursorColor = MaterialTheme.colorScheme.primary
                                 ),
                                 shape = RoundedCornerShape(16.dp),
                                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -200,13 +207,13 @@ fun LoginScreen(
                                     Icon(
                                         imageVector = Icons.Default.Lock,
                                         contentDescription = null,
-                                        tint = Color.LightGray
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 },
                                 trailingIcon = {
                                     val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                                        Icon(imageVector = image, contentDescription = null, tint = Color.LightGray)
+                                        Icon(imageVector = image, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -223,14 +230,14 @@ fun LoginScreen(
                                 .fillMaxWidth()
                                 .height(56.dp),
                             shape = RoundedCornerShape(28.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Primary)
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                         ) {
                             if (isLoading) {
-                                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                                CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
                             } else {
-                                Text(text = "Sign In", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                                Text(text = "Sign In", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
                                 Spacer(modifier = Modifier.width(8.dp))
-                                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(20.dp))
+                                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(20.dp))
                             }
                         }
                     }

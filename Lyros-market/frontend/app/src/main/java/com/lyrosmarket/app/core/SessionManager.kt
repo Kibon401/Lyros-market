@@ -8,12 +8,24 @@ import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 @Singleton
 class SessionManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
     private var prefs: SharedPreferences? = null
+
+    private val _sessionExpiredEvent = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+    val sessionExpiredEvent: SharedFlow<Unit> = _sessionExpiredEvent.asSharedFlow()
+
+    private val _darkModeFlow = MutableStateFlow<Boolean?>(null)
+    val darkModeFlow: StateFlow<Boolean?> = _darkModeFlow.asStateFlow()
 
     init {
         initPrefs()
@@ -54,6 +66,7 @@ class SessionManager @Inject constructor(
                 prefs = context.getSharedPreferences("lyros_prefs_fallback", Context.MODE_PRIVATE)
             }
         }
+        _darkModeFlow.value = isDarkMode()
     }
 
     fun saveToken(token: String) {
@@ -100,11 +113,18 @@ class SessionManager @Inject constructor(
         return prefs?.getString("user_role", null)
     }
     
-    fun saveLocation(lat: Double, lng: Double) {
+    fun saveLocation(lat: Double, lng: Double, addressName: String = "") {
         prefs?.edit()?.apply {
             putFloat("map_lat", lat.toFloat())
             putFloat("map_lng", lng.toFloat())
+            if (addressName.isNotBlank()) {
+                putString("map_address_name", addressName)
+            }
         }?.apply()
+    }
+    
+    fun getLocationName(): String? {
+        return prefs?.getString("map_address_name", null)
     }
     
     fun getLocation(): Pair<Double, Double>? {
@@ -129,5 +149,18 @@ class SessionManager @Inject constructor(
 
     fun clearSession() {
         prefs?.edit()?.clear()?.apply()
+        _sessionExpiredEvent.tryEmit(Unit)
+    }
+
+    fun saveDarkMode(enabled: Boolean) {
+        prefs?.edit()?.putBoolean("dark_mode", enabled)?.apply()
+        _darkModeFlow.value = enabled
+    }
+
+    fun isDarkMode(): Boolean? {
+        if (prefs?.contains("dark_mode") == true) {
+            return prefs?.getBoolean("dark_mode", false)
+        }
+        return null
     }
 }

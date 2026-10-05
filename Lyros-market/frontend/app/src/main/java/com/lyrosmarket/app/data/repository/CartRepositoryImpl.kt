@@ -1,5 +1,7 @@
 package com.lyrosmarket.app.data.repository
 
+import com.lyrosmarket.app.core.SessionManager
+import com.lyrosmarket.app.core.handleNetworkException
 import com.lyrosmarket.app.data.remote.CartApiService
 import com.lyrosmarket.app.data.remote.dto.AddToCartRequest
 import com.lyrosmarket.app.data.remote.dto.CartItemDto
@@ -10,7 +12,6 @@ import com.lyrosmarket.app.domain.repository.CartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +20,8 @@ import kotlinx.coroutines.launch
 
 @Singleton
 class CartRepositoryImpl @Inject constructor(
-    private val api: CartApiService
+    private val api: CartApiService,
+    private val sessionManager: SessionManager
 ) : CartRepository {
 
     private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())
@@ -38,7 +40,7 @@ class CartRepositoryImpl @Inject constructor(
             val response = api.getCart()
             _cartItems.value = response.items.map { it.toCartItem() }
         } catch (e: Exception) {
-            // Handle error, maybe clear cart or keep local
+            handleNetworkException<Unit>(e, sessionManager)
         }
     }
 
@@ -47,7 +49,7 @@ class CartRepositoryImpl @Inject constructor(
             api.addToCart(AddToCartRequest(product.id, quantity))
             fetchCart()
         } catch (e: Exception) {
-            // Fallback or error handling
+            handleNetworkException<Unit>(e, sessionManager)
         }
     }
 
@@ -56,6 +58,7 @@ class CartRepositoryImpl @Inject constructor(
             api.removeItem(productId)
             fetchCart()
         } catch (e: Exception) {
+            handleNetworkException<Unit>(e, sessionManager)
         }
     }
 
@@ -67,6 +70,7 @@ class CartRepositoryImpl @Inject constructor(
             api.updateQuantity(UpdateCartQtyRequest(productId, newQty))
             fetchCart()
         } catch (e: Exception) {
+            handleNetworkException<Unit>(e, sessionManager)
         }
     }
 
@@ -75,6 +79,7 @@ class CartRepositoryImpl @Inject constructor(
             api.clearCart()
             fetchCart()
         } catch (e: Exception) {
+            handleNetworkException<Unit>(e, sessionManager)
         }
     }
 

@@ -145,7 +145,7 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.1f), Color.White)))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f), MaterialTheme.colorScheme.background)))
         ) {
             Column(
                 modifier = Modifier.fillMaxSize()
@@ -204,18 +204,18 @@ fun HomeScreen(
                 onCategorySelected = { viewModel.onCategorySelected(it) }
             )
 
-            if (state.isLoading) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            if (state.isLoading && state.products.isEmpty()) {
+                Box(modifier = Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = Primary)
                 }
-            } else if (state.error != null) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            } else if (state.error != null && state.products.isEmpty()) {
+                Box(modifier = Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
                     Text(text = state.error, color = MaterialTheme.colorScheme.error)
                 }
             } else {
                 LazyVerticalStaggeredGrid(
                     columns = StaggeredGridCells.Fixed(2),
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxWidth().weight(1f),
                     contentPadding = PaddingValues(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalItemSpacing = 16.dp
@@ -244,22 +244,24 @@ fun SearchBar(
     OutlinedTextField(
         value = query,
         onValueChange = onQueryChange,
-        placeholder = { Text("Search fresh produce...", color = Color.Gray) },
+        placeholder = { Text("Search fresh produce...", color = MaterialTheme.colorScheme.onSurfaceVariant) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = Color.Gray) },
+        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant) },
         trailingIcon = { 
             IconButton(onClick = onFilterClick) {
-                Icon(Icons.Default.Tune, contentDescription = "Filter", tint = Color.Gray)
+                Icon(Icons.Default.Tune, contentDescription = "Filter", tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         },
         shape = RoundedCornerShape(24.dp),
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.White.copy(alpha = 0.8f),
-            unfocusedContainerColor = Color.White.copy(alpha = 0.8f),
+            focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
+            unfocusedIndicatorColor = Color.Transparent,
+            focusedTextColor = MaterialTheme.colorScheme.onSurface,
+            unfocusedTextColor = MaterialTheme.colorScheme.onSurface
         ),
         singleLine = true
     )
@@ -301,13 +303,13 @@ fun CategoryChip(
 ) {
     Surface(
         onClick = onClick,
-        color = if (isSelected) Primary else Color.White.copy(alpha = 0.8f),
+        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
         shape = RoundedCornerShape(24.dp),
         shadowElevation = if (isSelected) 4.dp else 1.dp
     ) {
         Text(
             text = name,
-            color = if (isSelected) Color.White else Color.DarkGray,
+            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
             fontWeight = FontWeight.SemiBold
         )
@@ -321,7 +323,7 @@ fun ProductItem(product: Product, onClick: () -> Unit, onAddToCart: () -> Unit) 
             .fillMaxWidth()
             .clickable { onClick() },
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column {
@@ -339,7 +341,7 @@ fun ProductItem(product: Product, onClick: () -> Unit, onAddToCart: () -> Unit) 
                 // Badge (Farm Direct / Organic)
                 Surface(
                     modifier = Modifier.padding(12.dp),
-                    color = if (product.id % 2 == 0) Color(0xFFC05746) else Secondary,
+                    color = if (product.id % 2 == 0) Color(0xFFC05746) else MaterialTheme.colorScheme.secondary,
                     shape = RoundedCornerShape(12.dp),
                     shadowElevation = 2.dp
                 ) {
@@ -358,12 +360,13 @@ fun ProductItem(product: Product, onClick: () -> Unit, onAddToCart: () -> Unit) 
                     text = product.name, 
                     fontWeight = FontWeight.Bold, 
                     fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = "Lyros Farms • 1 Bunch", 
-                    color = Color.Gray, 
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, 
                     fontSize = 12.sp
                 )
                 

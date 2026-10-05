@@ -68,6 +68,11 @@ fun MapAddressPickerScreen(
     var mapView: MapView? by remember { mutableStateOf(null) }
     var searchQuery by remember { mutableStateOf("") }
     var isSearching by remember { mutableStateOf(false) }
+    var locationName by remember { mutableStateOf("Fetching location name...") }
+
+    LaunchedEffect(currentCenter) {
+        locationName = com.lyrosmarket.app.core.LocationUtils.getAddressFromCoordinates(context, currentCenter.latitude, currentCenter.longitude)
+    }
 
     val fusedLocationClient = remember { LocationServices.getFusedLocationProviderClient(context) }
 
@@ -124,16 +129,18 @@ fun MapAddressPickerScreen(
         }
     }
 
+    val isDarkTheme = androidx.compose.foundation.isSystemInDarkTheme() || MaterialTheme.colorScheme.background.red < 0.5f
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Pick Address", fontWeight = FontWeight.Bold, color = Primary) },
+                title = { Text("Pick Address", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Primary)
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface)
             )
         },
         floatingActionButton = {
@@ -156,8 +163,8 @@ fun MapAddressPickerScreen(
                         locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
                     }
                 },
-                containerColor = Color.White,
-                contentColor = Primary,
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(bottom = 72.dp) // padding above info card
             ) {
                 Icon(Icons.Default.MyLocation, contentDescription = "My Location")
@@ -167,7 +174,7 @@ fun MapAddressPickerScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.surface)
                     .padding(24.dp)
                     .navigationBarsPadding()
             ) {
@@ -180,10 +187,10 @@ fun MapAddressPickerScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1B3D17)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     shape = RoundedCornerShape(28.dp)
                 ) {
-                    Text("Confirm Location", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                    Text("Confirm Location", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         }
@@ -203,6 +210,16 @@ fun MapAddressPickerScreen(
                         controller.setZoom(15.0)
                         controller.setCenter(defaultLocation)
 
+                        if (isDarkTheme) {
+                            val matrix = android.graphics.ColorMatrix(floatArrayOf(
+                                -0.8f, 0.0f, 0.0f, 0.0f, 255.0f,
+                                0.0f, -0.8f, 0.0f, 0.0f, 255.0f,
+                                0.0f, 0.0f, -0.8f, 0.0f, 255.0f,
+                                0.0f, 0.0f, 0.0f, 1.0f, 0.0f
+                            ))
+                            overlayManager.tilesOverlay.setColorFilter(android.graphics.ColorMatrixColorFilter(matrix))
+                        }
+
                         val mapEventsReceiver = object : org.osmdroid.events.MapEventsReceiver {
                             override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean {
                                 if (p != null) {
@@ -219,7 +236,13 @@ fun MapAddressPickerScreen(
                         addMapListener(object : MapListener {
                             override fun onScroll(event: ScrollEvent?): Boolean {
                                 val center = mapCenter
-                                currentCenter = GeoPoint(center.latitude, center.longitude)
+                                if (center != null) {
+                                    val deltaLat = kotlin.math.abs(center.latitude - currentCenter.latitude)
+                                    val deltaLng = kotlin.math.abs(center.longitude - currentCenter.longitude)
+                                    if (deltaLat > 0.0002 || deltaLng > 0.0002) {
+                                        currentCenter = GeoPoint(center.latitude, center.longitude)
+                                    }
+                                }
                                 return false
                             }
 
@@ -228,6 +251,19 @@ fun MapAddressPickerScreen(
                             }
                         })
                     }.also { mapView = it }
+                },
+                update = { map ->
+                    if (isDarkTheme) {
+                        val matrix = android.graphics.ColorMatrix(floatArrayOf(
+                            -0.8f, 0.0f, 0.0f, 0.0f, 255.0f,
+                            0.0f, -0.8f, 0.0f, 0.0f, 255.0f,
+                            0.0f, 0.0f, -0.8f, 0.0f, 255.0f,
+                            0.0f, 0.0f, 0.0f, 1.0f, 0.0f
+                        ))
+                        map.overlayManager.tilesOverlay.setColorFilter(android.graphics.ColorMatrixColorFilter(matrix))
+                    } else {
+                        map.overlayManager.tilesOverlay.setColorFilter(null)
+                    }
                 }
             )
 
@@ -254,17 +290,21 @@ fun MapAddressPickerScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .background(Color.White, RoundedCornerShape(12.dp))
+                    .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp))
                     .align(Alignment.TopCenter),
-                placeholder = { Text("Search for an address...") },
+                placeholder = { Text("Search for an address...", color = MaterialTheme.colorScheme.onSurfaceVariant) },
                 singleLine = true,
-                leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
+                leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search", tint = MaterialTheme.colorScheme.onSurfaceVariant) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { performSearch(searchQuery) }),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                     unfocusedBorderColor = Color.Transparent,
-                    focusedBorderColor = Primary
+                    focusedBorderColor = MaterialTheme.colorScheme.primary
                 )
             )
             
@@ -296,20 +336,20 @@ fun MapAddressPickerScreen(
                     .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "Move the map to set your location",
+                        text = "Selected Location",
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF1B3D17),
+                        color = MaterialTheme.colorScheme.primary,
                         fontSize = 16.sp
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Lat: ${String.format(Locale.US, "%.4f", currentCenter.latitude)}, Lng: ${String.format(Locale.US, "%.4f", currentCenter.longitude)}",
-                        color = Color.Gray,
+                        text = locationName,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 14.sp
                     )
                 }

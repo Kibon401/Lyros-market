@@ -1,6 +1,7 @@
 package com.lyrosmarket.app.data.repository
 
 import com.lyrosmarket.app.core.Resource
+import com.lyrosmarket.app.core.SessionManager
 import com.lyrosmarket.app.data.remote.AdminApiService
 import com.lyrosmarket.app.data.remote.dto.*
 import com.lyrosmarket.app.domain.repository.AdminRepository
@@ -10,7 +11,8 @@ import java.io.IOException
 import com.lyrosmarket.app.core.handleNetworkException
 
 class AdminRepositoryImpl(
-    private val api: AdminApiService
+    private val api: AdminApiService,
+    private val sessionManager: SessionManager
 ) : AdminRepository {
 
     override suspend fun uploadProductImage(imageFile: File): Resource<String> {
@@ -18,7 +20,7 @@ class AdminRepositoryImpl(
             val url = api.uploadProductImage(imageFile)
             Resource.Success(url)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -27,7 +29,7 @@ class AdminRepositoryImpl(
             val response = api.createCategory(request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -36,7 +38,7 @@ class AdminRepositoryImpl(
             api.updateCategory(categoryId, request)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -45,7 +47,7 @@ class AdminRepositoryImpl(
             api.deleteCategory(categoryId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -54,7 +56,7 @@ class AdminRepositoryImpl(
             val response = api.getCategories()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -63,7 +65,7 @@ class AdminRepositoryImpl(
             val response = api.createProduct(request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -72,7 +74,7 @@ class AdminRepositoryImpl(
             api.updateProduct(productId, request)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -81,7 +83,7 @@ class AdminRepositoryImpl(
             api.deleteProduct(productId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -90,7 +92,7 @@ class AdminRepositoryImpl(
             val response = api.viewAllOrders()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -99,7 +101,7 @@ class AdminRepositoryImpl(
             val response = api.trackOrder(orderId)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -108,7 +110,7 @@ class AdminRepositoryImpl(
             api.markOrderPaid(orderId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -117,7 +119,7 @@ class AdminRepositoryImpl(
             val response = api.getDashboard()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -126,7 +128,7 @@ class AdminRepositoryImpl(
             val response = api.viewAllUsers()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -135,7 +137,7 @@ class AdminRepositoryImpl(
             val response = api.updateUser(userId, request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -144,7 +146,7 @@ class AdminRepositoryImpl(
             api.deleteUser(userId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -153,7 +155,7 @@ class AdminRepositoryImpl(
             val response = api.setUserRole(userId, SetRoleRequest(role))
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -162,7 +164,7 @@ class AdminRepositoryImpl(
             val response = api.viewInventory()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

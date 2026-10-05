@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import androidx.compose.ui.graphics.Brush
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,12 +36,16 @@ fun OrderDetailsScreen(
     viewModel: OrderDetailsViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val snackbarHostState = androidx.compose.runtime.remember { SnackbarHostState() }
+    val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
 
     androidx.compose.runtime.LaunchedEffect(key1 = orderId) {
         viewModel.loadOrder(orderId)
     }
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = { Text("Order Details", fontWeight = FontWeight.Bold, color = Primary) },
@@ -90,12 +95,32 @@ fun OrderDetailsScreen(
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 OutlinedButton(
-                    onClick = { /* Download Invoice */ },
+                    onClick = { 
+                        state.order?.let { order ->
+                            coroutineScope.launch {
+                                val file = com.lyrosmarket.app.core.InvoiceGenerator.generateInvoiceFile(context, order)
+                                if (file != null) {
+                                    com.lyrosmarket.app.core.InvoiceGenerator.showInvoiceNotification(context, file, order.id)
+                                    val result = snackbarHostState.showSnackbar(
+                                        message = "Invoice downloaded: ${file.name}",
+                                        actionLabel = "OPEN",
+                                        duration = SnackbarDuration.Long
+                                    )
+                                    if (result == SnackbarResult.ActionPerformed) {
+                                        com.lyrosmarket.app.core.InvoiceGenerator.openInvoiceFile(context, file)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    enabled = state.order != null,
                     modifier = Modifier.fillMaxWidth().height(56.dp),
                     shape = RoundedCornerShape(16.dp),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color.LightGray)
+                    border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f))
                 ) {
-                    Text(text = "Download Invoice", color = Color.Gray, fontWeight = FontWeight.Bold)
+                    Icon(Icons.Default.Download, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = "Download Invoice", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                 }
             }
         },

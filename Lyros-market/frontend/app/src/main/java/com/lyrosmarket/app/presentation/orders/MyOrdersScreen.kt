@@ -79,7 +79,7 @@ fun MyOrdersScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)))
         ) {
             Column(
                 modifier = Modifier
@@ -87,8 +87,8 @@ fun MyOrdersScreen(
                     .padding(horizontal = 20.dp)
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(text = "My Orders", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1B3D17))
-                Text(text = "Track your farm-fresh deliveries.", color = Color.Gray, fontSize = 16.sp)
+                Text(text = "My Orders", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground)
+                Text(text = "Track your farm-fresh deliveries.", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 16.sp)
 
                 Spacer(modifier = Modifier.height(24.dp))
 
@@ -100,10 +100,10 @@ fun MyOrdersScreen(
                             onClick = { selectedFilter = filter },
                             label = { Text(filter) },
                             colors = FilterChipDefaults.filterChipColors(
-                                selectedContainerColor = Color(0xFFB4CDB7),
-                                selectedLabelColor = Primary,
-                                containerColor = Color(0xFFE5E2D9).copy(alpha = 0.5f),
-                                labelColor = Color.Gray
+                                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                                selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                labelColor = MaterialTheme.colorScheme.onSurfaceVariant
                             ),
                             border = null,
                             shape = RoundedCornerShape(12.dp)
@@ -127,11 +127,12 @@ fun MyOrdersScreen(
                 }
 
                 // Orders List
-                if (state.isLoading) {
+                val hasOrders = state.orders.isNotEmpty()
+                if (state.isLoading && !hasOrders) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = Primary)
                     }
-                } else if (state.error != null) {
+                } else if (state.error != null && !hasOrders) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(text = state.error, color = MaterialTheme.colorScheme.error)
                     }
@@ -189,7 +190,7 @@ fun OrderItemCard(
             .fillMaxWidth()
             .clickable { onClick() },
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
@@ -211,13 +212,13 @@ fun OrderItemCard(
                     modifier = Modifier
                         .size(100.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(Color(0xFFE5E2D9)),
+                        .background(MaterialTheme.colorScheme.surfaceVariant),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ShoppingBasket,
                         contentDescription = "Order",
-                        tint = Primary,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(40.dp)
                     )
                 }
@@ -236,19 +237,19 @@ fun OrderItemCard(
                             text = "Order #$orderId", 
                             fontSize = 20.sp, 
                             fontWeight = FontWeight.Bold, 
-                            color = Color(0xFF1B3D17),
+                            color = MaterialTheme.colorScheme.onSurface,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                         Text(
                             text = "$formattedDate • $itemCount items", 
-                            color = Color.Gray, 
+                            color = MaterialTheme.colorScheme.onSurfaceVariant, 
                             fontSize = 14.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
-                    Text(text = "KSh $amount", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1B3D17))
+                    Text(text = "KSh $amount", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))

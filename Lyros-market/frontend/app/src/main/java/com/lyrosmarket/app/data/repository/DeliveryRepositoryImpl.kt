@@ -16,52 +16,52 @@ class DeliveryRepositoryImpl(
 ) : DeliveryRepository {
 
     override suspend fun getAvailableOrders(): Resource<List<DeliveryOrder>> {
-        val token = sessionManager.getToken() ?: return Resource.Error("No auth token")
+        val token = sessionManager.getToken() ?: return Resource.Error("Authentication required. Please log in.")
         return try {
             val dtos = api.getAvailableOrders(token)
             Resource.Success(dtos.map { it.toDeliveryOrder() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
     override suspend fun getMyOrders(): Resource<List<DeliveryOrder>> {
-        val token = sessionManager.getToken() ?: return Resource.Error("No auth token")
+        val token = sessionManager.getToken() ?: return Resource.Error("Authentication required. Please log in.")
         return try {
             val dtos = api.getMyOrders(token)
             Resource.Success(dtos.map { it.toDeliveryOrder() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
     override suspend fun acceptOrder(orderId: String): Resource<Unit> {
-        val token = sessionManager.getToken() ?: return Resource.Error("No auth token")
+        val token = sessionManager.getToken() ?: return Resource.Error("Authentication required. Please log in.")
         return try {
             api.acceptOrder(orderId, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
     override suspend fun updateStatus(orderId: String, status: String): Resource<Unit> {
-        val token = sessionManager.getToken() ?: return Resource.Error("No auth token")
+        val token = sessionManager.getToken() ?: return Resource.Error("Authentication required. Please log in.")
         return try {
             api.updateStatus(orderId, status, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
     override suspend fun updateLocation(lat: Double, lng: Double): Resource<Unit> {
-        val token = sessionManager.getToken() ?: return Resource.Error("No auth token")
+        val token = sessionManager.getToken() ?: return Resource.Error("Authentication required. Please log in.")
         return try {
             api.updateLocation(lat, lng, token)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

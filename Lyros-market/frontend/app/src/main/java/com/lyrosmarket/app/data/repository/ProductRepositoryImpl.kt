@@ -1,6 +1,7 @@
 package com.lyrosmarket.app.data.repository
 
 import com.lyrosmarket.app.core.Resource
+import com.lyrosmarket.app.core.SessionManager
 import com.lyrosmarket.app.data.remote.ProductApiService
 import com.lyrosmarket.app.data.remote.dto.toCategory
 import com.lyrosmarket.app.data.remote.dto.toProduct
@@ -12,7 +13,8 @@ import java.io.IOException
 import com.lyrosmarket.app.core.handleNetworkException
 
 class ProductRepositoryImpl(
-    private val api: ProductApiService
+    private val api: ProductApiService,
+    private val sessionManager: SessionManager
 ) : ProductRepository {
 
     override suspend fun getProducts(page: Int, size: Int, categoryId: Int?): Resource<List<Product>> {
@@ -20,7 +22,7 @@ class ProductRepositoryImpl(
             val dtos = api.getProducts(page, size, categoryId)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -29,7 +31,7 @@ class ProductRepositoryImpl(
             val dto = api.getProduct(productId)
             Resource.Success(dto.toProduct())
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -38,7 +40,7 @@ class ProductRepositoryImpl(
             val dtos = api.searchProducts(query, page, size, categoryId)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -47,7 +49,7 @@ class ProductRepositoryImpl(
             val dtos = api.getCategories()
             Resource.Success(dtos.map { it.toCategory() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 
@@ -56,7 +58,7 @@ class ProductRepositoryImpl(
             val dtos = api.getHighDemandProducts(page, size)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleNetworkException(e)
+            handleNetworkException(e, sessionManager)
         }
     }
 

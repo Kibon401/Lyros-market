@@ -86,8 +86,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductRepository(api: ProductApiService): ProductRepository {
-        return ProductRepositoryImpl(api)
+    fun provideProductRepository(
+        api: ProductApiService,
+        sessionManager: SessionManager
+    ): ProductRepository {
+        return ProductRepositoryImpl(api, sessionManager)
     }
 
     @Provides
@@ -98,8 +101,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePaymentRepository(api: com.lyrosmarket.app.data.remote.PaymentApiService): com.lyrosmarket.app.domain.repository.PaymentRepository {
-        return com.lyrosmarket.app.data.repository.PaymentRepositoryImpl(api)
+    fun providePaymentRepository(
+        api: com.lyrosmarket.app.data.remote.PaymentApiService,
+        sessionManager: SessionManager
+    ): com.lyrosmarket.app.domain.repository.PaymentRepository {
+        return com.lyrosmarket.app.data.repository.PaymentRepositoryImpl(api, sessionManager)
     }
 
     @Provides
@@ -110,8 +116,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideOrderRepository(api: com.lyrosmarket.app.data.remote.OrderApiService): com.lyrosmarket.app.domain.repository.OrderRepository {
-        return com.lyrosmarket.app.data.repository.OrderRepositoryImpl(api)
+    fun provideOrderRepository(
+        api: com.lyrosmarket.app.data.remote.OrderApiService,
+        sessionManager: SessionManager
+    ): com.lyrosmarket.app.domain.repository.OrderRepository {
+        return com.lyrosmarket.app.data.repository.OrderRepositoryImpl(api, sessionManager)
     }
 
     @Provides
@@ -122,8 +131,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCartRepository(api: com.lyrosmarket.app.data.remote.CartApiService): CartRepository {
-        return CartRepositoryImpl(api)
+    fun provideCartRepository(
+        api: com.lyrosmarket.app.data.remote.CartApiService,
+        sessionManager: SessionManager
+    ): CartRepository {
+        return CartRepositoryImpl(api, sessionManager)
     }
 
     @Provides
@@ -149,7 +161,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAdminRepository(api: com.lyrosmarket.app.data.remote.AdminApiService): com.lyrosmarket.app.domain.repository.AdminRepository {
-        return com.lyrosmarket.app.data.repository.AdminRepositoryImpl(api)
+    fun provideAdminRepository(
+        api: com.lyrosmarket.app.data.remote.AdminApiService,
+        sessionManager: SessionManager
+    ): com.lyrosmarket.app.domain.repository.AdminRepository {
+        return com.lyrosmarket.app.data.repository.AdminRepositoryImpl(api, sessionManager)
     }
 }

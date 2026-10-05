@@ -78,7 +78,7 @@ fun RegisterScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.3f), Primary.copy(alpha = 0.8f))))
+                .background(Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f), MaterialTheme.colorScheme.primary.copy(alpha = 0.8f))))
         ) {
             Column(
                 modifier = Modifier
@@ -97,7 +97,7 @@ fun RegisterScreen(
                     modifier = Modifier
                         .size(220.dp)
                         .clip(CircleShape)
-                        .border(4.dp, Color.White, CircleShape),
+                        .border(4.dp, MaterialTheme.colorScheme.onPrimary, CircleShape),
                     contentScale = ContentScale.Crop
                 )
                 
@@ -105,12 +105,12 @@ fun RegisterScreen(
                 
                 // Glass Panel for Form
                 Card(
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.85f)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
                     elevation = CardDefaults.cardElevation(0.dp),
                     shape = RoundedCornerShape(24.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(24.dp))
+                        .border(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f), RoundedCornerShape(24.dp))
                 ) {
                     Column(
                         modifier = Modifier.padding(24.dp),
@@ -120,13 +120,13 @@ fun RegisterScreen(
                             text = "Create Account",
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Primary
+                            color = MaterialTheme.colorScheme.primary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Your journey to fresh living starts here.",
                             fontSize = 14.sp,
-                            color = Color.DarkGray,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(32.dp))
@@ -137,27 +137,29 @@ fun RegisterScreen(
                                 text = "USERNAME",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                             TextField(
                                 value = username,
                                 onValueChange = viewModel::onUsernameChange,
-                                placeholder = { Text("GreenAdvocate24", color = Color.LightGray) },
+                                placeholder = { Text("GreenAdvocate24", color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent,
-                                    cursorColor = Primary
+                                    cursorColor = MaterialTheme.colorScheme.primary
                                 ),
                                 shape = RoundedCornerShape(16.dp),
                                 leadingIcon = {
                                     Icon(
                                         imageVector = Icons.Default.Person,
                                         contentDescription = null,
-                                        tint = Color.LightGray
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 },
                                 singleLine = true
@@ -172,27 +174,29 @@ fun RegisterScreen(
                                 text = "EMAIL ADDRESS",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                             TextField(
                                 value = email,
                                 onValueChange = viewModel::onEmailChange,
-                                placeholder = { Text("hello@lyrosmarket.com", color = Color.LightGray) },
+                                placeholder = { Text("hello@lyrosmarket.com", color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent,
-                                    cursorColor = Primary
+                                    cursorColor = MaterialTheme.colorScheme.primary
                                 ),
                                 shape = RoundedCornerShape(16.dp),
                                 leadingIcon = {
                                     Icon(
                                         imageVector = Icons.Default.Email,
                                         contentDescription = null,
-                                        tint = Color.LightGray
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -208,20 +212,22 @@ fun RegisterScreen(
                                 text = "PASSWORD",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
                             TextField(
                                 value = password,
                                 onValueChange = viewModel::onPasswordChange,
-                                placeholder = { Text("********", color = Color.LightGray) },
+                                placeholder = { Text("********", color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)) },
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = TextFieldDefaults.colors(
-                                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                                     focusedIndicatorColor = Color.Transparent,
                                     unfocusedIndicatorColor = Color.Transparent,
-                                    cursorColor = Primary
+                                    cursorColor = MaterialTheme.colorScheme.primary
                                 ),
                                 shape = RoundedCornerShape(16.dp),
                                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -229,13 +235,13 @@ fun RegisterScreen(
                                     Icon(
                                         imageVector = Icons.Default.Lock,
                                         contentDescription = null,
-                                        tint = Color.LightGray
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 },
                                 trailingIcon = {
                                     val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                                        Icon(imageVector = image, contentDescription = null, tint = Color.LightGray)
+                                        Icon(imageVector = image, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -253,12 +259,12 @@ fun RegisterScreen(
                             Checkbox(
                                 checked = agreedToTerms,
                                 onCheckedChange = { agreedToTerms = it },
-                                colors = CheckboxDefaults.colors(checkedColor = Primary)
+                                colors = CheckboxDefaults.colors(checkedColor = MaterialTheme.colorScheme.primary)
                             )
                             Text(
                                 text = "I agree to the Terms and Conditions",
                                 fontSize = 12.sp,
-                                color = Color.DarkGray
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
 
@@ -272,14 +278,14 @@ fun RegisterScreen(
                                 .fillMaxWidth()
                                 .height(56.dp),
                             shape = RoundedCornerShape(28.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Primary)
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                         ) {
                             if (isLoading) {
-                                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                                CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(24.dp))
                             } else {
-                                Text(text = "Register", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                                Text(text = "Register", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
                                 Spacer(modifier = Modifier.width(8.dp))
-                                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(20.dp))
+                                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(20.dp))
                             }
                         }
                     }

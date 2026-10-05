@@ -121,7 +121,7 @@ fun DeliveryOrderDetailsScreen(
                 .fillMaxSize()
                 .background(Brush.verticalGradient(listOf(Secondary.copy(alpha = 0.2f), Color.White)))
         ) {
-            if (state.isLoading) {
+            if (state.isLoading && order == null) {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = Primary)
                 }
@@ -139,7 +139,7 @@ fun DeliveryOrderDetailsScreen(
                 // Status Card
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
                     shape = RoundedCornerShape(16.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
@@ -152,11 +152,11 @@ fun DeliveryOrderDetailsScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Customer Info
-                Text("Customer Details", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                Text("Customer Details", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = MaterialTheme.colorScheme.onSurface)
                 Spacer(modifier = Modifier.height(12.dp))
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
@@ -167,10 +167,10 @@ fun DeliveryOrderDetailsScreen(
                         ) {
                             Column {
                                 if (order.status == "PENDING") {
-                                    Text("Hidden until accepted", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                                    Text("Hidden until accepted", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface)
                                     Text("***-***-****", color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 } else {
-                                    Text(order.customerName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                                    Text(order.customerName, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface)
                                     Text(order.customerPhone, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
                             }
@@ -193,15 +193,15 @@ fun DeliveryOrderDetailsScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Drop-off Location
-                Text("Drop-off Location", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                Text("Drop-off Location", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = MaterialTheme.colorScheme.onSurface)
                 Spacer(modifier = Modifier.height(12.dp))
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
-                        Text(order.dropOffAddress, fontSize = 16.sp)
+                        Text(order.dropOffAddress, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface)
                         Spacer(modifier = Modifier.height(16.dp))
                         OutlinedButton(
                             onClick = {

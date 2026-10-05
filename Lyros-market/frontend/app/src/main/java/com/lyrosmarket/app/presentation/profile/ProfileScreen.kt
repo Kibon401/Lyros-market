@@ -89,19 +89,19 @@ fun ProfileScreen(
                         color = Color.White
                     )
                 }
-                Surface(
-                    modifier = Modifier.size(32.dp),
-                    shape = CircleShape,
-                    color = Color.White,
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color.LightGray)
-                ) {
-                    Icon(
-                        Icons.Default.Edit, 
-                        contentDescription = null, 
-                        modifier = Modifier.padding(6.dp).size(16.dp),
-                        tint = Primary
-                    )
-                }
+//                Surface(
+//                    modifier = Modifier.size(32.dp),
+//                    shape = CircleShape,
+//                    color = Color.White,
+//                    border = androidx.compose.foundation.BorderStroke(1.dp, Color.LightGray)
+//                ) {
+//                    Icon(
+//                        Icons.Default.Edit,
+//                        contentDescription = null,
+//                        modifier = Modifier.padding(6.dp).size(16.dp),
+//                        tint = Primary
+//                    )
+//                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -132,10 +132,10 @@ fun ProfileScreen(
             Button(
                 onClick = { /* TODO: Implement save changes if needed */ },
                 modifier = Modifier.fillMaxWidth().height(56.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1B3D17)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(28.dp)
             ) {
-                Text(text = "Save Changes", fontWeight = FontWeight.Bold, color = Color.White)
+                Text(text = "Save Changes", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -143,18 +143,18 @@ fun ProfileScreen(
             Button(
                 onClick = viewModel::logout,
                 modifier = Modifier.fillMaxWidth().height(56.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFDEDD)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
                 shape = RoundedCornerShape(28.dp)
             ) {
-                Icon(Icons.Default.Logout, contentDescription = null, tint = Color(0xFFB3261E), modifier = Modifier.size(18.dp))
+                Icon(Icons.Default.Logout, contentDescription = null, tint = MaterialTheme.colorScheme.onErrorContainer, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Logout", color = Color(0xFFB3261E), fontWeight = FontWeight.Bold)
+                Text(text = "Logout", color = MaterialTheme.colorScheme.onErrorContainer, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             TextButton(onClick = { /* TODO: Delete Account */ }) {
-                Text(text = "Delete Account", color = Color.Gray, fontSize = 14.sp)
+                Text(text = "Delete Account", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
             }
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -173,9 +173,9 @@ fun ProfileSection(title: String, content: @Composable () -> Unit) {
             modifier = Modifier.padding(bottom = 12.dp)
         )
         Card(
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)),
-            elevation = CardDefaults.cardElevation(0.dp),
-            modifier = Modifier.fillMaxWidth().border(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f), RoundedCornerShape(16.dp))
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            elevation = CardDefaults.cardElevation(2.dp),
+            modifier = Modifier.fillMaxWidth().border(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f), RoundedCornerShape(16.dp))
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 content()
@@ -187,7 +187,7 @@ fun ProfileSection(title: String, content: @Composable () -> Unit) {
 @Composable
 fun ProfileTextField(label: String, value: String, onValueChange: (String) -> Unit) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(text = label, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = Color.Gray)
+        Text(text = label, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             value = value,
@@ -195,10 +195,13 @@ fun ProfileTextField(label: String, value: String, onValueChange: (String) -> Un
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFFF3F3F3),
-                unfocusedContainerColor = Color(0xFFF3F3F3),
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = MaterialTheme.colorScheme.primary
             ),
             singleLine = true
         )
@@ -212,15 +215,15 @@ fun ProfileOptionButton(label: String, icon: ImageVector, onClick: () -> Unit) {
             .fillMaxWidth()
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        color = Color(0xFFF3F3F3)
+        color = MaterialTheme.colorScheme.surfaceVariant
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = label, fontWeight = FontWeight.Medium)
-            Icon(icon, contentDescription = null, tint = Color.Gray)
+            Text(text = label, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.onSurface)
+            Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
