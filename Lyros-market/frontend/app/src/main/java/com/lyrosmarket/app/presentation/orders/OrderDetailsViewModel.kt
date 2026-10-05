@@ -40,6 +40,24 @@ class OrderDetailsViewModel @Inject constructor(
         }
     }
 
+    fun confirmDelivery(orderId: String) {
+        viewModelScope.launch {
+            _state.value = _state.value.copy(isLoading = true)
+            when (val result = repository.confirmDelivery(orderId)) {
+                is Resource.Success -> {
+                    loadOrder(orderId) // Reload order to reflect the new status
+                }
+                is Resource.Error -> {
+                    _state.value = _state.value.copy(
+                        isLoading = false,
+                        error = result.message ?: "Failed to confirm delivery"
+                    )
+                }
+                is Resource.Loading -> {}
+            }
+        }
+    }
+
     data class OrderDetailsState(
         val order: Order? = null,
         val isLoading: Boolean = false,

@@ -7,6 +7,7 @@ import com.lyrosmarket.app.domain.repository.AdminRepository
 import io.ktor.client.plugins.*
 import java.io.File
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class AdminRepositoryImpl(
     private val api: AdminApiService
@@ -17,7 +18,7 @@ class AdminRepositoryImpl(
             val url = api.uploadProductImage(imageFile)
             Resource.Success(url)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -26,7 +27,7 @@ class AdminRepositoryImpl(
             val response = api.createCategory(request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -35,7 +36,7 @@ class AdminRepositoryImpl(
             api.updateCategory(categoryId, request)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -44,7 +45,7 @@ class AdminRepositoryImpl(
             api.deleteCategory(categoryId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -53,7 +54,7 @@ class AdminRepositoryImpl(
             val response = api.getCategories()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -62,7 +63,7 @@ class AdminRepositoryImpl(
             val response = api.createProduct(request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -71,7 +72,7 @@ class AdminRepositoryImpl(
             api.updateProduct(productId, request)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -80,7 +81,7 @@ class AdminRepositoryImpl(
             api.deleteProduct(productId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -89,7 +90,7 @@ class AdminRepositoryImpl(
             val response = api.viewAllOrders()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -98,7 +99,7 @@ class AdminRepositoryImpl(
             val response = api.trackOrder(orderId)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -107,7 +108,7 @@ class AdminRepositoryImpl(
             api.markOrderPaid(orderId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -116,7 +117,7 @@ class AdminRepositoryImpl(
             val response = api.getDashboard()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -125,7 +126,7 @@ class AdminRepositoryImpl(
             val response = api.viewAllUsers()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -134,7 +135,7 @@ class AdminRepositoryImpl(
             val response = api.updateUser(userId, request)
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -143,7 +144,7 @@ class AdminRepositoryImpl(
             api.deleteUser(userId)
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -152,7 +153,7 @@ class AdminRepositoryImpl(
             val response = api.setUserRole(userId, SetRoleRequest(role))
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -161,15 +162,8 @@ class AdminRepositoryImpl(
             val response = api.viewInventory()
             Resource.Success(response)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error("Server error: ${e.response.status.value} - ${e.response.status.description}")
-            is IOException -> Resource.Error("Network error: Please check your connection")
-            else -> Resource.Error(e.message ?: "An unknown error occurred")
-        }
-    }
 }

@@ -58,9 +58,15 @@ class AdminUsersViewModel @Inject constructor(
     }
 
     fun updateUserRole(userId: Int, newRole: String) {
+        val user = _state.value.users.find { it.id == userId } ?: return
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
-            when (val result = adminRepository.setUserRole(userId, newRole)) {
+            val request = com.lyrosmarket.app.data.remote.dto.UpdateUserRequest(
+                username = user.username,
+                email = user.email,
+                role = newRole
+            )
+            when (val result = adminRepository.updateUser(userId, request)) {
                 is Resource.Success -> {
                     _uiEvent.emit("Role updated to $newRole")
                     loadUsers()

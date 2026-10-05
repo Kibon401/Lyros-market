@@ -10,6 +10,7 @@ import com.lyrosmarket.app.domain.model.User
 import com.lyrosmarket.app.domain.repository.AuthRepository
 import io.ktor.client.plugins.*
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class AuthRepositoryImpl(
     private val api: AuthApiService,
@@ -34,12 +35,8 @@ class AuthRepositoryImpl(
             
             val user = profile.toUser().copy(token = token)
             Resource.Success(user)
-        } catch (e: ResponseException) {
-            Resource.Error(e.response.status.description)
-        } catch (e: IOException) {
-            Resource.Error("Could not reach server: ${e.message}")
         } catch (e: Exception) {
-            Resource.Error(e.message ?: "An unknown error occurred")
+            handleNetworkException(e)
         }
     }
 
@@ -64,12 +61,8 @@ class AuthRepositoryImpl(
             
             val user = profile.toUser().copy(token = token, username = username, email = email)
             Resource.Success(user)
-        } catch (e: ResponseException) {
-            Resource.Error(e.response.status.description)
-        } catch (e: IOException) {
-            Resource.Error("Could not reach server: ${e.message}")
         } catch (e: Exception) {
-            Resource.Error(e.message ?: "An unknown error occurred")
+            handleNetworkException(e)
         }
     }
 
@@ -86,7 +79,7 @@ class AuthRepositoryImpl(
             val response = api.getProfile()
             Resource.Success(response.toUser())
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -95,7 +88,7 @@ class AuthRepositoryImpl(
             val response = api.updateProfile(username, email)
             Resource.Success(response.toUser())
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -104,7 +97,7 @@ class AuthRepositoryImpl(
             api.resetPassword(com.lyrosmarket.app.data.remote.dto.ResetPasswordRequest(email, code, newPassword))
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -113,15 +106,8 @@ class AuthRepositoryImpl(
             api.forgotPassword(mapOf("email" to email))
             Resource.Success(Unit)
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error("Server error: ${e.response.status.value}")
-            is IOException -> Resource.Error("Network error: Please check your connection")
-            else -> Resource.Error(e.message ?: "An unknown error occurred")
-        }
-    }
 }

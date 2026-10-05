@@ -24,4 +24,16 @@ class OrderApiService(
             setBody(request)
         }.body()
     }
+
+    suspend fun confirmDelivery(orderId: String) {
+        try {
+            client.post("orders/$orderId/confirm-delivery")
+        } catch (e: Exception) {
+            // Fallback to driver status endpoint if client endpoint is missing
+            client.put("driver/status/$orderId") {
+                contentType(ContentType.Application.Json)
+                setBody(mapOf("status" to "CLIENT_CONFIRMED"))
+            }
+        }
+    }
 }

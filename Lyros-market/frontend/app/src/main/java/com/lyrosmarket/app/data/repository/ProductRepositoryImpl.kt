@@ -9,6 +9,7 @@ import com.lyrosmarket.app.domain.model.Product
 import com.lyrosmarket.app.domain.repository.ProductRepository
 import io.ktor.client.plugins.*
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class ProductRepositoryImpl(
     private val api: ProductApiService
@@ -19,7 +20,7 @@ class ProductRepositoryImpl(
             val dtos = api.getProducts(page, size, categoryId)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -28,7 +29,7 @@ class ProductRepositoryImpl(
             val dto = api.getProduct(productId)
             Resource.Success(dto.toProduct())
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -37,7 +38,7 @@ class ProductRepositoryImpl(
             val dtos = api.searchProducts(query, page, size, categoryId)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -46,7 +47,7 @@ class ProductRepositoryImpl(
             val dtos = api.getCategories()
             Resource.Success(dtos.map { it.toCategory() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -55,15 +56,8 @@ class ProductRepositoryImpl(
             val dtos = api.getHighDemandProducts(page, size)
             Resource.Success(dtos.map { it.toProduct() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error(e.response.status.description)
-            is IOException -> Resource.Error("Network error")
-            else -> Resource.Error(e.message ?: "Unknown error")
-        }
-    }
 }

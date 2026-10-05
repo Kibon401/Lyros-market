@@ -9,6 +9,7 @@ import com.lyrosmarket.app.domain.model.OrderItem
 import com.lyrosmarket.app.domain.repository.OrderRepository
 import io.ktor.client.plugins.*
 import java.io.IOException
+import com.lyrosmarket.app.core.handleNetworkException
 
 class OrderRepositoryImpl(
     private val api: OrderApiService
@@ -19,7 +20,7 @@ class OrderRepositoryImpl(
             val dtos = api.getOrders()
             Resource.Success(dtos.map { it.toOrder() })
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -28,7 +29,7 @@ class OrderRepositoryImpl(
             val dto = api.getOrder(orderId)
             Resource.Success(dto.toOrder())
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
         }
     }
 
@@ -46,7 +47,16 @@ class OrderRepositoryImpl(
             val dto = api.checkout(request)
             Resource.Success(dto.toOrder())
         } catch (e: Exception) {
-            handleException(e)
+            handleNetworkException(e)
+        }
+    }
+
+    override suspend fun confirmDelivery(orderId: String): Resource<Unit> {
+        return try {
+            api.confirmDelivery(orderId)
+            Resource.Success(Unit)
+        } catch (e: Exception) {
+            handleNetworkException(e)
         }
     }
 
@@ -72,11 +82,4 @@ class OrderRepositoryImpl(
         )
     }
 
-    private fun <T> handleException(e: Exception): Resource<T> {
-        return when (e) {
-            is ResponseException -> Resource.Error("Server error: ${e.response.status.value}")
-            is IOException -> Resource.Error("Network error: Please check your connection")
-            else -> Resource.Error(e.message ?: "An unknown error occurred")
-        }
-    }
 }
